@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ratio_black">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    android:overScrollMode="never">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layoutAnimation="@anim/layout_animation_fall_down">
+
+        <!-- Top section: Clock (centered, large) -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingTop="100dp"
+            android:paddingBottom="24dp">
+
+            <com.ratio.launcher.views.AnalogClockView
+                android:id="@+id/analogClock"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:visibility="gone"
+                android:layout_marginBottom="12dp" />
+
+            <com.ratio.launcher.views.FlipClockView
+                android:id="@+id/flipClock"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:id="@+id/clockTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="12:00"
+                android:textColor="@color/ratio_white"
+                android:textSize="64sp"
+                android:fontFamily="@font/ratio_light"
+                android:includeFontPadding="false"
+                android:letterSpacing="-0.02" />
+
+            <TextView
+                android:id="@+id/clockDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tuesday, June 3"
+                android:textColor="@color/ratio_gray_text"
+                android:textSize="13sp"
+                android:fontFamily="@font/inter_light"
+                android:layout_marginTop="4dp" />
+
+        </LinearLayout>
+
+        <!-- Media player card -->
+        <LinearLayout
+            android:id="@+id/mediaPlayerCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="16dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="NOW PLAYING"
+                    android:textColor="@color/ratio_gray_light"
+                    android:textSize="9sp"
+                    android:fontFamily="@font/inter_medium"
+                    android:letterSpacing="0.2" />
+
+                <TextView
+                    android:id="@+id/mediaTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/ratio_white"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/inter_regular"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginTop="4dp" />
+
+                <TextView
+                    android:id="@+id/mediaArtist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/ratio_gray_text"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/inter_light"
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:layout_marginTop="2dp" />
+
+            </LinearLayout>
+
+            <!-- Controls -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/mediaPrev"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:gravity="center"
+                    android:text="⏮"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/mediaPlayPause"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:gravity="center"
+                    android:text="⏸"
+                    android:textColor="@color/ratio_accent"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/mediaNext"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:gravity="center"
+                    android:text="⏭"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Usage section (centered, prominent) -->
+        <LinearLayout
+            android:id="@+id/sectionScreenTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:paddingVertical="32dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SCREEN TIME"
+                android:textColor="@color/ratio_gray_light"
+                android:textSize="10sp"
+                android:fontFamily="@font/inter_medium"
+                android:letterSpacing="0.2" />
+
+            <TextView
+                android:id="@+id/usageTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0h 0m"
+                android:textColor="@color/ratio_white"
+                android:textSize="32sp"
+                android:fontFamily="@font/ratio_light"
+                android:layout_marginTop="4dp" />
+
+            <!-- Progress bar: Today vs Last Week -->
+            <RelativeLayout
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <LinearLayout
+                    android:id="@+id/usageBarContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:background="@color/gray_70"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:id="@+id/usageBarFill"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:background="@color/ratio_accent" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/usageBarContainer"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Today"
+                        android:textColor="@color/ratio_gray_light"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/inter_light" />
+
+                    <TextView
+                        android:id="@+id/usageSubtext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Last week"
+                        android:textColor="@color/gray_50"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/inter_light" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginHorizontal="32dp"
+            android:background="@color/gray_70" />
+
+        <!-- Weather section -->
+        <LinearLayout
+            android:id="@+id/sectionWeather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="WEATHER"
+                android:textColor="@color/ratio_gray_light"
+                android:textSize="10sp"
+                android:fontFamily="@font/inter_medium"
+                android:letterSpacing="0.2" />
+
+            <!-- Today -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/weatherTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--°"
+                    android:textColor="@color/ratio_white"
+                    android:textSize="36sp"
+                    android:fontFamily="@font/ratio_light" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:id="@+id/weatherCondition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tap to set city"
+                        android:textColor="@color/ratio_white"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/inter_regular" />
+
+                    <TextView
+                        android:id="@+id/weatherCity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/ratio_gray_text"
+                        android:textSize="12sp"
+                        android:fontFamily="@font/inter_light"
+                        android:layout_marginTop="2dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Weather details row -->
+            <LinearLayout
+                android:id="@+id/weatherDetailsRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
+                android:visibility="gone">
+
+                <!-- Humidity -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="humidity"
+                        android:textColor="@color/ratio_gray_light"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/inter_light" />
+
+                    <TextView
+                        android:id="@+id/weatherHumidity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/ratio_white"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/inter_regular"
+                        android:layout_marginTop="2dp" />
+
+                </LinearLayout>
+
+                <!-- Wind -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="wind"
+                        android:textColor="@color/ratio_gray_light"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/inter_light" />
+
+                    <TextView
+                        android:id="@+id/weatherWind"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/ratio_white"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/inter_regular"
+                        android:layout_marginTop="2dp" />
+
+                </LinearLayout>
+
+                <!-- Rain -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="rain"
+                        android:textColor="@color/ratio_gray_light"
+                        android:textSize="10sp"
+                        android:fontFamily="@font/inter_light" />
+
+                    <TextView
+                        android:id="@+id/weatherRain"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textColor="@color/ratio_white"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/inter_regular"
+                        android:layout_marginTop="2dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Tomorrow forecast -->
+            <LinearLayout
+                android:id="@+id/weatherTomorrowRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="16dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tomorrow"
+                    android:textColor="@color/ratio_gray_light"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/inter_light" />
+
+                <TextView
+                    android:id="@+id/weatherTomorrowTemp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/ratio_gray_text"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/inter_regular"
+                    android:layout_marginStart="8dp" />
+
+                <TextView
+                    android:id="@+id/weatherTomorrowCondition"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textColor="@color/gray_50"
+                    android:textSize="12sp"
+                    android:fontFamily="@font/inter_light"
+                    android:layout_marginStart="8dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginHorizontal="32dp"
+            android:background="@color/gray_70" />
+
+        <!-- Calendar section -->
+        <LinearLayout
+            android:id="@+id/calendarSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="24dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CALENDAR"
+                android:textColor="@color/ratio_gray_light"
+                android:textSize="10sp"
+                android:fontFamily="@font/inter_medium"
+                android:letterSpacing="0.2" />
+
+            <LinearLayout
+                android:id="@+id/calendarEventsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="8dp" />
+
+            <TextView
+                android:id="@+id/calendarEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No events today"
+                android:textColor="@color/ratio_gray_text"
+                android:textSize="13sp"
+                android:fontFamily="@font/inter_light"
+                android:layout_marginTop="8dp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <!-- Divider (calendar) -->
+        <View
+            android:id="@+id/calendarDivider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginHorizontal="32dp"
+            android:background="@color/gray_70"
+            android:visibility="gone" />
+
+        <!-- Notes section -->
+        <LinearLayout
+            android:id="@+id/sectionNotes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="24dp"
+            android:paddingBottom="100dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NOTES"
+                android:textColor="@color/ratio_gray_light"
+                android:textSize="10sp"
+                android:fontFamily="@font/inter_medium"
+                android:letterSpacing="0.2"
+                android:layout_marginBottom="12dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notesList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="12dp">
+
+                <EditText
+                    android:id="@+id/noteInput"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_weight="1"
+                    android:hint="Write a note…"
+                    android:textColorHint="@color/ratio_gray_light"
+                    android:textColor="@color/ratio_white"
+                    android:textSize="13sp"
+                    android:fontFamily="@font/inter_light"
+                    android:background="@drawable/note_input_bg"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:singleLine="true"
+                    android:imeOptions="actionDone"
+                    android:inputType="text" />
+
+                <ImageView
+                    android:id="@+id/noteAddBtn"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_add"
+                    android:padding="10dp"
+                    android:contentDescription="Add note"
+                    android:layout_marginStart="8dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
+
+    <!-- Dock floating at bottom -->
+    <LinearLayout
+        android:id="@+id/dockContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/dock_background"
+        android:gravity="center"
+        android:paddingHorizontal="12dp"
+        android:elevation="4dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/dockList"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
+
+    </LinearLayout>
+
+</FrameLayout>

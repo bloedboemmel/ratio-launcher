@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ratio_black"
+    android:orientation="vertical"
+    android:paddingTop="80dp"
+    android:paddingHorizontal="32dp">
+
+    <TextView
+        android:id="@+id/reorderTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/ratio_white"
+        android:textSize="24sp"
+        android:fontFamily="@font/ratio_light"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hold and drag to reorder"
+        android:textColor="@color/ratio_gray_light"
+        android:textSize="13sp"
+        android:fontFamily="@font/inter_light"
+        android:layout_marginBottom="24dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/reorderList"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:overScrollMode="never" />
+
+    <TextView
+        android:id="@+id/reorderDone"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center"
+        android:text="DONE"
+        android:textColor="@color/ratio_accent"
+        android:textSize="14sp"
+        android:fontFamily="@font/inter_medium"
+        android:letterSpacing="0.1"
+        android:layout_marginVertical="16dp" />
+
+</LinearLayout>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ratio_black">
+
+    <!-- Empty state -->
+    <LinearLayout
+        android:id="@+id/treeEmptyState"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="32dp">
+
+        <ImageView
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_message"
+            android:contentDescription="Messages"
+            android:alpha="0.4"
+            android:layout_marginBottom="20dp" />
+
+        <TextView
+            android:id="@+id/treeEmptyTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tree_placeholder"
+            android:textColor="@color/ratio_gray_light"
+            android:textSize="14sp"
+            android:fontFamily="@font/inter_light"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/treeEmptySubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grant notification access to see messages"
+            android:textColor="@color/gray_50"
+            android:textSize="12sp"
+            android:fontFamily="@font/inter_light"
+            android:gravity="center"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/treeEnableBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:text="ENABLE"
+            android:textColor="@color/ratio_accent"
+            android:textSize="12sp"
+            android:fontFamily="@font/inter_medium"
+            android:letterSpacing="0.1"
+            android:paddingHorizontal="24dp"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
+
+    <!-- Conversation list -->
+    <LinearLayout
+        android:id="@+id/treeContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="80dp"
+        android:paddingHorizontal="32dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MESSAGES"
+            android:textColor="@color/ratio_gray_light"
+            android:textSize="10sp"
+            android:fontFamily="@font/inter_medium"
+            android:letterSpacing="0.2"
+            android:layout_marginBottom="16dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/conversationList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"
+            android:overScrollMode="never"
+            android:clipToPadding="false"
+            android:paddingBottom="80dp" />
+
+    </LinearLayout>
+
+</FrameLayout>

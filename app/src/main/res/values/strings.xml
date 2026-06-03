@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ratio</string>
+    <string name="tab_tree">01 Tree</string>
+    <string name="tab_root">02 Root</string>
+    <string name="tab_tiles">03 Tiles</string>
+    <string name="search_hint">Search apps…</string>
+    <string name="notes_title">Notes</string>
+    <string name="weather_title">Weather</string>
+    <string name="usage_title">Screen Time</string>
+    <string name="add_note_hint">Write a note…</string>
+    <string name="tree_placeholder">Conversations will appear here</string>
+    <string name="no_apps">No apps found</string>
+</resources>
