@@ -52,11 +52,25 @@ class TilesFragment : Fragment() {
         rebuildAppList()
         setupSearch()
         setupCollapseGesture()
+
+        // Auto-open keyboard when switching to this page
+        searchBar.requestFocus()
+        searchBar.postDelayed({
+            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+            imm.showSoftInput(searchBar, android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT)
+        }, 300)
     }
 
     override fun onResume() {
         super.onResume()
         rebuildAppList()
+        searchBar.requestFocus()
+        searchBar.postDelayed({
+            if (isAdded) {
+                val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+                imm.showSoftInput(searchBar, android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT)
+            }
+        }, 200)
     }
 
     private fun rebuildAppList() {
