@@ -4,21 +4,11 @@
     <color name="ratio_black">#FF0B0B0B</color>
     <color name="ratio_white">#FFF2F2F2</color>
     <color name="ratio_accent">#FFFFFC33</color>
-    <color name="ratio_gray">#FF323232</color>
     <color name="ratio_gray_light">#FF636363</color>
     <color name="ratio_gray_text">#FFB3B3B3</color>
-    <color name="ratio_card_bg">#FF181818</color>
     <color name="transparent">#00000000</color>
 
-    <!-- Extended gray palette (from original) -->
-    <color name="gray_10">#FFF2F2F2</color>
-    <color name="gray_20">#FFD9D9D9</color>
-    <color name="gray_30">#FFB3B3B3</color>
-    <color name="gray_40">#FF797979</color>
+    <!-- Used in layouts -->
     <color name="gray_50">#FF636363</color>
-    <color name="gray_60">#FF4D4D4D</color>
     <color name="gray_70">#FF323232</color>
-    <color name="gray_80">#FF242424</color>
-    <color name="gray_85">#FF212121</color>
-    <color name="gray_90">#FF181818</color>
 </resources>

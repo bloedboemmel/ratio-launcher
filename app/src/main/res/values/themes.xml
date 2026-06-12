@@ -13,10 +13,4 @@
         <item name="android:fontFamily">@font/inter_regular</item>
     </style>
 
-    <style name="Theme.RatioLauncher.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
-        <item name="colorPrimary">@color/ratio_accent</item>
-        <item name="colorSurface">@color/ratio_card_bg</item>
-        <item name="colorOnSurface">@color/ratio_white</item>
-        <item name="android:windowBackground">@color/ratio_card_bg</item>
-    </style>
 </resources>

@@ -187,10 +187,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("MissingSuperCall")
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (viewPager.currentItem != 1) {
             viewPager.setCurrentItem(1, true)
         }
+        // Intentionally not calling super — launcher should not exit on back
     }
 }
