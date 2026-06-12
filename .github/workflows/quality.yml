@@ -38,11 +38,115 @@ jobs:
       - name: Compile Kotlin (check for errors)
         run: ./gradlew compileDebugKotlin
 
-      - name: Prepare reports for Pages
+      - name: Build GitHub Pages site
         if: always()
         run: |
-          mkdir -p public
-          cp app/build/reports/lint-results-debug.html public/index.html || true
+          mkdir -p public/quality
+
+          # Copy lint report to subfolder
+          cp app/build/reports/lint-results-debug.html public/quality/index.html || true
+
+          # Build main landing page with app preview
+          cat > public/index.html << 'HTMLEOF'
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Ratio Launcher</title>
+            <style>
+              * { margin: 0; padding: 0; box-sizing: border-box; }
+              body { background: #0B0B0B; color: #F2F2F2; font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; }
+              .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 24px; text-align: center; }
+              h1 { font-weight: 200; font-size: 3.5rem; letter-spacing: -0.02em; margin-bottom: 12px; }
+              .accent { color: #FFFC33; }
+              .tagline { color: #B3B3B3; font-size: 1.1rem; font-weight: 300; max-width: 500px; line-height: 1.6; margin-bottom: 48px; }
+              .phone-frame { width: 280px; height: 560px; border: 2px solid #323232; border-radius: 32px; overflow: hidden; position: relative; background: #0B0B0B; margin-bottom: 48px; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+              .phone-clock { font-size: 4rem; font-weight: 200; letter-spacing: -0.02em; margin-bottom: 8px; }
+              .phone-date { color: #B3B3B3; font-size: 0.85rem; margin-bottom: 32px; }
+              .phone-widget { width: 100%; padding: 12px 0; border-top: 1px solid #242424; }
+              .phone-widget-label { color: #636363; font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 4px; }
+              .phone-widget-value { font-size: 1.2rem; font-weight: 300; }
+              .dock { display: flex; gap: 16px; margin-top: 32px; background: rgba(50,50,50,0.4); padding: 10px 20px; border-radius: 22px; }
+              .dock-dot { width: 28px; height: 28px; background: #242424; border-radius: 8px; }
+              .buttons { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 60px; }
+              .btn { padding: 14px 32px; border-radius: 25px; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: all 0.2s; }
+              .btn-primary { background: #FFFC33; color: #0B0B0B; }
+              .btn-primary:hover { background: #e6e32e; transform: translateY(-2px); }
+              .btn-secondary { border: 1px solid #323232; color: #F2F2F2; }
+              .btn-secondary:hover { border-color: #636363; transform: translateY(-2px); }
+              .features { max-width: 800px; width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 60px; }
+              .feature { background: #181818; border-radius: 10px; padding: 24px; }
+              .feature h3 { font-weight: 400; font-size: 1rem; margin-bottom: 8px; color: #FFFC33; }
+              .feature p { color: #B3B3B3; font-size: 0.85rem; line-height: 1.5; }
+              .footer { color: #636363; font-size: 0.8rem; padding: 40px; text-align: center; border-top: 1px solid #181818; }
+              .footer a { color: #FFFC33; text-decoration: none; }
+            </style>
+          </head>
+          <body>
+            <div class="hero">
+              <div class="phone-frame">
+                <div class="phone-clock">12:00</div>
+                <div class="phone-date">Thursday, June 12</div>
+                <div class="phone-widget">
+                  <div class="phone-widget-label">Screen Time</div>
+                  <div class="phone-widget-value">1h 24m</div>
+                </div>
+                <div class="phone-widget">
+                  <div class="phone-widget-label">Weather</div>
+                  <div class="phone-widget-value">22° Sunny</div>
+                </div>
+                <div class="dock">
+                  <div class="dock-dot"></div>
+                  <div class="dock-dot"></div>
+                  <div class="dock-dot"></div>
+                  <div class="dock-dot"></div>
+                </div>
+              </div>
+
+              <h1>Ratio <span class="accent">Launcher</span></h1>
+              <p class="tagline">A mindful, minimal launcher inspired by Blloc Ratio. Focus on what matters — not your phone.</p>
+
+              <div class="buttons">
+                <a href="https://github.com/bloedboemmel/ratio-launcher/releases" class="btn btn-primary">Download APK</a>
+                <a href="https://github.com/bloedboemmel/ratio-launcher" class="btn btn-secondary">Source Code</a>
+                <a href="quality/" class="btn btn-secondary">Quality Report</a>
+              </div>
+
+              <div class="features">
+                <div class="feature">
+                  <h3>Minimalist Design</h3>
+                  <p>Dark monochrome aesthetic with Inter font. Every pixel is intentional.</p>
+                </div>
+                <div class="feature">
+                  <h3>7 Clock Styles</h3>
+                  <p>Minimal, Bold, Flip, Word, Binary, Day Progress, and a real Analog clock.</p>
+                </div>
+                <div class="feature">
+                  <h3>Smart Notifications</h3>
+                  <p>Tree view groups your messages by contact. Tap to open, long-press to dismiss.</p>
+                </div>
+                <div class="feature">
+                  <h3>App Grid Tiles</h3>
+                  <p>4-column grid with auto-categories. Grayscale icons. Hidden apps. Custom categories.</p>
+                </div>
+                <div class="feature">
+                  <h3>Digital Wellbeing</h3>
+                  <p>Screen time tracking, usage goals, focus hours with auto-reply.</p>
+                </div>
+                <div class="feature">
+                  <h3>Full Weather</h3>
+                  <p>Temperature, humidity, wind, rain chance, tomorrow forecast. No API key needed.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="footer">
+              Open source recreation of Blloc Ratio — <a href="quality/">View Quality Report</a>
+            </div>
+          </body>
+          </html>
+          HTMLEOF
 
       - name: Upload Lint Report artifact
         if: always()
