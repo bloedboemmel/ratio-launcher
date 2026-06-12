@@ -318,6 +318,7 @@ class RootFragment : Fragment() {
             notesAdapter.notifyItemInserted(0)
             noteInput.text.clear()
             saveNotes()
+            io.sentry.Sentry.metrics().count("note_added")
         }
     }
 
@@ -509,6 +510,18 @@ class RootFragment : Fragment() {
     private fun setupLongPressSettings(view: View) {
         clockTime.setOnClickListener { openAlarmApp() }
         clockDate.setOnClickListener { openAlarmApp() }
+
+        // Also set tap on custom clock views (analog/flip)
+        view.findViewById<View>(R.id.analogClock)?.setOnClickListener { openAlarmApp() }
+        view.findViewById<View>(R.id.flipClock)?.setOnClickListener { openAlarmApp() }
+        view.findViewById<View>(R.id.analogClock)?.setOnLongClickListener {
+            startActivity(Intent(requireContext(), SettingsActivity::class.java))
+            true
+        }
+        view.findViewById<View>(R.id.flipClock)?.setOnLongClickListener {
+            startActivity(Intent(requireContext(), SettingsActivity::class.java))
+            true
+        }
 
         clockTime.setOnLongClickListener {
             startActivity(Intent(requireContext(), SettingsActivity::class.java))

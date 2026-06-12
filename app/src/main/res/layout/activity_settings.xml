@@ -647,6 +647,39 @@
             android:background="@color/gray_70"
             android:layout_marginVertical="24dp" />
 
+        <!-- FEEDBACK -->
+        <LinearLayout
+            android:id="@+id/settingSendFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Send feedback"
+                android:textColor="@color/ratio_accent"
+                android:textSize="15sp"
+                android:fontFamily="@font/inter_regular" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="→"
+                android:textColor="@color/ratio_gray_text"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/gray_70"
+            android:layout_marginVertical="24dp" />
+
         <!-- ABOUT SECTION -->
         <TextView
             android:layout_width="wrap_content"

@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("io.sentry.android.gradle") version "6.11.0"
 }
 
 android {
@@ -16,12 +17,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            manifestPlaceholders["sentryEnvironment"] = "debug"
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            manifestPlaceholders["sentryEnvironment"] = "production"
         }
     }
 
@@ -49,4 +54,15 @@ dependencies {
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
     implementation("androidx.fragment:fragment-ktx:1.6.2")
+    implementation("io.sentry:sentry-android:8.34.0")
+}
+
+
+sentry {
+    org.set("memyselfandi-9i")
+    projectName.set("android")
+
+    // this will upload your source code to Sentry to show it as part of the stack traces
+    // disable if you don't want to expose your sources
+    includeSourceContext.set(true)
 }

@@ -55,9 +55,6 @@ object CalendarHelper {
             CalendarContract.Instances.EVENT_LOCATION
         )
 
-        val selection = "${CalendarContract.Instances.BEGIN} >= ? AND ${CalendarContract.Instances.BEGIN} < ?"
-        val selectionArgs = arrayOf(dayStart.toString(), dayEnd.toString())
-
         val uri = CalendarContract.Instances.CONTENT_URI.buildUpon()
             .appendPath(dayStart.toString())
             .appendPath(dayEnd.toString())

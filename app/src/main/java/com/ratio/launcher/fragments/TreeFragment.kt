@@ -119,8 +119,6 @@ class TreeFragment : Fragment(), NotificationService.OnNotificationChangedListen
 
     private fun dismissNotification(key: String) {
         try {
-            val service = NotificationService::class.java
-            // Can't directly cancel from fragment — remove from list and update UI
             synchronized(NotificationService.conversations) {
                 NotificationService.conversations.removeAll { it.key == key }
             }

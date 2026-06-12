@@ -60,7 +60,17 @@ enum class ClockStyle(val displayName: String) {
                 else "$h  $m\n$ampm"
             }
             WORD -> {
-                val base = "${numberToWord(displayHour)}\n${numberToWord(minute)}"
+                val base = if (minute == 0) {
+                    "${numberToWord(displayHour)}\no'clock"
+                } else if (minute == 30) {
+                    "half past\n${numberToWord(displayHour)}"
+                } else if (minute == 15) {
+                    "quarter past\n${numberToWord(displayHour)}"
+                } else if (minute == 45) {
+                    "quarter to\n${numberToWord(if (displayHour == 12) 1 else displayHour + 1)}"
+                } else {
+                    "${numberToWord(displayHour)}\n${numberToWord(minute)}"
+                }
                 if (showSeconds) "$base\n${numberToWord(second)}" else base
             }
             BINARY -> {

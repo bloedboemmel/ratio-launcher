@@ -117,7 +117,7 @@ class SettingsActivity : AppCompatActivity() {
         val clockStyleValue = findViewById<TextView>(R.id.settingClockStyleValue)
         clockStyleValue.text = ClockStyle.getCurrent(this).displayName
         findViewById<LinearLayout>(R.id.settingClockStyle).setOnClickListener {
-            showClockStyleDialog(clockStyleValue)
+            startActivity(android.content.Intent(this, ClockPickerActivity::class.java))
         }
 
         val showSecondsSwitch = findViewById<SwitchMaterial>(R.id.settingsShowSeconds)
@@ -170,6 +170,10 @@ class SettingsActivity : AppCompatActivity() {
 
         findViewById<LinearLayout>(R.id.settingBackup).setOnClickListener {
             showBackupDialog()
+        }
+
+        findViewById<LinearLayout>(R.id.settingSendFeedback).setOnClickListener {
+            showFeedbackDialog()
         }
 
         findViewById<LinearLayout>(R.id.settingReorderCategories).setOnClickListener {
@@ -247,17 +251,79 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun showClockStyleDialog(valueView: TextView) {
         val styles = ClockStyle.entries
-        val names = styles.map { it.displayName }.toTypedArray()
+        val prefs = getSharedPreferences("ratio_prefs", MODE_PRIVATE)
+        val use24h = prefs.getBoolean("clock_24h", true)
+        val showSeconds = prefs.getBoolean("show_seconds", false)
         val current = ClockStyle.getCurrent(this).ordinal
+
+        // Build preview items: "Style Name\npreview"
+        val previews = styles.map { style ->
+            val preview = when (style) {
+                ClockStyle.ANALOG -> "⏲ Drawn clock face"
+                ClockStyle.FLIP -> "Animated flip digits"
+                else -> style.formatTime(use24h, showSeconds)
+            }
+            "${style.displayName}\n$preview"
+        }.toTypedArray()
 
         MaterialAlertDialogBuilder(this)
             .setTitle("Clock style")
-            .setSingleChoiceItems(names, current) { dialog, which ->
+            .setSingleChoiceItems(previews, current) { dialog, which ->
                 val selected = styles[which]
                 ClockStyle.setCurrent(this, selected)
                 valueView.text = selected.displayName
                 dialog.dismiss()
             }
+            .show()
+    }
+
+    private fun showFeedbackDialog() {
+        val layout = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(48, 32, 48, 0)
+        }
+
+        val nameInput = android.widget.EditText(this).apply {
+            hint = "Name (optional)"
+            setTextColor(resources.getColor(R.color.ratio_white, null))
+            setHintTextColor(resources.getColor(R.color.ratio_gray_light, null))
+            setSingleLine()
+        }
+
+        val emailInput = android.widget.EditText(this).apply {
+            hint = "Email (optional)"
+            setTextColor(resources.getColor(R.color.ratio_white, null))
+            setHintTextColor(resources.getColor(R.color.ratio_gray_light, null))
+            setSingleLine()
+            inputType = android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS
+        }
+
+        val commentInput = android.widget.EditText(this).apply {
+            hint = "What happened?"
+            setTextColor(resources.getColor(R.color.ratio_white, null))
+            setHintTextColor(resources.getColor(R.color.ratio_gray_light, null))
+            minLines = 3
+            gravity = android.view.Gravity.TOP
+        }
+
+        layout.addView(nameInput)
+        layout.addView(emailInput)
+        layout.addView(commentInput)
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Send Feedback")
+            .setView(layout)
+            .setPositiveButton("Send") { _, _ ->
+                val sentryId = io.sentry.Sentry.captureMessage("User Feedback")
+                val feedback = io.sentry.UserFeedback(sentryId).apply {
+                    comments = commentInput.text.toString()
+                    email = emailInput.text.toString()
+                    name = nameInput.text.toString()
+                }
+                io.sentry.Sentry.captureUserFeedback(feedback)
+                android.widget.Toast.makeText(this, "Feedback sent!", android.widget.Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Cancel", null)
             .show()
     }
 
@@ -327,6 +393,11 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun importConfig() {
         importLauncher.launch(arrayOf("application/json"))
+    }
+
+    override fun onResume() {
+        super.onResume()
+        findViewById<TextView>(R.id.settingClockStyleValue)?.text = ClockStyle.getCurrent(this).displayName
     }
 
     override fun onPause() {

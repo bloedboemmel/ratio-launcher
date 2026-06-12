@@ -18,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.ratio.launcher.adapters.ViewPagerAdapter
+import io.sentry.Sentry
 
 class MainActivity : AppCompatActivity() {
 
@@ -52,6 +53,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_main)
+        Sentry.metrics().count("app_launch")
 
         statusOverlay = findViewById(R.id.statusOverlay)
         statusWifi = findViewById(R.id.statusWifi)
@@ -81,14 +83,42 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupViewPager() {
         viewPager = findViewById(R.id.viewPager)
-        val adapter = ViewPagerAdapter(this)
-        viewPager.adapter = adapter
-        viewPager.setCurrentItem(1, false)
+        if (viewPager.adapter == null) {
+            val adapter = ViewPagerAdapter(this)
+            viewPager.adapter = adapter
+            viewPager.setCurrentItem(1, false)
+        }
         viewPager.offscreenPageLimit = 2
 
         viewPager.setPageTransformer { page, position ->
             page.alpha = 1f - kotlin.math.abs(position) * 0.3f
         }
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                val pageName = when (position) { 0 -> "tree"; 1 -> "root"; else -> "tiles" }
+                Sentry.metrics().count("page_view_$pageName")
+
+                if (position == 2) {
+                    supportFragmentManager.fragments
+                        .filterIsInstance<com.ratio.launcher.fragments.TilesFragment>()
+                        .firstOrNull()?.openKeyboard()
+                } else {
+                    hideKeyboard()
+                }
+            }
+        })
+    }
+
+    private fun hideKeyboard() {
+        val imm = getSystemService(INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
+        currentFocus?.let { imm.hideSoftInputFromWindow(it.windowToken, 0) }
+            ?: imm.hideSoftInputFromWindow(viewPager.windowToken, 0)
+    }
+
+    override fun onPictureInPictureModeChanged(isInPictureInPictureMode: Boolean) {
+        super.onPictureInPictureModeChanged(isInPictureInPictureMode)
+        // Don't do anything special — just prevent crash
     }
 
     override fun onResume() {
