@@ -102,7 +102,7 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/utils/HapticHelper.kt:71: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt:166: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt:168: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
         val category = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/utils/UsageGoalsManager.kt:50: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
@@ -313,10 +313,10 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:564: Warning: onTouch lambda should call View#performClick when a click is detected [ClickableViewAccessibility]
         view.setOnTouchListener { _, event ->
                                 ^
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt:125: Warning: Custom view `RecyclerView` has setOnTouchListener called on it but does not override performClick [ClickableViewAccessibility]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt:127: Warning: Custom view `RecyclerView` has setOnTouchListener called on it but does not override performClick [ClickableViewAccessibility]
         appList.setOnTouchListener { _, event ->
         ^
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt:125: Warning: onTouch lambda should call View#performClick when a click is detected [ClickableViewAccessibility]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt:127: Warning: onTouch lambda should call View#performClick when a click is detected [ClickableViewAccessibility]
         appList.setOnTouchListener { _, event ->
                                    ^
 

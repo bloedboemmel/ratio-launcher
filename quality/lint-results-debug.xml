@@ -319,7 +319,7 @@
         errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt"
-            line="166"
+            line="168"
             column="28"/>
     </issue>
 
@@ -1031,7 +1031,7 @@
         errorLine2="        ^">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt"
-            line="125"
+            line="127"
             column="9"/>
     </issue>
 
@@ -1047,7 +1047,7 @@
         errorLine2="                                   ^">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt"
-            line="125"
+            line="127"
             column="36"/>
     </issue>
 

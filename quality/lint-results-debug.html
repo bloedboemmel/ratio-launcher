@@ -179,7 +179,7 @@ document.getElementById(id).style.display = 'none';
     <div class="mdl-layout__header-row">
       <span class="mdl-layout-title">Lint Report: 197 warnings</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sun Jun 14 17:25:40 UTC 2026 by AGP (8.3.2)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Sun Jun 14 20:02:22 UTC 2026 by AGP (8.3.2)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -294,8 +294,8 @@ Dismiss</button>            </div>
 <span class="lineno"> 12 </span>        applicationId = "com.bloedboemmel.ratio"
 <span class="lineno"> 13 </span>        minSdk = 26
 <span class="caretline"><span class="lineno"> 14 </span>        <span class="warning">targetSdk = 35</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 15 </span>        versionCode = 2
-<span class="lineno"> 16 </span>        versionName = "1.0.1"
+<span class="lineno"> 15 </span>        versionCode = 3
+<span class="lineno"> 16 </span>        versionName = "1.0.2"
 <span class="lineno"> 17 </span>    }
 </pre>
 
@@ -664,14 +664,14 @@ Dismiss</button>            </div>
 <span class="lineno"> 74 </span>          <span class="annotation">@Suppress</span>(<span class="string">"DEPRECATION"</span>)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt">../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt</a>:166</span>: <span class="message">Unnecessary; SDK_INT is always >= 26</span><br /><pre class="errorlines">
-<span class="lineno"> 163 </span>  }
-<span class="lineno"> 164 </span>
-<span class="lineno"> 165 </span>  private <span class="keyword">fun</span> categorizeApp(appInfo: ApplicationInfo, pm: PackageManager): String {
-<span class="caretline"><span class="lineno"> 166 </span>      <span class="keyword">val</span> category = <span class="keyword">if</span> (<span class="warning">android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O</span>) {&nbsp;&nbsp;</span>
-<span class="lineno"> 167 </span>          appInfo.category
-<span class="lineno"> 168 </span>      } <span class="keyword">else</span> {
-<span class="lineno"> 169 </span>          ApplicationInfo.CATEGORY_UNDEFINED
+<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt">../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt</a>:168</span>: <span class="message">Unnecessary; SDK_INT is always >= 26</span><br /><pre class="errorlines">
+<span class="lineno"> 165 </span>  }
+<span class="lineno"> 166 </span>
+<span class="lineno"> 167 </span>  private <span class="keyword">fun</span> categorizeApp(appInfo: ApplicationInfo, pm: PackageManager): String {
+<span class="caretline"><span class="lineno"> 168 </span>      <span class="keyword">val</span> category = <span class="keyword">if</span> (<span class="warning">android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O</span>) {&nbsp;&nbsp;</span>
+<span class="lineno"> 169 </span>          appInfo.category
+<span class="lineno"> 170 </span>      } <span class="keyword">else</span> {
+<span class="lineno"> 171 </span>          ApplicationInfo.CATEGORY_UNDEFINED
 </pre>
 
 <span class="location"><a href="../../src/main/java/com/ratio/launcher/utils/UsageGoalsManager.kt">../../src/main/java/com/ratio/launcher/utils/UsageGoalsManager.kt</a>:50</span>: <span class="message">Unnecessary; SDK_INT is always >= 26</span><br /><pre class="errorlines">
@@ -1349,24 +1349,24 @@ Dismiss</button>            </div>
 <span class="lineno"> 567 </span>        }
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt">../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt</a>:125</span>: <span class="message">Custom view `<code>RecyclerView</code>` has <code>setOnTouchListener</code> called on it but does not override <code>performClick</code></span><br /><pre class="errorlines">
-<span class="lineno"> 122 </span>            }
-<span class="lineno"> 123 </span>        })
-<span class="lineno"> 124 </span>
-<span class="caretline"><span class="lineno"> 125 </span>        <span class="warning">appList.setOnTouchListener { _, event -></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 126 </span>            gestureDetector.onTouchEvent(event)
-<span class="lineno"> 127 </span>            <span class="keyword">false</span>
-<span class="lineno"> 128 </span>        }
+<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt">../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt</a>:127</span>: <span class="message">Custom view `<code>RecyclerView</code>` has <code>setOnTouchListener</code> called on it but does not override <code>performClick</code></span><br /><pre class="errorlines">
+<span class="lineno"> 124 </span>            }
+<span class="lineno"> 125 </span>        })
+<span class="lineno"> 126 </span>
+<span class="caretline"><span class="lineno"> 127 </span>        <span class="warning">appList.setOnTouchListener { _, event -></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 128 </span>            gestureDetector.onTouchEvent(event)
+<span class="lineno"> 129 </span>            <span class="keyword">false</span>
+<span class="lineno"> 130 </span>        }
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt">../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt</a>:125</span>: <span class="message"><code>onTouch</code> lambda should call <code>View#performClick</code> when a click is detected</span><br /><pre class="errorlines">
-<span class="lineno"> 122 </span>            }
-<span class="lineno"> 123 </span>        })
-<span class="lineno"> 124 </span>
-<span class="caretline"><span class="lineno"> 125 </span>        appList.setOnTouchListener <span class="warning">{ _, event -></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 126 </span>            gestureDetector.onTouchEvent(event)
-<span class="lineno"> 127 </span>            <span class="keyword">false</span>
-<span class="lineno"> 128 </span>        }
+<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt">../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt</a>:127</span>: <span class="message"><code>onTouch</code> lambda should call <code>View#performClick</code> when a click is detected</span><br /><pre class="errorlines">
+<span class="lineno"> 124 </span>            }
+<span class="lineno"> 125 </span>        })
+<span class="lineno"> 126 </span>
+<span class="caretline"><span class="lineno"> 127 </span>        appList.setOnTouchListener <span class="warning">{ _, event -></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 128 </span>            gestureDetector.onTouchEvent(event)
+<span class="lineno"> 129 </span>            <span class="keyword">false</span>
+<span class="lineno"> 130 </span>        }
 </pre>
 
 </div>
