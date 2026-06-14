@@ -1,1 +1,1 @@
-Fixed a crash in search after restore/resume when app list was still initializing.
+Fixed an issue that could cause a crash when searching right after opening the app.
