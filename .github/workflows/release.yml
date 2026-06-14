@@ -74,5 +74,5 @@ jobs:
           packageName: com.bloedboemmel.ratio
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
           whatsNewDirectory: distribution/whatsnew
-          tracks: internal
+          tracks: internal,alpha
           status: completed
