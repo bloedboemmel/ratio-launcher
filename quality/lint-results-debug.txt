@@ -1,5 +1,5 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:14: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
-        targetSdk = 34
+        targetSdk = 35
         ~~~~~~~~~~~~~~
 
    Explanation for issues of type "OldTargetApi":
