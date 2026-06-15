@@ -20,29 +20,20 @@
 
    https://developer.android.com/distribute/best-practices/develop/target-sdk.html
 
-/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:48: Warning: A newer version of androidx.core:core-ktx than 1.12.0 is available: 1.19.0 [GradleDependency]
-    implementation("androidx.core:core-ktx:1.12.0")
+/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:48: Warning: A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.0 [GradleDependency]
+    implementation("androidx.core:core-ktx:1.15.0")
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:49: Warning: A newer version of androidx.appcompat:appcompat than 1.6.1 is available: 1.7.1 [GradleDependency]
-    implementation("androidx.appcompat:appcompat:1.6.1")
+/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:49: Warning: A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.7.1 [GradleDependency]
+    implementation("androidx.appcompat:appcompat:1.7.0")
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:50: Warning: A newer version of com.google.android.material:material than 1.11.0 is available: 1.14.0 [GradleDependency]
-    implementation("com.google.android.material:material:1.11.0")
+/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:50: Warning: A newer version of com.google.android.material:material than 1.12.0 is available: 1.14.0 [GradleDependency]
+    implementation("com.google.android.material:material:1.12.0")
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:51: Warning: A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.1 [GradleDependency]
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:52: Warning: A newer version of androidx.viewpager2:viewpager2 than 1.0.0 is available: 1.1.0 [GradleDependency]
-    implementation("androidx.viewpager2:viewpager2:1.0.0")
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:53: Warning: A newer version of androidx.recyclerview:recyclerview than 1.3.2 is available: 1.4.0 [GradleDependency]
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
-                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:55: Warning: A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.7.0 is available: 2.10.0 [GradleDependency]
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:55: Warning: A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.7 is available: 2.10.0 [GradleDependency]
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:56: Warning: A newer version of androidx.fragment:fragment-ktx than 1.6.2 is available: 1.8.9 [GradleDependency]
-    implementation("androidx.fragment:fragment-ktx:1.6.2")
+/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:56: Warning: A newer version of androidx.fragment:fragment-ktx than 1.8.5 is available: 1.8.9 [GradleDependency]
+    implementation("androidx.fragment:fragment-ktx:1.8.5")
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "GradleDependency":
@@ -202,8 +193,8 @@
    layout hierarchy.
 
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:677: Warning: activity_settings.xml has more than 80 views, bad for performance [TooManyViews]
-        <View
-         ~~~~
+        <LinearLayout
+         ~~~~~~~~~~~~
 
    Explanation for issues of type "TooManyViews":
    Using too many views in a single layout is bad for performance. Consider
@@ -228,7 +219,7 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:497: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
             android:textSize="10sp"
             ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:689: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:715: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
             android:textSize="10sp"
             ~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_usage_breakdown.xml:34: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
@@ -327,78 +318,135 @@
    actions should ideally be placed in View#performClick as some accessibility
    services invoke performClick when a click action should occur.
 
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/MainActivity.kt:176: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/MainActivity.kt:180: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
         statusBattery.text = "$level%"
                              ~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:88: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:104: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                 title.text = "Welcome to Ratio"
                               ~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:89: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
-                desc.text = "A mindful launcher that helps you\nfocus on what matters"
-                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:89: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                desc.text = "A mindful launcher that helps you\nfocus on what matters"
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:105: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                desc.text = "A mindful launcher that helps you\nfocus on what matters.\n\nSwipe between three pages:\n← Tree (notifications)\n● Root (home)\n→ Tiles (apps)"
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:105: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "A mindful launcher that helps you\nfocus on what matters.\n\nSwipe between three pages:\n← Tree (notifications)\n● Root (home)\n→ Tiles (apps)"
                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:89: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                desc.text = "A mindful launcher that helps you\nfocus on what matters"
-                                                                ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:90: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:105: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "A mindful launcher that helps you\nfocus on what matters.\n\nSwipe between three pages:\n← Tree (notifications)\n● Root (home)\n→ Tiles (apps)"
+                                                                ~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:105: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "A mindful launcher that helps you\nfocus on what matters.\n\nSwipe between three pages:\n← Tree (notifications)\n● Root (home)\n→ Tiles (apps)"
+                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:105: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "A mindful launcher that helps you\nfocus on what matters.\n\nSwipe between three pages:\n← Tree (notifications)\n● Root (home)\n→ Tiles (apps)"
+                                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:105: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "A mindful launcher that helps you\nfocus on what matters.\n\nSwipe between three pages:\n← Tree (notifications)\n● Root (home)\n→ Tiles (apps)"
+                                                                                                                                              ~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:105: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "A mindful launcher that helps you\nfocus on what matters.\n\nSwipe between three pages:\n← Tree (notifications)\n● Root (home)\n→ Tiles (apps)"
+                                                                                                                                                             ~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:106: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                 button.text = "GET STARTED"
                                ~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:94: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:110: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                title.text = "Default Launcher"
+                              ~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:111: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                desc.text = "Set Ratio as your default home app\nso it opens when you press Home"
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:111: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "Set Ratio as your default home app\nso it opens when you press Home"
+                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:111: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "Set Ratio as your default home app\nso it opens when you press Home"
+                                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:113: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    button.text = "ALREADY SET ✓"
+                                   ~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:116: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    button.text = "SET AS DEFAULT"
+                                   ~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:124: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                 title.text = "Notifications"
                               ~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:95: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
-                desc.text = "Grant notification access to see\nyour messages in Tree view"
-                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:95: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                desc.text = "Grant notification access to see\nyour messages in Tree view"
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:125: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                desc.text = "Grant notification access to see\nyour messages in Tree view.\n\nFind \"Ratio\" in the list and enable it."
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:125: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "Grant notification access to see\nyour messages in Tree view.\n\nFind \"Ratio\" in the list and enable it."
                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:95: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                desc.text = "Grant notification access to see\nyour messages in Tree view"
-                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:96: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                button.text = "GRANT ACCESS"
-                               ~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:101: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                    button.text = "CONTINUE"
-                                   ~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:106: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                title.text = "Usage Stats"
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:125: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "Grant notification access to see\nyour messages in Tree view.\n\nFind \"Ratio\" in the list and enable it."
+                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:125: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "Grant notification access to see\nyour messages in Tree view.\n\nFind \"Ratio\" in the list and enable it."
+                                                                                              ~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:125: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "Grant notification access to see\nyour messages in Tree view.\n\nFind \"Ratio\" in the list and enable it."
+                                                                                                     ~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:125: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "Grant notification access to see\nyour messages in Tree view.\n\nFind \"Ratio\" in the list and enable it."
+                                                                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:127: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    button.text = "GRANTED ✓ CONTINUE"
+                                   ~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:130: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    button.text = "GRANT ACCESS"
+                                   ~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:137: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                title.text = "Screen Time"
                               ~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:107: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
-                desc.text = "Allow usage access to track\nyour screen time"
-                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:107: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                desc.text = "Allow usage access to track\nyour screen time"
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:138: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                desc.text = "Allow usage access to track\nyour daily screen time.\n\nFind \"Ratio\" in the list and enable it."
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:138: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "Allow usage access to track\nyour daily screen time.\n\nFind \"Ratio\" in the list and enable it."
                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:107: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                desc.text = "Allow usage access to track\nyour screen time"
-                                                          ~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:108: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                button.text = "GRANT ACCESS"
-                               ~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:113: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                    button.text = "CONTINUE"
-                                   ~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:118: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                title.text = "You're all set"
-                              ~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:119: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
-                desc.text = "Swipe between Tree, Root, and Tiles\nLong-press the clock for settings"
-                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:119: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                desc.text = "Swipe between Tree, Root, and Tiles\nLong-press the clock for settings"
-                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:119: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                desc.text = "Swipe between Tree, Root, and Tiles\nLong-press the clock for settings"
-                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:120: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:138: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "Allow usage access to track\nyour daily screen time.\n\nFind \"Ratio\" in the list and enable it."
+                                                          ~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:138: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "Allow usage access to track\nyour daily screen time.\n\nFind \"Ratio\" in the list and enable it."
+                                                                                     ~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:138: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "Allow usage access to track\nyour daily screen time.\n\nFind \"Ratio\" in the list and enable it."
+                                                                                            ~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:138: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "Allow usage access to track\nyour daily screen time.\n\nFind \"Ratio\" in the list and enable it."
+                                                                                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:140: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    button.text = "GRANTED ✓ CONTINUE"
+                                   ~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:143: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    button.text = "GRANT ACCESS"
+                                   ~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:150: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                title.text = "You're all set!"
+                              ~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:151: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                desc.text = "How to use Ratio:\n\n• Tap clock → Alarm\n• Long-press clock → Settings\n• Swipe left → Notifications\n• Swipe right → App drawer\n• Long-press app → Dock/Hide/Uninstall"
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:151: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "How to use Ratio:\n\n• Tap clock → Alarm\n• Long-press clock → Settings\n• Swipe left → Notifications\n• Swipe right → App drawer\n• Long-press app → Dock/Hide/Uninstall"
+                             ~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:151: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "How to use Ratio:\n\n• Tap clock → Alarm\n• Long-press clock → Settings\n• Swipe left → Notifications\n• Swipe right → App drawer\n• Long-press app → Dock/Hide/Uninstall"
+                                                  ~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:151: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "How to use Ratio:\n\n• Tap clock → Alarm\n• Long-press clock → Settings\n• Swipe left → Notifications\n• Swipe right → App drawer\n• Long-press app → Dock/Hide/Uninstall"
+                                                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:151: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "How to use Ratio:\n\n• Tap clock → Alarm\n• Long-press clock → Settings\n• Swipe left → Notifications\n• Swipe right → App drawer\n• Long-press app → Dock/Hide/Uninstall"
+                                                                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:151: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "How to use Ratio:\n\n• Tap clock → Alarm\n• Long-press clock → Settings\n• Swipe left → Notifications\n• Swipe right → App drawer\n• Long-press app → Dock/Hide/Uninstall"
+                                                                                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:151: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                desc.text = "How to use Ratio:\n\n• Tap clock → Alarm\n• Long-press clock → Settings\n• Swipe left → Notifications\n• Swipe right → App drawer\n• Long-press app → Dock/Hide/Uninstall"
+                                                                                                                                                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:152: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                 button.text = "START USING RATIO"
                                ~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:132: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-            button.text = "CONTINUE"
-                           ~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/ReorderActivity.kt:42: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                 title.text = "Reorder Cards"
                               ~~~~~~~~~~~~~
@@ -429,7 +477,7 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:73: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
         usageGoalValue.text = "${goal / 60}h ${goal % 60}m"
                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:344: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:350: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                     iconPackValue.text = "Default"
                                           ~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TreeFragment.kt:82: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
@@ -602,22 +650,28 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:632: Warning: Hardcoded string "Screen time", should use @string resource [HardcodedText]
                 android:text="Screen time"
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:663: Warning: Hardcoded string "Send feedback", should use @string resource [HardcodedText]
-                android:text="Send feedback"
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:663: Warning: Hardcoded string "Show intro / permissions", should use @string resource [HardcodedText]
+                android:text="Show intro / permissions"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:671: Warning: Hardcoded string "→", should use @string resource [HardcodedText]
                 android:text="→"
                 ~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:687: Warning: Hardcoded string "ABOUT", should use @string resource [HardcodedText]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:689: Warning: Hardcoded string "Send feedback", should use @string resource [HardcodedText]
+                android:text="Send feedback"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:697: Warning: Hardcoded string "→", should use @string resource [HardcodedText]
+                android:text="→"
+                ~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:713: Warning: Hardcoded string "ABOUT", should use @string resource [HardcodedText]
             android:text="ABOUT"
             ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:697: Warning: Hardcoded string "Ratio Launcher", should use @string resource [HardcodedText]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:723: Warning: Hardcoded string "Ratio Launcher", should use @string resource [HardcodedText]
             android:text="Ratio Launcher"
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:705: Warning: Hardcoded string "Open source recreation of Blloc Ratio", should use @string resource [HardcodedText]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:731: Warning: Hardcoded string "Open source recreation of Blloc Ratio", should use @string resource [HardcodedText]
             android:text="Open source recreation of Blloc Ratio"
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:715: Warning: Hardcoded string "v1.0.0", should use @string resource [HardcodedText]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:741: Warning: Hardcoded string "v1.0.0", should use @string resource [HardcodedText]
             android:text="v1.0.0"
             ~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_usage_breakdown.xml:14: Warning: Hardcoded string "Screen Time", should use @string resource [HardcodedText]
@@ -752,4 +806,4 @@
    There are quickfixes to automatically extract this hardcoded string into a
    resource lookup.
 
-0 errors, 197 warnings
+0 errors, 215 warnings
