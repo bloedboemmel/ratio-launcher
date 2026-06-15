@@ -1,11 +1,15 @@
 package com.ratio.launcher
 
 import android.app.Application
+import io.sentry.android.core.SentryAndroid
 
 class RatioApp : Application() {
     override fun onCreate() {
         super.onCreate()
-        // Sentry auto-initializes via manifest meta-data (io.sentry.dsn)
-        // No manual init needed — SDK 8.34.0 handles everything
+        SentryAndroid.init(this) { options ->
+            options.dsn = "https://daf61cb6000a0efc5b5ef89b606b58a2@o4511551541673984.ingest.de.sentry.io/4511551546392656"
+            options.sessionReplay.onErrorSampleRate = 1.0
+            options.sessionReplay.sessionSampleRate = 0.1
+        }
     }
 }

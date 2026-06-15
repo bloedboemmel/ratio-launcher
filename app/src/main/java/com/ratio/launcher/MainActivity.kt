@@ -53,7 +53,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContentView(R.layout.activity_main)
+        val clockStyle = com.ratio.launcher.utils.ClockStyle.getCurrent(this).name
+        val theme = com.ratio.launcher.utils.RatioTheme.getCurrent(this).key
         Sentry.metrics().count("app_launch")
+        Sentry.metrics().count("clock_style_$clockStyle")
+        Sentry.metrics().count("theme_$theme")
 
         statusOverlay = findViewById(R.id.statusOverlay)
         statusWifi = findViewById(R.id.statusWifi)
@@ -97,7 +101,7 @@ class MainActivity : AppCompatActivity() {
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 val pageName = when (position) { 0 -> "tree"; 1 -> "root"; else -> "tiles" }
-                Sentry.metrics().count("page_view_$pageName")
+                Sentry.metrics().count("page_swipe_$pageName")
 
                 if (position == 2) {
                     supportFragmentManager.fragments

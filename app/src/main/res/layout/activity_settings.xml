@@ -647,6 +647,32 @@
             android:background="@color/gray_70"
             android:layout_marginVertical="24dp" />
 
+        <!-- Restart onboarding -->
+        <LinearLayout
+            android:id="@+id/settingOnboarding"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Show intro / permissions"
+                android:textColor="@color/ratio_white"
+                android:textSize="15sp"
+                android:fontFamily="@font/inter_regular" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="→"
+                android:textColor="@color/ratio_gray_text"
+                android:textSize="16sp" />
+        </LinearLayout>
+
         <!-- FEEDBACK -->
         <LinearLayout
             android:id="@+id/settingSendFeedback"

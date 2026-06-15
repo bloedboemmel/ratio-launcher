@@ -200,6 +200,7 @@ class TilesFragment : Fragment() {
     }
 
     private fun addToDock(app: AppInfo) {
+        io.sentry.Sentry.metrics().count("action_add_to_dock_${app.packageName}")
         val prefs = requireContext().getSharedPreferences("ratio_dock", Context.MODE_PRIVATE)
         val current = prefs.getString("dock_packages", "") ?: ""
         val packages = current.split(",").filter { it.isNotBlank() }.toMutableList()
@@ -213,7 +214,7 @@ class TilesFragment : Fragment() {
     }
 
     private fun launchApp(app: AppInfo) {
-        io.sentry.Sentry.metrics().count("app_launched")
+        io.sentry.Sentry.metrics().count("app_launched_${app.packageName}")
         val intent = requireContext().packageManager.getLaunchIntentForPackage(app.packageName)
         intent?.let { startActivity(it) }
     }

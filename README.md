@@ -1,62 +1,87 @@
 # Ratio Launcher
 
-A recreation of the discontinued Blloc Ratio Launcher for Android. Minimalist, distraction-free, focused on digital wellbeing.
-
-## Design
-
-- **Monochrome**: Near-black background (#0B0B0B) with white text and electric yellow-green accent (#E8FC40)
-- **Three views**: Tree (messaging placeholder) | Root (widgets/dashboard) | Tiles (app drawer)
-- **Digital wellbeing**: Screen time tracking, minimal distractions, organized apps
+A minimalist Android launcher inspired by the discontinued [Blloc Ratio](https://www.blloc.com/). Built from scratch with focus on digital wellbeing and clean design.
 
 ## Features
 
-- Real Android launcher (registers as HOME screen)
-- Swipe navigation between 3 views (ViewPager2)
-- **Root**: Live clock, screen time tracker, weather card, functional notes
-- **Tiles**: All installed apps organized into auto-categorized collapsible drawers
-- App search, monochrome icons, long-press to uninstall
-- Immersive full-screen experience
+**Home (Root)**
+- 7 clock styles: Minimal, Bold, Flip Clock, Word Clock, Binary, Day Progress, Analog
+- Screen time tracking with per-app breakdown
+- Weather (temperature, humidity, wind, rain, tomorrow forecast)
+- Calendar events
+- Media player controls (play/pause/skip)
+- Quick notes with full-screen editor
+- Customizable dock with pinned apps
+- Tap clock → Alarm | Long-press clock → Settings
+
+**App Drawer (Tiles)**
+- 4-column grid with rounded tiles
+- Auto-categorized by app type
+- Custom categories (long-press → Move to category)
+- Search bar to filter apps
+- Grayscale icons toggle
+- Hide apps, uninstall, add to dock
+
+**Notifications (Tree)**
+- Groups messages by sender via NotificationListenerService
+- Tap to open app, long-press to dismiss
+- Supports all notification types (messaging, Home Assistant, etc.)
+
+**Settings**
+- Theme system (Dark / Focus / Light / Sun)
+- Clock style picker with live carousel preview
+- 24h/12h format, show seconds toggle
+- Hide status bar (custom WiFi/battery overlay)
+- Double-tap to lock screen
+- Usage goals with notifications
+- Focus hours with auto-reply
+- Icon pack support
+- Backup & restore configuration
+- Reorder Root widgets (drag & drop)
+- Reorder app drawer categories (drag & drop)
+
+## Screenshots
+
+Visit the [project page](https://bloedboemmel.github.io/ratio-launcher/) for a preview.
 
 ## Build
 
-Requires:
-- Android Studio Hedgehog (2023.1.1) or newer
-- JDK 17
-- Android SDK 34
-
 ```bash
-# Clone and open in Android Studio, or:
+# Clone
+git clone https://github.com/bloedboemmel/ratio-launcher.git
+cd ratio-launcher
+
+# Build debug APK
 ./gradlew assembleDebug
 
-# APK output:
-# app/build/outputs/apk/debug/app-debug.apk
+# Install
+adb install app/build/outputs/apk/debug/app-debug.apk
 ```
 
-## Set as Default Launcher
+Requires JDK 17 and Android SDK 35.
 
-After installing, press Home and select "Ratio" from the launcher picker.
-To grant screen time tracking: tap the "Tap to enable" text on the Root screen.
+## Download
 
-## Architecture
+Get the latest APK from [Releases](https://github.com/bloedboemmel/ratio-launcher/releases).
 
-```
-com.ratio.launcher/
-├── MainActivity.kt          — ViewPager2 host + navigation
-├── fragments/
-│   ├── TreeFragment.kt      — Messaging placeholder
-│   ├── RootFragment.kt      — Clock, usage, weather, notes
-│   └── TilesFragment.kt     — App drawer with search
-├── adapters/
-│   ├── ViewPagerAdapter.kt  — Fragment adapter
-│   ├── AppListAdapter.kt    — Categorized app list
-│   └── NotesAdapter.kt      — Notes RecyclerView
-├── models/
-│   ├── AppInfo.kt           — App data model
-│   └── Note.kt              — Note data model
-└── utils/
-    └── UsageStatsHelper.kt  — Screen time via UsageStatsManager
-```
+## Tech Stack
+
+- Kotlin
+- Android SDK 35 (min SDK 26)
+- ViewPager2 for swipe navigation
+- NotificationListenerService for Tree
+- UsageStatsManager for screen time
+- wttr.in for weather (no API key needed)
+- Sentry for crash reporting & session replay
+- Inter font family (from original Ratio APK)
+
+## CI/CD
+
+- **Code Quality** — Android Lint + Kotlin compile on every push
+- **Prerelease** — Builds debug APK, publishes GitHub prerelease on main
+- **Release** — Signs APK + publishes to Google Play on version tag (`v*.*.*`)
+- **Quality Report** — Published to [GitHub Pages](https://bloedboemmel.github.io/ratio-launcher/quality/)
 
 ## License
 
-MIT — This is an independent recreation, not affiliated with Blloc GmbH.
+This project is an independent recreation for educational purposes. Not affiliated with Blloc.

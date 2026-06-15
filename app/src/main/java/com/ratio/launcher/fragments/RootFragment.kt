@@ -318,7 +318,7 @@ class RootFragment : Fragment() {
             notesAdapter.notifyItemInserted(0)
             noteInput.text.clear()
             saveNotes()
-            io.sentry.Sentry.metrics().count("note_added")
+            io.sentry.Sentry.metrics().count("action_note_added")
         }
     }
 
@@ -677,6 +677,7 @@ class RootFragment : Fragment() {
 
 
     private fun openAlarmApp() {
+        io.sentry.Sentry.metrics().count("action_tap_clock")
         try {
             val intent = Intent(android.provider.AlarmClock.ACTION_SHOW_ALARMS)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -694,6 +695,7 @@ class RootFragment : Fragment() {
     }
 
     private fun openCalendarApp() {
+        io.sentry.Sentry.metrics().count("action_tap_calendar")
         try {
             val intent = Intent(Intent.ACTION_VIEW).apply {
                 data = android.net.Uri.parse("content://com.android.calendar/time/${System.currentTimeMillis()}")

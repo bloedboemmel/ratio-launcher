@@ -172,6 +172,12 @@ class SettingsActivity : AppCompatActivity() {
             showBackupDialog()
         }
 
+        findViewById<LinearLayout>(R.id.settingOnboarding).setOnClickListener {
+            OnboardingActivity.resetOnboarding(this)
+            startActivity(android.content.Intent(this, OnboardingActivity::class.java))
+            finish()
+        }
+
         findViewById<LinearLayout>(R.id.settingSendFeedback).setOnClickListener {
             showFeedbackDialog()
         }
