@@ -3,11 +3,22 @@ name: Code Quality
 on:
   push:
     branches: [ main ]
+    tags: [ 'v*.*.*' ]
+    paths-ignore:
+      - '**.md'
+      - '.github/workflows/**'
+      - 'docs/**'
+      - 'LICENSE'
   pull_request:
     branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - '.github/workflows/**'
+      - 'docs/**'
+      - 'LICENSE'
 
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -35,16 +46,38 @@ jobs:
       - name: Run Lint
         run: ./gradlew lintDebug
 
-      - name: Compile Kotlin (check for errors)
+      - name: Compile Kotlin
         run: ./gradlew compileDebugKotlin
 
-      - name: Upload Lint Report artifact
-        if: always()
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
+
+      - name: Build Release APK + AAB
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+        run: ./gradlew assembleRelease bundleRelease
+
+      - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: lint-report
-          path: app/build/reports/lint-results-debug.html
-          retention-days: 14
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
+          retention-days: 30
+
+      - name: Upload Release APK
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-apk
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
+          retention-days: 30
+
+      - name: Upload Release AAB
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+        uses: actions/upload-artifact@v4
+        with:
+          name: app-release-aab
+          path: app/build/outputs/bundle/release/app-release.aab
+          retention-days: 30
 
       - name: Deploy quality report to GitHub Pages
         if: always() && github.ref == 'refs/heads/main'
