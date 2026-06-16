@@ -2,17 +2,18 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="56dp"
+    android:layout_height="44dp"
     android:orientation="horizontal"
     android:gravity="center_vertical"
-    android:paddingHorizontal="12dp">
+    android:paddingHorizontal="8dp">
 
     <ImageView
         android:id="@+id/drawerArrow"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:src="@drawable/ic_chevron"
-        android:contentDescription="Toggle" />
+        android:contentDescription="Toggle"
+        android:alpha="0.5" />
 
     <TextView
         android:id="@+id/drawerName"
@@ -20,17 +21,19 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:textColor="@color/ratio_white"
-        android:textSize="22sp"
+        android:textSize="16sp"
         android:fontFamily="@font/inter_light"
-        android:layout_marginStart="12dp"
-        android:maxLines="1" />
+        android:layout_marginStart="10dp"
+        android:maxLines="1"
+        android:alpha="0.9" />
 
     <TextView
         android:id="@+id/drawerCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/ratio_gray_light"
-        android:textSize="12sp"
-        android:fontFamily="@font/inter_light" />
+        android:textSize="11sp"
+        android:fontFamily="@font/inter_light"
+        android:alpha="0.6" />
 
 </LinearLayout>

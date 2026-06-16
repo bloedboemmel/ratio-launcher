@@ -214,6 +214,10 @@ class TilesFragment : Fragment() {
     }
 
     private fun launchApp(app: AppInfo) {
+        if (!com.ratio.launcher.utils.DetoxMode.isAppAllowed(requireContext(), app.packageName)) {
+            Toast.makeText(requireContext(), "Blocked — Detox mode active", Toast.LENGTH_SHORT).show()
+            return
+        }
         io.sentry.Sentry.metrics().count("app_launched_${app.packageName}")
         val intent = requireContext().packageManager.getLaunchIntentForPackage(app.packageName)
         intent?.let { startActivity(it) }

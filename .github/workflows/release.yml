@@ -1,68 +1,84 @@
-name: Release
+name: Production Release
 
 on:
-  workflow_run:
-    workflows: ["Code Quality"]
-    types: [completed]
-    tags: [ 'v*.*.*' ]
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**.md'
+      - '.github/workflows/**'
+      - 'docs/**'
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: ${{ github.event.workflow_run.conclusion == 'success' && startsWith(github.event.workflow_run.head_branch, 'refs/tags/v') }}
+    # Only run when a merge from beta lands on main
+    if: contains(github.event.head_commit.message, 'beta') || contains(github.event.head_commit.message, 'Merge')
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download Release AAB
-        uses: actions/download-artifact@v4
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
         with:
-          name: app-release-aab
-          run-id: ${{ github.event.workflow_run.id }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          java-version: '17'
+          distribution: 'temurin'
 
-      - name: Download Release APK
-        uses: actions/download-artifact@v4
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
         with:
-          name: app-release-apk
-          run-id: ${{ github.event.workflow_run.id }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+
+      - name: Grant execute permission
+        run: chmod +x gradlew
+
+      - name: Build Release AAB + APK
+        run: ./gradlew assembleRelease bundleRelease
+
+      - name: Get version name
+        id: version
+        run: echo "name=$(grep versionName app/build.gradle.kts | head -1 | sed 's/.*\"\(.*\)\"/\1/')" >> $GITHUB_OUTPUT
 
       - name: Sign APK
+        env:
+          STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
           echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > release.keystore
-          ${ANDROID_HOME}/build-tools/34.0.0/apksigner sign \
-            --ks release.keystore \
-            --ks-pass pass:${{ secrets.KEYSTORE_PASSWORD }} \
-            --ks-key-alias ${{ secrets.KEY_ALIAS }} \
-            --key-pass pass:${{ secrets.KEY_PASSWORD }} \
-            --out app-release.apk \
-            app-release-unsigned.apk
+          ${ANDROID_HOME}/build-tools/34.0.0/apksigner sign --ks release.keystore --ks-pass pass:"$STORE_PASSWORD" --ks-key-alias "$KEY_ALIAS" --key-pass pass:"$KEY_PASSWORD" --out app-release-signed.apk app/build/outputs/apk/release/*.apk
 
       - name: Sign AAB
+        env:
+          STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
-          jarsigner -verbose -sigalg SHA256withRSA -digestalg SHA-256 \
-            -keystore release.keystore \
-            -storepass ${{ secrets.KEYSTORE_PASSWORD }} \
-            -keypass ${{ secrets.KEY_PASSWORD }} \
-            app-release.aab ${{ secrets.KEY_ALIAS }}
+          jarsigner -sigalg SHA256withRSA -digestalg SHA-256 -keystore release.keystore -storepass "$STORE_PASSWORD" -keypass "$KEY_PASSWORD" app/build/outputs/bundle/release/*.aab "$KEY_ALIAS"
 
-      - name: Create GitHub Release
+      - name: Create Production GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.event.workflow_run.head_branch }}
-          name: "Ratio Launcher ${{ github.event.workflow_run.head_branch }}"
-          body: "Release ${{ github.event.workflow_run.head_branch }}"
+          tag_name: v${{ steps.version.outputs.name }}
+          name: "Ratio Launcher v${{ steps.version.outputs.name }}"
+          body: "Production release v${{ steps.version.outputs.name }}"
+          prerelease: false
+          make_latest: true
           files: |
-            app-release.apk
-            app-release.aab
+            app-release-signed.apk
+            app/build/outputs/bundle/release/*.aab
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload to Google Play
+      - name: Upload to Google Play Alpha
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_JSON }}
           packageName: com.bloedboemmel.ratio
-          releaseFiles: app-release.aab
-          track: internal
+          releaseFiles: app/build/outputs/bundle/release/*.aab
+          track: alpha
           status: completed

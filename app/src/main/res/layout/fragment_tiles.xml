@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/ratio_black"
     android:orientation="vertical"
-    android:paddingTop="48dp"
+    android:paddingTop="36dp"
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 

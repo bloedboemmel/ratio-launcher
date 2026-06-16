@@ -1,6 +1,6 @@
 # Ratio Launcher
 
-A minimalist Android launcher inspired by the discontinued [Blloc Ratio](https://www.blloc.com/). Built from scratch with focus on digital wellbeing and clean design.
+A minimalist Android launcher inspired by the discontinued Blloc Ratio. Built from scratch with focus on digital wellbeing and clean design.
 
 ## Features
 
@@ -84,4 +84,4 @@ Get the latest APK from [Releases](https://github.com/bloedboemmel/ratio-launche
 
 ## License
 
-This project is an independent recreation for educational purposes. Not affiliated with Blloc.
+This project is an independent recreation for educational purposes.

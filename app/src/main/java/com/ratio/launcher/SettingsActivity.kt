@@ -172,6 +172,42 @@ class SettingsActivity : AppCompatActivity() {
             showBackupDialog()
         }
 
+        // Detox
+        val detoxStatus = findViewById<TextView>(R.id.settingDetoxStatus)
+        detoxStatus.text = if (DetoxMode.isActive(this)) "Active" else "Off"
+        findViewById<LinearLayout>(R.id.settingDetox).setOnClickListener {
+            showDetoxDialog(detoxStatus)
+        }
+
+        // Usage timer
+        val usageTimerSwitch = findViewById<SwitchMaterial>(R.id.settingsUsageTimer)
+        usageTimerSwitch.isChecked = prefs.getBoolean("usage_timer_enabled", false)
+        usageTimerSwitch.setOnCheckedChangeListener { _, checked ->
+            prefs.edit().putBoolean("usage_timer_enabled", checked).apply()
+            if (checked) {
+                com.ratio.launcher.services.UsageTimerService.start(this)
+            } else {
+                com.ratio.launcher.services.UsageTimerService.stop(this)
+            }
+        }
+
+        // Quick gestures
+        findViewById<LinearLayout>(R.id.settingGestures).setOnClickListener {
+            showGesturesDialog()
+        }
+
+        // Wallpaper
+        findViewById<LinearLayout>(R.id.settingWallpaper).setOnClickListener {
+            showWallpaperDialog()
+        }
+
+        // Accent color
+        val accentPreview = findViewById<android.view.View>(R.id.settingAccentPreview)
+        accentPreview.setBackgroundColor(com.ratio.launcher.utils.WallpaperManager.getAccentColor(this))
+        findViewById<LinearLayout>(R.id.settingAccentColor).setOnClickListener {
+            showAccentColorDialog(accentPreview)
+        }
+
         findViewById<LinearLayout>(R.id.settingOnboarding).setOnClickListener {
             OnboardingActivity.resetOnboarding(this)
             startActivity(android.content.Intent(this, OnboardingActivity::class.java))
@@ -279,6 +315,127 @@ class SettingsActivity : AppCompatActivity() {
                 ClockStyle.setCurrent(this, selected)
                 valueView.text = selected.displayName
                 dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun showDetoxDialog(statusView: TextView) {
+        if (DetoxMode.isActive(this)) {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Digital Detox")
+                .setMessage("Detox mode is active. Only essential apps are accessible.")
+                .setPositiveButton("Deactivate") { _, _ ->
+                    DetoxMode.deactivate(this)
+                    statusView.text = "Off"
+                }
+                .setNegativeButton("Keep active", null)
+                .show()
+        } else {
+            val options = arrayOf("30 minutes", "1 hour", "2 hours", "4 hours", "Until disabled")
+            val minutes = intArrayOf(30, 60, 120, 240, 0)
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Start Digital Detox")
+                .setMessage("Only phone, messages, and settings will be accessible.")
+                .setItems(options) { _, which ->
+                    DetoxMode.activate(this, minutes[which])
+                    statusView.text = "Active"
+                    android.widget.Toast.makeText(this, "Detox mode activated", android.widget.Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
+    }
+
+    private fun showGesturesDialog() {
+        val directions = QuickLaunchGestures.Direction.entries
+        val items = directions.map { dir ->
+            val pkg = QuickLaunchGestures.getApp(this, dir)
+            val label = if (pkg != null) {
+                try { packageManager.getApplicationLabel(packageManager.getApplicationInfo(pkg, 0)).toString() }
+                catch (_: Exception) { "Not set" }
+            } else "Not set"
+            "${QuickLaunchGestures.getDirectionLabel(dir)}: $label"
+        }.toTypedArray()
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Quick Launch Gestures")
+            .setItems(items) { _, which ->
+                showAppPickerForGesture(directions[which])
+            }
+            .setPositiveButton("Done", null)
+            .show()
+    }
+
+    private fun showAppPickerForGesture(direction: QuickLaunchGestures.Direction) {
+        val intent = android.content.Intent(android.content.Intent.ACTION_MAIN).apply {
+            addCategory(android.content.Intent.CATEGORY_LAUNCHER)
+        }
+        val apps = packageManager.queryIntentActivities(intent, 0)
+            .filter { it.activityInfo.packageName != packageName }
+            .sortedBy { it.loadLabel(packageManager).toString().lowercase() }
+
+        val names = apps.map { it.loadLabel(packageManager).toString() }.toTypedArray()
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle("${QuickLaunchGestures.getDirectionLabel(direction)} → App")
+            .setItems(names) { _, which ->
+                QuickLaunchGestures.setApp(this, direction, apps[which].activityInfo.packageName)
+                android.widget.Toast.makeText(this, "Set!", android.widget.Toast.LENGTH_SHORT).show()
+            }
+            .setNeutralButton("Clear") { _, _ ->
+                QuickLaunchGestures.setApp(this, direction, null)
+            }
+            .show()
+    }
+
+    private fun showWallpaperDialog() {
+        val options = arrayOf("Solid color (theme)", "Choose image")
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Wallpaper")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> {
+                        com.ratio.launcher.utils.WallpaperManager.setMode(this, com.ratio.launcher.utils.WallpaperManager.WallpaperMode.SOLID_COLOR)
+                        android.widget.Toast.makeText(this, "Using theme color", android.widget.Toast.LENGTH_SHORT).show()
+                    }
+                    1 -> {
+                        com.ratio.launcher.utils.WallpaperManager.setMode(this, com.ratio.launcher.utils.WallpaperManager.WallpaperMode.IMAGE)
+                        wallpaperImagePicker.launch(arrayOf("image/*"))
+                    }
+                }
+            }
+            .show()
+    }
+
+    private val wallpaperImagePicker = registerForActivityResult(
+        androidx.activity.result.contract.ActivityResultContracts.OpenDocument()
+    ) { uri ->
+        if (uri != null) {
+            contentResolver.takePersistableUriPermission(uri, android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION)
+            com.ratio.launcher.utils.WallpaperManager.setImageUri(this, uri)
+            android.widget.Toast.makeText(this, "Wallpaper set", android.widget.Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun showAccentColorDialog(preview: android.view.View) {
+        val colors = intArrayOf(
+            android.graphics.Color.parseColor("#FFFC33"),
+            android.graphics.Color.parseColor("#4ECDC4"),
+            android.graphics.Color.parseColor("#FF6B9D"),
+            android.graphics.Color.parseColor("#7C4DFF"),
+            android.graphics.Color.parseColor("#00E676"),
+            android.graphics.Color.parseColor("#FF5722"),
+            android.graphics.Color.parseColor("#03A9F4"),
+            android.graphics.Color.parseColor("#F2F2F2")
+        )
+        val names = arrayOf("Yellow", "Teal", "Pink", "Purple", "Green", "Orange", "Blue", "White")
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Accent color")
+            .setItems(names) { _, which ->
+                com.ratio.launcher.utils.WallpaperManager.setAccentColor(this, colors[which])
+                preview.setBackgroundColor(colors[which])
+                android.widget.Toast.makeText(this, "Accent color updated", android.widget.Toast.LENGTH_SHORT).show()
             }
             .show()
     }
@@ -404,6 +561,10 @@ class SettingsActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         findViewById<TextView>(R.id.settingClockStyleValue)?.text = ClockStyle.getCurrent(this).displayName
+        try {
+            val version = packageManager.getPackageInfo(packageName, 0).versionName
+            findViewById<TextView>(R.id.settingsVersion)?.text = "v$version"
+        } catch (_: Exception) {}
     }
 
     override fun onPause() {
