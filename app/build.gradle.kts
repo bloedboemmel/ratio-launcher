@@ -62,6 +62,9 @@ sentry {
     org.set("memyselfandi-9i")
     projectName.set("android")
 
+    // Only upload sources when auth token is available (CI)
+    autoUploadSourceContext.set(System.getenv("SENTRY_AUTH_TOKEN") != null)
+
     // this will upload your source code to Sentry to show it as part of the stack traces
     // disable if you don't want to expose your sources
     includeSourceContext.set(true)

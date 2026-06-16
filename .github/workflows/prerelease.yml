@@ -35,6 +35,8 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build Release AAB + APK
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         run: ./gradlew assembleRelease bundleRelease
 
       - name: Get version name
