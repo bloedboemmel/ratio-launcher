@@ -20,22 +20,6 @@
     </issue>
 
     <issue
-        id="ForegroundServicePermission"
-        severity="Error"
-        message="foregroundServiceType:specialUse requires permission:[android.permission.FOREGROUND_SERVICE_SPECIAL_USE]"
-        category="Correctness"
-        priority="5"
-        summary="Missing permissions required by foregroundServiceType"
-        explanation="For targetSdkVersion >= 34, each `foregroundServiceType` listed in the `&lt;service>` element requires specific sets of permissions to be declared in the manifest. If permissions are missing, then when the foreground service is started with a `foregroundServiceType` that has missing permissions, a `SecurityException` will be thrown."
-        errorLine1="        &lt;service"
-        errorLine2="        ^">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/AndroidManifest.xml"
-            line="97"
-            column="9"/>
-    </issue>
-
-    <issue
         id="GradleDependency"
         severity="Warning"
         message="A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.0"

@@ -20,17 +20,6 @@
 
    https://developer.android.com/distribute/best-practices/develop/target-sdk.html
 
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/AndroidManifest.xml:97: Error: foregroundServiceType:specialUse requires permission:[android.permission.FOREGROUND_SERVICE_SPECIAL_USE] [ForegroundServicePermission]
-        <service
-        ^
-
-   Explanation for issues of type "ForegroundServicePermission":
-   For targetSdkVersion >= 34, each foregroundServiceType listed in the
-   <service> element requires specific sets of permissions to be declared in
-   the manifest. If permissions are missing, then when the foreground service
-   is started with a foregroundServiceType that has missing permissions, a
-   SecurityException will be thrown.
-
 /home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:48: Warning: A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.0 [GradleDependency]
     implementation("androidx.core:core-ktx:1.15.0")
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -871,4 +860,4 @@
    There are quickfixes to automatically extract this hardcoded string into a
    resource lookup.
 
-1 errors, 233 warnings
+0 errors, 233 warnings
