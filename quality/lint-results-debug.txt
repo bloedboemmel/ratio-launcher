@@ -20,6 +20,17 @@
 
    https://developer.android.com/distribute/best-practices/develop/target-sdk.html
 
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/AndroidManifest.xml:97: Error: foregroundServiceType:specialUse requires permission:[android.permission.FOREGROUND_SERVICE_SPECIAL_USE] [ForegroundServicePermission]
+        <service
+        ^
+
+   Explanation for issues of type "ForegroundServicePermission":
+   For targetSdkVersion >= 34, each foregroundServiceType listed in the
+   <service> element requires specific sets of permissions to be declared in
+   the manifest. If permissions are missing, then when the foreground service
+   is started with a foregroundServiceType that has missing permissions, a
+   SecurityException will be thrown.
+
 /home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:48: Warning: A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.0 [GradleDependency]
     implementation("androidx.core:core-ktx:1.15.0")
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -99,6 +110,18 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/utils/UsageGoalsManager.kt:50: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt:100: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && !android.provider.Settings.canDrawOverlays(this)) return
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt:114: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt:149: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt:171: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "ObsoleteSdkInt":
    This check flags version checks that are not necessary, because the
@@ -192,9 +215,9 @@
    children moved directly into the parent for a flatter and more efficient
    layout hierarchy.
 
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:677: Warning: activity_settings.xml has more than 80 views, bad for performance [TooManyViews]
-        <LinearLayout
-         ~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:678: Warning: activity_settings.xml has more than 80 views, bad for performance [TooManyViews]
+            <TextView
+             ~~~~~~~~
 
    Explanation for issues of type "TooManyViews":
    Using too many views in a single layout is bad for performance. Consider
@@ -219,7 +242,10 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:497: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
             android:textSize="10sp"
             ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:715: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:656: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+            android:textSize="10sp"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:860: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
             android:textSize="10sp"
             ~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_usage_breakdown.xml:34: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
@@ -255,9 +281,9 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/fragment_tree.xml:76: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
             android:textSize="10sp"
             ~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/item_app_tile.xml:28: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
-            android:textSize="10sp"
-            ~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/item_app_tile.xml:28: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+            android:textSize="9sp"
+            ~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/view_status_overlay.xml:25: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
         android:textSize="10sp"
         ~~~~~~~~~~~~~~~~~~~~~~~
@@ -477,9 +503,18 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:73: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
         usageGoalValue.text = "${goal / 60}h ${goal % 60}m"
                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:350: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:329: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    statusView.text = "Off"
+                                       ~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:341: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+                    statusView.text = "Active"
+                                       ~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:507: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                     iconPackValue.text = "Default"
                                           ~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:566: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+            findViewById<TextView>(R.id.settingsVersion)?.text = "v$version"
+                                                                 ~~~~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TreeFragment.kt:82: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
             emptyState.findViewById<TextView>(R.id.treeEmptyTitle)?.text = "Conversations will appear here"
                                                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -501,6 +536,12 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/UsageBreakdownActivity.kt:27: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
             totalText.text = "Usage access not granted"
                               ~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt:108: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+            text = "0:00"
+                    ~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt:135: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        timerView?.text = "$minutes:${String.format("%02d", seconds)}"
+                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "SetTextI18n":
    When calling TextView#setText
@@ -650,30 +691,54 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:632: Warning: Hardcoded string "Screen time", should use @string resource [HardcodedText]
                 android:text="Screen time"
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:663: Warning: Hardcoded string "Show intro / permissions", should use @string resource [HardcodedText]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:654: Warning: Hardcoded string "DETOX", should use @string resource [HardcodedText]
+            android:text="DETOX"
+            ~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:673: Warning: Hardcoded string "Digital Detox", should use @string resource [HardcodedText]
+                android:text="Digital Detox"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:682: Warning: Hardcoded string "Off", should use @string resource [HardcodedText]
+                android:text="Off"
+                ~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:700: Warning: Hardcoded string "App usage timer", should use @string resource [HardcodedText]
+                android:text="App usage timer"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:724: Warning: Hardcoded string "Quick launch gestures", should use @string resource [HardcodedText]
+                android:text="Quick launch gestures"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:732: Warning: Hardcoded string "→", should use @string resource [HardcodedText]
+                android:text="→"
+                ~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:750: Warning: Hardcoded string "Wallpaper", should use @string resource [HardcodedText]
+                android:text="Wallpaper"
+                ~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:758: Warning: Hardcoded string "→", should use @string resource [HardcodedText]
+                android:text="→"
+                ~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:776: Warning: Hardcoded string "Accent color", should use @string resource [HardcodedText]
+                android:text="Accent color"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:808: Warning: Hardcoded string "Show intro / permissions", should use @string resource [HardcodedText]
                 android:text="Show intro / permissions"
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:671: Warning: Hardcoded string "→", should use @string resource [HardcodedText]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:816: Warning: Hardcoded string "→", should use @string resource [HardcodedText]
                 android:text="→"
                 ~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:689: Warning: Hardcoded string "Send feedback", should use @string resource [HardcodedText]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:834: Warning: Hardcoded string "Send feedback", should use @string resource [HardcodedText]
                 android:text="Send feedback"
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:697: Warning: Hardcoded string "→", should use @string resource [HardcodedText]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:842: Warning: Hardcoded string "→", should use @string resource [HardcodedText]
                 android:text="→"
                 ~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:713: Warning: Hardcoded string "ABOUT", should use @string resource [HardcodedText]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:858: Warning: Hardcoded string "ABOUT", should use @string resource [HardcodedText]
             android:text="ABOUT"
             ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:723: Warning: Hardcoded string "Ratio Launcher", should use @string resource [HardcodedText]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:868: Warning: Hardcoded string "Ratio Launcher", should use @string resource [HardcodedText]
             android:text="Ratio Launcher"
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:731: Warning: Hardcoded string "Open source recreation of Blloc Ratio", should use @string resource [HardcodedText]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:876: Warning: Hardcoded string "Open source recreation of Blloc Ratio", should use @string resource [HardcodedText]
             android:text="Open source recreation of Blloc Ratio"
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml:741: Warning: Hardcoded string "v1.0.0", should use @string resource [HardcodedText]
-            android:text="v1.0.0"
-            ~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_usage_breakdown.xml:14: Warning: Hardcoded string "Screen Time", should use @string resource [HardcodedText]
         android:text="Screen Time"
         ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -777,7 +842,7 @@
         android:contentDescription="App" />
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/item_drawer_header.xml:15: Warning: Hardcoded string "Toggle", should use @string resource [HardcodedText]
-        android:contentDescription="Toggle" />
+        android:contentDescription="Toggle"
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/item_note.xml:31: Warning: Hardcoded string "Delete note", should use @string resource [HardcodedText]
         android:contentDescription="Delete note" />
@@ -806,4 +871,4 @@
    There are quickfixes to automatically extract this hardcoded string into a
    resource lookup.
 
-0 errors, 215 warnings
+1 errors, 233 warnings

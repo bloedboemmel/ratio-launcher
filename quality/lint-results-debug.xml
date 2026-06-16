@@ -20,6 +20,22 @@
     </issue>
 
     <issue
+        id="ForegroundServicePermission"
+        severity="Error"
+        message="foregroundServiceType:specialUse requires permission:[android.permission.FOREGROUND_SERVICE_SPECIAL_USE]"
+        category="Correctness"
+        priority="5"
+        summary="Missing permissions required by foregroundServiceType"
+        explanation="For targetSdkVersion >= 34, each `foregroundServiceType` listed in the `&lt;service>` element requires specific sets of permissions to be declared in the manifest. If permissions are missing, then when the foreground service is started with a `foregroundServiceType` that has missing permissions, a `SecurityException` will be thrown."
+        errorLine1="        &lt;service"
+        errorLine2="        ^">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/AndroidManifest.xml"
+            line="97"
+            column="9"/>
+    </issue>
+
+    <issue
         id="GradleDependency"
         severity="Warning"
         message="A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.0"
@@ -292,6 +308,70 @@
     </issue>
 
     <issue
+        id="ObsoleteSdkInt"
+        severity="Warning"
+        message="Unnecessary; SDK_INT is always >= 26"
+        category="Performance"
+        priority="6"
+        summary="Obsolete SDK_INT Version Check"
+        explanation="This check flags version checks that are not necessary, because the `minSdkVersion` (or surrounding known API level) is already at least as high as the version checked for.&#xA;&#xA;Similarly, it also looks for resources in `-vNN` folders, such as `values-v14` where the version qualifier is less than or equal to the `minSdkVersion`, where the contents should be merged into the best folder."
+        errorLine1="        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &amp;&amp; !android.provider.Settings.canDrawOverlays(this)) return"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt"
+            line="100"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        severity="Warning"
+        message="Unnecessary; SDK_INT is always >= 26"
+        category="Performance"
+        priority="6"
+        summary="Obsolete SDK_INT Version Check"
+        explanation="This check flags version checks that are not necessary, because the `minSdkVersion` (or surrounding known API level) is already at least as high as the version checked for.&#xA;&#xA;Similarly, it also looks for resources in `-vNN` folders, such as `values-v14` where the version qualifier is less than or equal to the `minSdkVersion`, where the contents should be merged into the best folder."
+        errorLine1="            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt"
+            line="114"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        severity="Warning"
+        message="Unnecessary; SDK_INT is always >= 26"
+        category="Performance"
+        priority="6"
+        summary="Obsolete SDK_INT Version Check"
+        explanation="This check flags version checks that are not necessary, because the `minSdkVersion` (or surrounding known API level) is already at least as high as the version checked for.&#xA;&#xA;Similarly, it also looks for resources in `-vNN` folders, such as `values-v14` where the version qualifier is less than or equal to the `minSdkVersion`, where the contents should be merged into the best folder."
+        errorLine1="        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt"
+            line="149"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="ObsoleteSdkInt"
+        severity="Warning"
+        message="Unnecessary; SDK_INT is always >= 26"
+        category="Performance"
+        priority="6"
+        summary="Obsolete SDK_INT Version Check"
+        explanation="This check flags version checks that are not necessary, because the `minSdkVersion` (or surrounding known API level) is already at least as high as the version checked for.&#xA;&#xA;Similarly, it also looks for resources in `-vNN` folders, such as `values-v14` where the version qualifier is less than or equal to the `minSdkVersion`, where the contents should be merged into the best folder."
+        errorLine1="            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt"
+            line="171"
+            column="17"/>
+    </issue>
+
+    <issue
         id="DisableBaselineAlignment"
         severity="Warning"
         message="Set `android:baselineAligned=&quot;false&quot;` on this element for better performance"
@@ -555,12 +635,12 @@
         priority="1"
         summary="Layout has too many views"
         explanation="Using too many views in a single layout is bad for performance. Consider using compound drawables or other tricks for reducing the number of views in this layout.&#xA;&#xA;The maximum view count defaults to 80 but can be configured with the environment variable `ANDROID_LINT_MAX_VIEW_COUNT`."
-        errorLine1="        &lt;LinearLayout"
-        errorLine2="         ~~~~~~~~~~~~">
+        errorLine1="            &lt;TextView"
+        errorLine2="             ~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
-            line="677"
-            column="10"/>
+            line="678"
+            column="14"/>
     </issue>
 
     <issue
@@ -655,7 +735,23 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
-            line="715"
+            line="656"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="SmallSp"
+        severity="Warning"
+        message="Avoid using sizes smaller than `11sp`: `10sp`"
+        category="Usability"
+        priority="4"
+        summary="Text size is too small"
+        explanation="Avoid using sizes smaller than 11sp."
+        errorLine1="            android:textSize=&quot;10sp&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
+            line="860"
             column="13"/>
     </issue>
 
@@ -838,13 +934,13 @@
     <issue
         id="SmallSp"
         severity="Warning"
-        message="Avoid using sizes smaller than `11sp`: `10sp`"
+        message="Avoid using sizes smaller than `11sp`: `9sp`"
         category="Usability"
         priority="4"
         summary="Text size is too small"
         explanation="Avoid using sizes smaller than 11sp."
-        errorLine1="            android:textSize=&quot;10sp&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="            android:textSize=&quot;9sp&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/item_app_tile.xml"
             line="28"
@@ -1967,12 +2063,66 @@
         explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
         url="https://developer.android.com/guide/topics/resources/localization.html"
         urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="                    statusView.text = &quot;Off&quot;"
+        errorLine2="                                       ~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt"
+            line="329"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="                    statusView.text = &quot;Active&quot;"
+        errorLine2="                                       ~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt"
+            line="341"
+            column="40"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
         errorLine1="                    iconPackValue.text = &quot;Default&quot;"
         errorLine2="                                          ~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt"
-            line="350"
+            line="507"
             column="43"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="            findViewById&lt;TextView>(R.id.settingsVersion)?.text = &quot;v$version&quot;"
+        errorLine2="                                                                 ~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt"
+            line="566"
+            column="66"/>
     </issue>
 
     <issue
@@ -2099,6 +2249,42 @@
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/UsageBreakdownActivity.kt"
             line="27"
             column="31"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="String literal in `setText` can not be translated. Use Android resources instead."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="            text = &quot;0:00&quot;"
+        errorLine2="                    ~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt"
+            line="108"
+            column="21"/>
+    </issue>
+
+    <issue
+        id="SetTextI18n"
+        severity="Warning"
+        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
+        category="Internationalization"
+        priority="6"
+        summary="TextView Internationalization"
+        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
+        url="https://developer.android.com/guide/topics/resources/localization.html"
+        urls="https://developer.android.com/guide/topics/resources/localization.html"
+        errorLine1="        timerView?.text = &quot;$minutes:${String.format(&quot;%02d&quot;, seconds)}&quot;"
+        errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt"
+            line="135"
+            column="27"/>
     </issue>
 
     <issue
@@ -2824,16 +3010,80 @@
     <issue
         id="HardcodedText"
         severity="Warning"
-        message="Hardcoded string &quot;Show intro / permissions&quot;, should use `@string` resource"
+        message="Hardcoded string &quot;DETOX&quot;, should use `@string` resource"
         category="Internationalization"
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="                android:text=&quot;Show intro / permissions&quot;"
-        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        errorLine1="            android:text=&quot;DETOX&quot;"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
-            line="663"
+            line="654"
+            column="13"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;Digital Detox&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="                android:text=&quot;Digital Detox&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
+            line="673"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;Off&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="                android:text=&quot;Off&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
+            line="682"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;App usage timer&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="                android:text=&quot;App usage timer&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
+            line="700"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;Quick launch gestures&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="                android:text=&quot;Quick launch gestures&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
+            line="724"
             column="17"/>
     </issue>
 
@@ -2849,7 +3099,87 @@
         errorLine2="                ~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
-            line="671"
+            line="732"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;Wallpaper&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="                android:text=&quot;Wallpaper&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
+            line="750"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;→&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="                android:text=&quot;→&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
+            line="758"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;Accent color&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="                android:text=&quot;Accent color&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
+            line="776"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;Show intro / permissions&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="                android:text=&quot;Show intro / permissions&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
+            line="808"
+            column="17"/>
+    </issue>
+
+    <issue
+        id="HardcodedText"
+        severity="Warning"
+        message="Hardcoded string &quot;→&quot;, should use `@string` resource"
+        category="Internationalization"
+        priority="5"
+        summary="Hardcoded text"
+        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
+        errorLine1="                android:text=&quot;→&quot;"
+        errorLine2="                ~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
+            line="816"
             column="17"/>
     </issue>
 
@@ -2865,7 +3195,7 @@
         errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
-            line="689"
+            line="834"
             column="17"/>
     </issue>
 
@@ -2881,7 +3211,7 @@
         errorLine2="                ~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
-            line="697"
+            line="842"
             column="17"/>
     </issue>
 
@@ -2897,7 +3227,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
-            line="713"
+            line="858"
             column="13"/>
     </issue>
 
@@ -2913,7 +3243,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
-            line="723"
+            line="868"
             column="13"/>
     </issue>
 
@@ -2929,23 +3259,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
-            line="731"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="HardcodedText"
-        severity="Warning"
-        message="Hardcoded string &quot;v1.0.0&quot;, should use `@string` resource"
-        category="Internationalization"
-        priority="5"
-        summary="Hardcoded text"
-        explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="            android:text=&quot;v1.0.0&quot;"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/activity_settings.xml"
-            line="741"
+            line="876"
             column="13"/>
     </issue>
 
@@ -3501,7 +3815,7 @@
         priority="5"
         summary="Hardcoded text"
         explanation="Hardcoding text attributes directly in layout files is bad for several reasons:&#xA;&#xA;* When creating configuration variations (for example for landscape or portrait) you have to repeat the actual text (and keep it up to date when making changes)&#xA;&#xA;* The application cannot be translated to other languages by just adding new translations for existing string resources.&#xA;&#xA;There are quickfixes to automatically extract this hardcoded string into a resource lookup."
-        errorLine1="        android:contentDescription=&quot;Toggle&quot; />"
+        errorLine1="        android:contentDescription=&quot;Toggle&quot;"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/item_drawer_header.xml"
