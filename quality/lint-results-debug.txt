@@ -20,19 +20,19 @@
 
    https://developer.android.com/distribute/best-practices/develop/target-sdk.html
 
-/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:48: Warning: A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.0 [GradleDependency]
+/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:49: Warning: A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.0 [GradleDependency]
     implementation("androidx.core:core-ktx:1.15.0")
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:49: Warning: A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.7.1 [GradleDependency]
+/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:50: Warning: A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.7.1 [GradleDependency]
     implementation("androidx.appcompat:appcompat:1.7.0")
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:50: Warning: A newer version of com.google.android.material:material than 1.12.0 is available: 1.14.0 [GradleDependency]
+/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:51: Warning: A newer version of com.google.android.material:material than 1.12.0 is available: 1.14.0 [GradleDependency]
     implementation("com.google.android.material:material:1.12.0")
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:55: Warning: A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.7 is available: 2.10.0 [GradleDependency]
+/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:56: Warning: A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.7 is available: 2.11.0 [GradleDependency]
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:56: Warning: A newer version of androidx.fragment:fragment-ktx than 1.8.5 is available: 1.8.9 [GradleDependency]
+/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts:57: Warning: A newer version of androidx.fragment:fragment-ktx than 1.8.5 is available: 1.8.9 [GradleDependency]
     implementation("androidx.fragment:fragment-ktx:1.8.5")
                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -65,22 +65,10 @@
    Identifier: androidx.appcompat
    Feedback: https://issuetracker.google.com/issues/new?component=460343
 
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt:56: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
-        notifyDataSetChanged()
-        ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt:84: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
-        notifyDataSetChanged()
-        ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt:90: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
-        notifyDataSetChanged()
-        ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt:175: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
-                notifyDataSetChanged()
-                ~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:445: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:470: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
         dockAdapter.notifyDataSetChanged()
         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:602: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:628: Warning: It will always be more efficient to use more specific change events if you can. Rely on notifyDataSetChanged as a last resort. [NotifyDataSetChanged]
             dockAdapter.notifyDataSetChanged()
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -93,24 +81,9 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/utils/HapticHelper.kt:71: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt:168: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
-        val category = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/utils/UsageGoalsManager.kt:50: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt:100: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && !android.provider.Settings.canDrawOverlays(this)) return
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt:114: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt:149: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt:171: Warning: Unnecessary; SDK_INT is always >= 26 [ObsoleteSdkInt]
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "ObsoleteSdkInt":
    This check flags version checks that are not necessary, because the
@@ -190,6 +163,24 @@
    want it to be mixed with the background. However, you will get better
    performance if you pre-mix the background with your drawable and use that
    resulting image or color as a custom theme background instead.
+
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/values/strings.xml:12: Warning: The resource R.string.detox_active appears to be unused [UnusedResources]
+    <string name="detox_active">Active</string>
+            ~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
 
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/item_app_tile.xml:8: Warning: This LinearLayout layout or its FrameLayout parent is unnecessary; transfer the background attribute to the other view [UselessParent]
     <LinearLayout
@@ -316,15 +307,9 @@
 
    https://developer.android.com/guide/topics/text/autofill.html
 
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:564: Warning: onTouch lambda should call View#performClick when a click is detected [ClickableViewAccessibility]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:589: Warning: onTouch lambda should call View#performClick when a click is detected [ClickableViewAccessibility]
         view.setOnTouchListener { _, event ->
                                 ^
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt:127: Warning: Custom view `RecyclerView` has setOnTouchListener called on it but does not override performClick [ClickableViewAccessibility]
-        appList.setOnTouchListener { _, event ->
-        ^
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt:127: Warning: onTouch lambda should call View#performClick when a click is detected [ClickableViewAccessibility]
-        appList.setOnTouchListener { _, event ->
-                                   ^
 
    Explanation for issues of type "ClickableViewAccessibility":
    If a View that overrides onTouchEvent or uses an OnTouchListener does not
@@ -333,9 +318,6 @@
    actions should ideally be placed in View#performClick as some accessibility
    services invoke performClick when a click action should occur.
 
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/MainActivity.kt:180: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
-        statusBattery.text = "$level%"
-                             ~~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/OnboardingActivity.kt:104: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                 title.text = "Welcome to Ratio"
                               ~~~~~~~~~~~~~~~~
@@ -468,54 +450,33 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/ReorderActivity.kt:55: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                 title.text = "Reorder Categories"
                               ~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:299: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:324: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
             usageTime.text = "Tap to enable"
                               ~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:303: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:328: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
             usageTime.text = "${hours}h ${mins}m"
                              ~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:472: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:497: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
         weatherHumidity.text = "${data.humidity}%"
                                ~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:474: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:499: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
         weatherRain.text = "${data.rainChance}%"
                            ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:499: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:524: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                     weatherCondition.text = "Loading..."
                                              ~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:502: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:527: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                         else weatherCondition.text = "Error loading weather"
                                                       ~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:666: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt:692: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
                     text = "${event.formatTime()}  ${event.title}"
                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:73: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
-        usageGoalValue.text = "${goal / 60}h ${goal % 60}m"
-                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:329: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-                    statusView.text = "Off"
-                                       ~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:341: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:319: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                     statusView.text = "Active"
                                        ~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:507: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:486: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
                     iconPackValue.text = "Default"
                                           ~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt:566: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
-            findViewById<TextView>(R.id.settingsVersion)?.text = "v$version"
-                                                                 ~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TreeFragment.kt:82: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-            emptyState.findViewById<TextView>(R.id.treeEmptyTitle)?.text = "Conversations will appear here"
-                                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TreeFragment.kt:83: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-            emptyState.findViewById<TextView>(R.id.treeEmptySubtitle)?.text = "Grant notification access to see messages"
-                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TreeFragment.kt:96: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-            emptyState.findViewById<TextView>(R.id.treeEmptyTitle)?.text = "No messages yet"
-                                                                            ~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TreeFragment.kt:97: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-            emptyState.findViewById<TextView>(R.id.treeEmptySubtitle)?.text = "New messages will appear here automatically"
-                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/UsageBreakdownActivity.kt:25: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
             totalText.text = "Total today: ${totalMinutes / 60}h ${totalMinutes % 60}m"
                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -525,12 +486,6 @@
 /home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/UsageBreakdownActivity.kt:27: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
             totalText.text = "Usage access not granted"
                               ~~~~~~~~~~~~~~~~~~~~~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt:108: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
-            text = "0:00"
-                    ~~~~
-/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt:135: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
-        timerView?.text = "$minutes:${String.format("%02d", seconds)}"
-                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
    Explanation for issues of type "SetTextI18n":
    When calling TextView#setText
@@ -860,4 +815,4 @@
    There are quickfixes to automatically extract this hardcoded string into a
    resource lookup.
 
-0 errors, 233 warnings
+0 errors, 213 warnings

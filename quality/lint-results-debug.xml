@@ -31,7 +31,7 @@
         errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts"
-            line="48"
+            line="49"
             column="21"/>
     </issue>
 
@@ -47,7 +47,7 @@
         errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts"
-            line="49"
+            line="50"
             column="21"/>
     </issue>
 
@@ -63,14 +63,14 @@
         errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts"
-            line="50"
+            line="51"
             column="21"/>
     </issue>
 
     <issue
         id="GradleDependency"
         severity="Warning"
-        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.7 is available: 2.10.0"
+        message="A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.7 is available: 2.11.0"
         category="Correctness"
         priority="4"
         summary="Obsolete Gradle Dependency"
@@ -79,7 +79,7 @@
         errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts"
-            line="55"
+            line="56"
             column="21"/>
     </issue>
 
@@ -95,7 +95,7 @@
         errorLine2="                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/build.gradle.kts"
-            line="56"
+            line="57"
             column="21"/>
     </issue>
 
@@ -155,75 +155,11 @@
         priority="8"
         summary="Invalidating All RecyclerView Data"
         explanation="The `RecyclerView` adapter&apos;s `onNotifyDataSetChanged` method does not specify what about the data set has changed, forcing any observers to assume that all existing items and structure may no longer be valid. `LayoutManager`s will be forced to fully rebind and relayout all visible views."
-        errorLine1="        notifyDataSetChanged()"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt"
-            line="56"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="NotifyDataSetChanged"
-        severity="Warning"
-        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
-        category="Performance"
-        priority="8"
-        summary="Invalidating All RecyclerView Data"
-        explanation="The `RecyclerView` adapter&apos;s `onNotifyDataSetChanged` method does not specify what about the data set has changed, forcing any observers to assume that all existing items and structure may no longer be valid. `LayoutManager`s will be forced to fully rebind and relayout all visible views."
-        errorLine1="        notifyDataSetChanged()"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt"
-            line="84"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="NotifyDataSetChanged"
-        severity="Warning"
-        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
-        category="Performance"
-        priority="8"
-        summary="Invalidating All RecyclerView Data"
-        explanation="The `RecyclerView` adapter&apos;s `onNotifyDataSetChanged` method does not specify what about the data set has changed, forcing any observers to assume that all existing items and structure may no longer be valid. `LayoutManager`s will be forced to fully rebind and relayout all visible views."
-        errorLine1="        notifyDataSetChanged()"
-        errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt"
-            line="90"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="NotifyDataSetChanged"
-        severity="Warning"
-        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
-        category="Performance"
-        priority="8"
-        summary="Invalidating All RecyclerView Data"
-        explanation="The `RecyclerView` adapter&apos;s `onNotifyDataSetChanged` method does not specify what about the data set has changed, forcing any observers to assume that all existing items and structure may no longer be valid. `LayoutManager`s will be forced to fully rebind and relayout all visible views."
-        errorLine1="                notifyDataSetChanged()"
-        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt"
-            line="175"
-            column="17"/>
-    </issue>
-
-    <issue
-        id="NotifyDataSetChanged"
-        severity="Warning"
-        message="It will always be more efficient to use more specific change events if you can. Rely on `notifyDataSetChanged` as a last resort."
-        category="Performance"
-        priority="8"
-        summary="Invalidating All RecyclerView Data"
-        explanation="The `RecyclerView` adapter&apos;s `onNotifyDataSetChanged` method does not specify what about the data set has changed, forcing any observers to assume that all existing items and structure may no longer be valid. `LayoutManager`s will be forced to fully rebind and relayout all visible views."
         errorLine1="        dockAdapter.notifyDataSetChanged()"
         errorLine2="        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt"
-            line="445"
+            line="470"
             column="9"/>
     </issue>
 
@@ -239,7 +175,7 @@
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt"
-            line="602"
+            line="628"
             column="13"/>
     </issue>
 
@@ -267,92 +203,12 @@
         priority="6"
         summary="Obsolete SDK_INT Version Check"
         explanation="This check flags version checks that are not necessary, because the `minSdkVersion` (or surrounding known API level) is already at least as high as the version checked for.&#xA;&#xA;Similarly, it also looks for resources in `-vNN` folders, such as `values-v14` where the version qualifier is less than or equal to the `minSdkVersion`, where the contents should be merged into the best folder."
-        errorLine1="        val category = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {"
-        errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt"
-            line="168"
-            column="28"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        severity="Warning"
-        message="Unnecessary; SDK_INT is always >= 26"
-        category="Performance"
-        priority="6"
-        summary="Obsolete SDK_INT Version Check"
-        explanation="This check flags version checks that are not necessary, because the `minSdkVersion` (or surrounding known API level) is already at least as high as the version checked for.&#xA;&#xA;Similarly, it also looks for resources in `-vNN` folders, such as `values-v14` where the version qualifier is less than or equal to the `minSdkVersion`, where the contents should be merged into the best folder."
         errorLine1="        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {"
         errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/utils/UsageGoalsManager.kt"
             line="50"
             column="13"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        severity="Warning"
-        message="Unnecessary; SDK_INT is always >= 26"
-        category="Performance"
-        priority="6"
-        summary="Obsolete SDK_INT Version Check"
-        explanation="This check flags version checks that are not necessary, because the `minSdkVersion` (or surrounding known API level) is already at least as high as the version checked for.&#xA;&#xA;Similarly, it also looks for resources in `-vNN` folders, such as `values-v14` where the version qualifier is less than or equal to the `minSdkVersion`, where the contents should be merged into the best folder."
-        errorLine1="        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O &amp;&amp; !android.provider.Settings.canDrawOverlays(this)) return"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt"
-            line="100"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        severity="Warning"
-        message="Unnecessary; SDK_INT is always >= 26"
-        category="Performance"
-        priority="6"
-        summary="Obsolete SDK_INT Version Check"
-        explanation="This check flags version checks that are not necessary, because the `minSdkVersion` (or surrounding known API level) is already at least as high as the version checked for.&#xA;&#xA;Similarly, it also looks for resources in `-vNN` folders, such as `values-v14` where the version qualifier is less than or equal to the `minSdkVersion`, where the contents should be merged into the best folder."
-        errorLine1="            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)"
-        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt"
-            line="114"
-            column="17"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        severity="Warning"
-        message="Unnecessary; SDK_INT is always >= 26"
-        category="Performance"
-        priority="6"
-        summary="Obsolete SDK_INT Version Check"
-        explanation="This check flags version checks that are not necessary, because the `minSdkVersion` (or surrounding known API level) is already at least as high as the version checked for.&#xA;&#xA;Similarly, it also looks for resources in `-vNN` folders, such as `values-v14` where the version qualifier is less than or equal to the `minSdkVersion`, where the contents should be merged into the best folder."
-        errorLine1="        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {"
-        errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt"
-            line="149"
-            column="13"/>
-    </issue>
-
-    <issue
-        id="ObsoleteSdkInt"
-        severity="Warning"
-        message="Unnecessary; SDK_INT is always >= 26"
-        category="Performance"
-        priority="6"
-        summary="Obsolete SDK_INT Version Check"
-        explanation="This check flags version checks that are not necessary, because the `minSdkVersion` (or surrounding known API level) is already at least as high as the version checked for.&#xA;&#xA;Similarly, it also looks for resources in `-vNN` folders, such as `values-v14` where the version qualifier is less than or equal to the `minSdkVersion`, where the contents should be merged into the best folder."
-        errorLine1="            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {"
-        errorLine2="                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt"
-            line="171"
-            column="17"/>
     </issue>
 
     <issue
@@ -577,6 +433,22 @@
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/layout/item_reorder.xml"
             line="9"
             column="5"/>
+    </issue>
+
+    <issue
+        id="UnusedResources"
+        severity="Warning"
+        message="The resource `R.string.detox_active` appears to be unused"
+        category="Performance"
+        priority="3"
+        summary="Unused resources"
+        explanation="Unused resources make applications larger and slow down builds.&#xA;&#xA;&#xA;The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.&#xA;&#xA;You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.&#xA;,"
+        errorLine1="    &lt;string name=&quot;detox_active&quot;>Active&lt;/string>"
+        errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location
+            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/res/values/strings.xml"
+            line="12"
+            column="13"/>
     </issue>
 
     <issue
@@ -1047,58 +919,8 @@
         errorLine2="                                ^">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt"
-            line="564"
+            line="589"
             column="33"/>
-    </issue>
-
-    <issue
-        id="ClickableViewAccessibility"
-        severity="Warning"
-        message="Custom view ``RecyclerView`` has `setOnTouchListener` called on it but does not override `performClick`"
-        category="Accessibility"
-        priority="6"
-        summary="Accessibility in Custom Views"
-        explanation="If a `View` that overrides `onTouchEvent` or uses an `OnTouchListener` does not also implement `performClick` and call it when clicks are detected, the `View` may not handle accessibility actions properly. Logic handling the click actions should ideally be placed in `View#performClick` as some accessibility services invoke `performClick` when a click action should occur."
-        errorLine1="        appList.setOnTouchListener { _, event ->"
-        errorLine2="        ^">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt"
-            line="127"
-            column="9"/>
-    </issue>
-
-    <issue
-        id="ClickableViewAccessibility"
-        severity="Warning"
-        message="`onTouch` lambda should call `View#performClick` when a click is detected"
-        category="Accessibility"
-        priority="6"
-        summary="Accessibility in Custom Views"
-        explanation="If a `View` that overrides `onTouchEvent` or uses an `OnTouchListener` does not also implement `performClick` and call it when clicks are detected, the `View` may not handle accessibility actions properly. Logic handling the click actions should ideally be placed in `View#performClick` as some accessibility services invoke `performClick` when a click action should occur."
-        errorLine1="        appList.setOnTouchListener { _, event ->"
-        errorLine2="                                   ^">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TilesFragment.kt"
-            line="127"
-            column="36"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        severity="Warning"
-        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
-        category="Internationalization"
-        priority="6"
-        summary="TextView Internationalization"
-        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
-        url="https://developer.android.com/guide/topics/resources/localization.html"
-        urls="https://developer.android.com/guide/topics/resources/localization.html"
-        errorLine1="        statusBattery.text = &quot;$level%&quot;"
-        errorLine2="                             ~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/MainActivity.kt"
-            line="180"
-            column="30"/>
     </issue>
 
     <issue
@@ -1907,7 +1729,7 @@
         errorLine2="                              ~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt"
-            line="299"
+            line="324"
             column="31"/>
     </issue>
 
@@ -1925,7 +1747,7 @@
         errorLine2="                             ~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt"
-            line="303"
+            line="328"
             column="30"/>
     </issue>
 
@@ -1943,7 +1765,7 @@
         errorLine2="                               ~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt"
-            line="472"
+            line="497"
             column="32"/>
     </issue>
 
@@ -1961,7 +1783,7 @@
         errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt"
-            line="474"
+            line="499"
             column="28"/>
     </issue>
 
@@ -1979,7 +1801,7 @@
         errorLine2="                                             ~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt"
-            line="499"
+            line="524"
             column="46"/>
     </issue>
 
@@ -1997,7 +1819,7 @@
         errorLine2="                                                      ~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt"
-            line="502"
+            line="527"
             column="55"/>
     </issue>
 
@@ -2015,44 +1837,8 @@
         errorLine2="                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/RootFragment.kt"
-            line="666"
+            line="692"
             column="28"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        severity="Warning"
-        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
-        category="Internationalization"
-        priority="6"
-        summary="TextView Internationalization"
-        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
-        url="https://developer.android.com/guide/topics/resources/localization.html"
-        urls="https://developer.android.com/guide/topics/resources/localization.html"
-        errorLine1="        usageGoalValue.text = &quot;${goal / 60}h ${goal % 60}m&quot;"
-        errorLine2="                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt"
-            line="73"
-            column="31"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        severity="Warning"
-        message="String literal in `setText` can not be translated. Use Android resources instead."
-        category="Internationalization"
-        priority="6"
-        summary="TextView Internationalization"
-        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
-        url="https://developer.android.com/guide/topics/resources/localization.html"
-        urls="https://developer.android.com/guide/topics/resources/localization.html"
-        errorLine1="                    statusView.text = &quot;Off&quot;"
-        errorLine2="                                       ~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt"
-            line="329"
-            column="40"/>
     </issue>
 
     <issue
@@ -2069,7 +1855,7 @@
         errorLine2="                                       ~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt"
-            line="341"
+            line="319"
             column="40"/>
     </issue>
 
@@ -2087,98 +1873,8 @@
         errorLine2="                                          ~~~~~~~">
         <location
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt"
-            line="507"
+            line="486"
             column="43"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        severity="Warning"
-        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
-        category="Internationalization"
-        priority="6"
-        summary="TextView Internationalization"
-        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
-        url="https://developer.android.com/guide/topics/resources/localization.html"
-        urls="https://developer.android.com/guide/topics/resources/localization.html"
-        errorLine1="            findViewById&lt;TextView>(R.id.settingsVersion)?.text = &quot;v$version&quot;"
-        errorLine2="                                                                 ~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/SettingsActivity.kt"
-            line="566"
-            column="66"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        severity="Warning"
-        message="String literal in `setText` can not be translated. Use Android resources instead."
-        category="Internationalization"
-        priority="6"
-        summary="TextView Internationalization"
-        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
-        url="https://developer.android.com/guide/topics/resources/localization.html"
-        urls="https://developer.android.com/guide/topics/resources/localization.html"
-        errorLine1="            emptyState.findViewById&lt;TextView>(R.id.treeEmptyTitle)?.text = &quot;Conversations will appear here&quot;"
-        errorLine2="                                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TreeFragment.kt"
-            line="82"
-            column="77"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        severity="Warning"
-        message="String literal in `setText` can not be translated. Use Android resources instead."
-        category="Internationalization"
-        priority="6"
-        summary="TextView Internationalization"
-        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
-        url="https://developer.android.com/guide/topics/resources/localization.html"
-        urls="https://developer.android.com/guide/topics/resources/localization.html"
-        errorLine1="            emptyState.findViewById&lt;TextView>(R.id.treeEmptySubtitle)?.text = &quot;Grant notification access to see messages&quot;"
-        errorLine2="                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TreeFragment.kt"
-            line="83"
-            column="80"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        severity="Warning"
-        message="String literal in `setText` can not be translated. Use Android resources instead."
-        category="Internationalization"
-        priority="6"
-        summary="TextView Internationalization"
-        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
-        url="https://developer.android.com/guide/topics/resources/localization.html"
-        urls="https://developer.android.com/guide/topics/resources/localization.html"
-        errorLine1="            emptyState.findViewById&lt;TextView>(R.id.treeEmptyTitle)?.text = &quot;No messages yet&quot;"
-        errorLine2="                                                                            ~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TreeFragment.kt"
-            line="96"
-            column="77"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        severity="Warning"
-        message="String literal in `setText` can not be translated. Use Android resources instead."
-        category="Internationalization"
-        priority="6"
-        summary="TextView Internationalization"
-        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
-        url="https://developer.android.com/guide/topics/resources/localization.html"
-        urls="https://developer.android.com/guide/topics/resources/localization.html"
-        errorLine1="            emptyState.findViewById&lt;TextView>(R.id.treeEmptySubtitle)?.text = &quot;New messages will appear here automatically&quot;"
-        errorLine2="                                                                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/fragments/TreeFragment.kt"
-            line="97"
-            column="80"/>
     </issue>
 
     <issue
@@ -2233,42 +1929,6 @@
             file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/UsageBreakdownActivity.kt"
             line="27"
             column="31"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        severity="Warning"
-        message="String literal in `setText` can not be translated. Use Android resources instead."
-        category="Internationalization"
-        priority="6"
-        summary="TextView Internationalization"
-        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
-        url="https://developer.android.com/guide/topics/resources/localization.html"
-        urls="https://developer.android.com/guide/topics/resources/localization.html"
-        errorLine1="            text = &quot;0:00&quot;"
-        errorLine2="                    ~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt"
-            line="108"
-            column="21"/>
-    </issue>
-
-    <issue
-        id="SetTextI18n"
-        severity="Warning"
-        message="Do not concatenate text displayed with `setText`. Use resource string with placeholders."
-        category="Internationalization"
-        priority="6"
-        summary="TextView Internationalization"
-        explanation="When calling `TextView#setText`&#xA;* Never call `Number#toString()` to format numbers; it will not handle fraction separators and locale-specific digits properly. Consider using `String#format` with proper format specifications (`%d` or `%f`) instead.&#xA;* Do not pass a string literal (e.g. &quot;Hello&quot;) to display text. Hardcoded text can not be properly translated to other languages. Consider using Android resource strings instead.&#xA;* Do not build messages by concatenating text chunks. Such messages can not be properly translated."
-        url="https://developer.android.com/guide/topics/resources/localization.html"
-        urls="https://developer.android.com/guide/topics/resources/localization.html"
-        errorLine1="        timerView?.text = &quot;$minutes:${String.format(&quot;%02d&quot;, seconds)}&quot;"
-        errorLine2="                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
-        <location
-            file="/home/runner/work/ratio-launcher/ratio-launcher/app/src/main/java/com/ratio/launcher/services/UsageTimerService.kt"
-            line="135"
-            column="27"/>
     </issue>
 
     <issue

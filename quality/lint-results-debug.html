@@ -177,9 +177,9 @@ document.getElementById(id).style.display = 'none';
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
   <header class="mdl-layout__header">
     <div class="mdl-layout__header-row">
-      <span class="mdl-layout-title">Lint Report: 233 warnings</span>
+      <span class="mdl-layout-title">Lint Report: 213 warnings</span>
       <div class="mdl-layout-spacer"></div>
-      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Tue Jun 16 13:15:36 UTC 2026 by AGP (8.3.2)</nav>
+      <nav class="mdl-navigation mdl-layout--large-screen-only">Check performed at Thu Jun 18 12:00:53 UTC 2026 by AGP (8.3.2)</nav>
     </div>
   </header>
   <div class="mdl-layout__drawer">
@@ -190,16 +190,17 @@ document.getElementById(id).style.display = 'none';
       <a class="mdl-navigation__link" href="#GradleDependency"><i class="material-icons warning-icon">warning</i>Obsolete Gradle Dependency (5)</a>
       <a class="mdl-navigation__link" href="#DiscouragedApi"><i class="material-icons warning-icon">warning</i>Using discouraged APIs (2)</a>
       <a class="mdl-navigation__link" href="#UseCompatLoadingForDrawables"><i class="material-icons warning-icon">warning</i>Should not call <code>Context.getDrawable</code> or <code>Resources.getDrawable</code> directly (1)</a>
-      <a class="mdl-navigation__link" href="#NotifyDataSetChanged"><i class="material-icons warning-icon">warning</i>Invalidating All RecyclerView Data (6)</a>
-      <a class="mdl-navigation__link" href="#ObsoleteSdkInt"><i class="material-icons warning-icon">warning</i>Obsolete SDK_INT Version Check (7)</a>
+      <a class="mdl-navigation__link" href="#NotifyDataSetChanged"><i class="material-icons warning-icon">warning</i>Invalidating All RecyclerView Data (2)</a>
+      <a class="mdl-navigation__link" href="#ObsoleteSdkInt"><i class="material-icons warning-icon">warning</i>Obsolete SDK_INT Version Check (2)</a>
       <a class="mdl-navigation__link" href="#DisableBaselineAlignment"><i class="material-icons warning-icon">warning</i>Missing <code>baselineAligned</code> attribute (2)</a>
       <a class="mdl-navigation__link" href="#Overdraw"><i class="material-icons warning-icon">warning</i>Overdraw: Painting regions more than once (12)</a>
+      <a class="mdl-navigation__link" href="#UnusedResources"><i class="material-icons warning-icon">warning</i>Unused resources (1)</a>
       <a class="mdl-navigation__link" href="#UselessParent"><i class="material-icons warning-icon">warning</i>Unnecessary parent layout (2)</a>
       <a class="mdl-navigation__link" href="#TooManyViews"><i class="material-icons warning-icon">warning</i>Layout has too many views (1)</a>
       <a class="mdl-navigation__link" href="#SmallSp"><i class="material-icons warning-icon">warning</i>Text size is too small (21)</a>
       <a class="mdl-navigation__link" href="#Autofill"><i class="material-icons warning-icon">warning</i>Use Autofill (4)</a>
-      <a class="mdl-navigation__link" href="#ClickableViewAccessibility"><i class="material-icons warning-icon">warning</i>Accessibility in Custom Views (3)</a>
-      <a class="mdl-navigation__link" href="#SetTextI18n"><i class="material-icons warning-icon">warning</i>TextView Internationalization (66)</a>
+      <a class="mdl-navigation__link" href="#ClickableViewAccessibility"><i class="material-icons warning-icon">warning</i>Accessibility in Custom Views (1)</a>
+      <a class="mdl-navigation__link" href="#SetTextI18n"><i class="material-icons warning-icon">warning</i>TextView Internationalization (56)</a>
       <a class="mdl-navigation__link" href="#HardcodedText"><i class="material-icons warning-icon">warning</i>Hardcoded text (100)</a>
     </nav>
   </div>
@@ -230,10 +231,10 @@ document.getElementById(id).style.display = 'none';
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Performance">Performance</a>
 </td></tr>
 <tr>
-<td class="countColumn">6</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#NotifyDataSetChanged">NotifyDataSetChanged</a>: Invalidating All RecyclerView Data</td></tr>
 <tr>
-<td class="countColumn">7</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#ObsoleteSdkInt">ObsoleteSdkInt</a>: Obsolete SDK_INT Version Check</td></tr>
 <tr>
 <td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -241,6 +242,9 @@ document.getElementById(id).style.display = 'none';
 <tr>
 <td class="countColumn">12</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#Overdraw">Overdraw</a>: Overdraw: Painting regions more than once</td></tr>
+<tr>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<a href="#UnusedResources">UnusedResources</a>: Unused resources</td></tr>
 <tr>
 <td class="countColumn">2</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#UselessParent">UselessParent</a>: Unnecessary parent layout</td></tr>
@@ -258,12 +262,12 @@ document.getElementById(id).style.display = 'none';
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Accessibility">Accessibility</a>
 </td></tr>
 <tr>
-<td class="countColumn">3</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">1</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#ClickableViewAccessibility">ClickableViewAccessibility</a>: Accessibility in Custom Views</td></tr>
 <tr><td class="countColumn"></td><td class="categoryColumn"><a href="#Internationalization">Internationalization</a>
 </td></tr>
 <tr>
-<td class="countColumn">66</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
+<td class="countColumn">56</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
 <a href="#SetTextI18n">SetTextI18n</a>: TextView Internationalization</td></tr>
 <tr>
 <td class="countColumn">100</td><td class="issueColumn"><i class="material-icons warning-icon">warning</i>
@@ -294,8 +298,8 @@ Dismiss</button>            </div>
 <span class="lineno"> 12 </span>        applicationId = "com.bloedboemmel.ratio"
 <span class="lineno"> 13 </span>        minSdk = 26
 <span class="caretline"><span class="lineno"> 14 </span>        <span class="warning">targetSdk = 35</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 15 </span>        versionCode = 4
-<span class="lineno"> 16 </span>        versionName = "1.0.3"
+<span class="lineno"> 15 </span>        versionCode = 6
+<span class="lineno"> 16 </span>        versionName = "1.0.5"
 <span class="lineno"> 17 </span>    }
 </pre>
 
@@ -340,53 +344,53 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:48</span>: <span class="message">A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.0</span><br /><pre class="errorlines">
-<span class="lineno"> 45 </span>}
-<span class="lineno"> 46 </span>
-<span class="lineno"> 47 </span>dependencies {
-<span class="caretline"><span class="lineno"> 48 </span>    implementation("<span class="warning">androidx.core:core-ktx:1.15.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 49 </span>    implementation("androidx.appcompat:appcompat:1.7.0")
-<span class="lineno"> 50 </span>    implementation("com.google.android.material:material:1.12.0")
-<span class="lineno"> 51 </span>    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:49</span>: <span class="message">A newer version of androidx.core:core-ktx than 1.15.0 is available: 1.19.0</span><br /><pre class="errorlines">
+<span class="lineno"> 46 </span>}
+<span class="lineno"> 47 </span>
+<span class="lineno"> 48 </span>dependencies {
+<span class="caretline"><span class="lineno"> 49 </span>    implementation("<span class="warning">androidx.core:core-ktx:1.15.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 50 </span>    implementation("androidx.appcompat:appcompat:1.7.0")
+<span class="lineno"> 51 </span>    implementation("com.google.android.material:material:1.12.0")
+<span class="lineno"> 52 </span>    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:49</span>: <span class="message">A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.7.1</span><br /><pre class="errorlines">
-<span class="lineno"> 46 </span>
-<span class="lineno"> 47 </span>dependencies {
-<span class="lineno"> 48 </span>    implementation("androidx.core:core-ktx:1.15.0")
-<span class="caretline"><span class="lineno"> 49 </span>    implementation("<span class="warning">androidx.appcompat:appcompat:1.7.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 50 </span>    implementation("com.google.android.material:material:1.12.0")
-<span class="lineno"> 51 </span>    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
-<span class="lineno"> 52 </span>    implementation("androidx.viewpager2:viewpager2:1.1.0")
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:50</span>: <span class="message">A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.7.1</span><br /><pre class="errorlines">
+<span class="lineno"> 47 </span>
+<span class="lineno"> 48 </span>dependencies {
+<span class="lineno"> 49 </span>    implementation("androidx.core:core-ktx:1.15.0")
+<span class="caretline"><span class="lineno"> 50 </span>    implementation("<span class="warning">androidx.appcompat:appcompat:1.7.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 51 </span>    implementation("com.google.android.material:material:1.12.0")
+<span class="lineno"> 52 </span>    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+<span class="lineno"> 53 </span>    implementation("androidx.viewpager2:viewpager2:1.1.0")
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:50</span>: <span class="message">A newer version of com.google.android.material:material than 1.12.0 is available: 1.14.0</span><br /><pre class="errorlines">
-<span class="lineno"> 47 </span>dependencies {
-<span class="lineno"> 48 </span>    implementation("androidx.core:core-ktx:1.15.0")
-<span class="lineno"> 49 </span>    implementation("androidx.appcompat:appcompat:1.7.0")
-<span class="caretline"><span class="lineno"> 50 </span>    implementation("<span class="warning">com.google.android.material:material:1.12.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 51 </span>    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
-<span class="lineno"> 52 </span>    implementation("androidx.viewpager2:viewpager2:1.1.0")
-<span class="lineno"> 53 </span>    implementation("androidx.recyclerview:recyclerview:1.4.0")
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:51</span>: <span class="message">A newer version of com.google.android.material:material than 1.12.0 is available: 1.14.0</span><br /><pre class="errorlines">
+<span class="lineno"> 48 </span>dependencies {
+<span class="lineno"> 49 </span>    implementation("androidx.core:core-ktx:1.15.0")
+<span class="lineno"> 50 </span>    implementation("androidx.appcompat:appcompat:1.7.0")
+<span class="caretline"><span class="lineno"> 51 </span>    implementation("<span class="warning">com.google.android.material:material:1.12.0</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 52 </span>    implementation("androidx.constraintlayout:constraintlayout:2.2.1")
+<span class="lineno"> 53 </span>    implementation("androidx.viewpager2:viewpager2:1.1.0")
+<span class="lineno"> 54 </span>    implementation("androidx.recyclerview:recyclerview:1.4.0")
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:55</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.7 is available: 2.10.0</span><br /><pre class="errorlines">
-<span class="lineno"> 52 </span>    implementation("androidx.viewpager2:viewpager2:1.1.0")
-<span class="lineno"> 53 </span>    implementation("androidx.recyclerview:recyclerview:1.4.0")
-<span class="lineno"> 54 </span>    implementation("androidx.cardview:cardview:1.0.0")
-<span class="caretline"><span class="lineno"> 55 </span>    implementation("<span class="warning">androidx.lifecycle:lifecycle-runtime-ktx:2.8.7</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 56 </span>    implementation("androidx.fragment:fragment-ktx:1.8.5")
-<span class="lineno"> 57 </span>    implementation("io.sentry:sentry-android:8.43.2")
-<span class="lineno"> 58 </span>}
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:56</span>: <span class="message">A newer version of androidx.lifecycle:lifecycle-runtime-ktx than 2.8.7 is available: 2.11.0</span><br /><pre class="errorlines">
+<span class="lineno"> 53 </span>    implementation("androidx.viewpager2:viewpager2:1.1.0")
+<span class="lineno"> 54 </span>    implementation("androidx.recyclerview:recyclerview:1.4.0")
+<span class="lineno"> 55 </span>    implementation("androidx.cardview:cardview:1.0.0")
+<span class="caretline"><span class="lineno"> 56 </span>    implementation("<span class="warning">androidx.lifecycle:lifecycle-runtime-ktx:2.8.7</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 57 </span>    implementation("androidx.fragment:fragment-ktx:1.8.5")
+<span class="lineno"> 58 </span>    implementation("io.sentry:sentry-android:8.43.2")
+<span class="lineno"> 59 </span>}
 </pre>
 
-<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:56</span>: <span class="message">A newer version of androidx.fragment:fragment-ktx than 1.8.5 is available: 1.8.9</span><br /><pre class="errorlines">
-<span class="lineno"> 53 </span>    implementation("androidx.recyclerview:recyclerview:1.4.0")
-<span class="lineno"> 54 </span>    implementation("androidx.cardview:cardview:1.0.0")
-<span class="lineno"> 55 </span>    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
-<span class="caretline"><span class="lineno"> 56 </span>    implementation("<span class="warning">androidx.fragment:fragment-ktx:1.8.5</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 57 </span>    implementation("io.sentry:sentry-android:8.43.2")
-<span class="lineno"> 58 </span>}
+<span class="location"><a href="../../build.gradle.kts">../../build.gradle.kts</a>:57</span>: <span class="message">A newer version of androidx.fragment:fragment-ktx than 1.8.5 is available: 1.8.9</span><br /><pre class="errorlines">
+<span class="lineno"> 54 </span>    implementation("androidx.recyclerview:recyclerview:1.4.0")
+<span class="lineno"> 55 </span>    implementation("androidx.cardview:cardview:1.0.0")
+<span class="lineno"> 56 </span>    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
+<span class="caretline"><span class="lineno"> 57 </span>    implementation("<span class="warning">androidx.fragment:fragment-ktx:1.8.5</span>")&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 58 </span>    implementation("io.sentry:sentry-android:8.43.2")
+<span class="lineno"> 59 </span>}
 </pre>
 
 </div>
@@ -531,62 +535,22 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt">../../src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt</a>:56</span>: <span class="message">It will always be more efficient to use more specific change events if you can. Rely on <code>notifyDataSetChanged</code> as a last resort.</span><br /><pre class="errorlines">
-<span class="lineno">  53 </span>            allApps.filter { it.name.contains(query, ignoreCase = <span class="keyword">true</span>) }
-<span class="lineno">  54 </span>        }
-<span class="lineno">  55 </span>        buildList(filtered)
-<span class="caretline"><span class="lineno">  56 </span>        <span class="warning">notifyDataSetChanged()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  57 </span>    }
-<span class="lineno">  58 </span>
-<span class="lineno">  59 </span>    private <span class="keyword">fun</span> buildList(apps: List&lt;AppInfo>) {
+<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:470</span>: <span class="message">It will always be more efficient to use more specific change events if you can. Rely on <code>notifyDataSetChanged</code> as a last resort.</span><br /><pre class="errorlines">
+<span class="lineno"> 467 </span>              dockApps.add(AppInfo(pm.getApplicationLabel(appInfo).toString(), pkg, pm.getApplicationIcon(pkg), <span class="string">""</span>))
+<span class="lineno"> 468 </span>          } catch (_: PackageManager.NameNotFoundException) {}
+<span class="lineno"> 469 </span>      }
+<span class="caretline"><span class="lineno"> 470 </span>      <span class="warning">dockAdapter.notifyDataSetChanged()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 471 </span>      saveDockApps()
+<span class="lineno"> 472 </span>  }
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt">../../src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt</a>:84</span>: <span class="message">It will always be more efficient to use more specific change events if you can. Rely on <code>notifyDataSetChanged</code> as a last resort.</span><br /><pre class="errorlines">
-<span class="lineno">  81 </span>    <span class="keyword">fun</span> collapseAll() {
-<span class="lineno">  82 </span>        categories.keys.forEach { categories[it] = <span class="keyword">false</span> }
-<span class="lineno">  83 </span>        buildList(allApps)
-<span class="caretline"><span class="lineno">  84 </span>        <span class="warning">notifyDataSetChanged()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  85 </span>    }
-<span class="lineno">  86 </span>
-<span class="lineno">  87 </span>    <span class="keyword">fun</span> expandAll() {
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt">../../src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt</a>:90</span>: <span class="message">It will always be more efficient to use more specific change events if you can. Rely on <code>notifyDataSetChanged</code> as a last resort.</span><br /><pre class="errorlines">
-<span class="lineno">  87 </span>    <span class="keyword">fun</span> expandAll() {
-<span class="lineno">  88 </span>        categories.keys.forEach { categories[it] = <span class="keyword">true</span> }
-<span class="lineno">  89 </span>        buildList(allApps)
-<span class="caretline"><span class="lineno">  90 </span>        <span class="warning">notifyDataSetChanged()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno">  91 </span>    }
-<span class="lineno">  92 </span>
-<span class="lineno">  93 </span>    private <span class="keyword">fun</span> showCategoryPicker(context: Context, app: AppInfo) {
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt">../../src/main/java/com/ratio/launcher/adapters/AppListAdapter.kt</a>:175</span>: <span class="message">It will always be more efficient to use more specific change events if you can. Rely on <code>notifyDataSetChanged</code> as a last resort.</span><br /><pre class="errorlines">
-<span class="lineno"> 172 </span>                header.expanded = !header.expanded
-<span class="lineno"> 173 </span>                categories[header.category] = header.expanded
-<span class="lineno"> 174 </span>                buildList(allApps)
-<span class="caretline"><span class="lineno"> 175 </span>                <span class="warning">notifyDataSetChanged()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 176 </span>            }
-<span class="lineno"> 177 </span>        }
-<span class="lineno"> 178 </span>    }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:445</span>: <span class="message">It will always be more efficient to use more specific change events if you can. Rely on <code>notifyDataSetChanged</code> as a last resort.</span><br /><pre class="errorlines">
-<span class="lineno"> 442 </span>              dockApps.add(AppInfo(pm.getApplicationLabel(appInfo).toString(), pkg, pm.getApplicationIcon(pkg), <span class="string">""</span>))
-<span class="lineno"> 443 </span>          } catch (_: PackageManager.NameNotFoundException) {}
-<span class="lineno"> 444 </span>      }
-<span class="caretline"><span class="lineno"> 445 </span>      <span class="warning">dockAdapter.notifyDataSetChanged()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 446 </span>      saveDockApps()
-<span class="lineno"> 447 </span>  }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:602</span>: <span class="message">It will always be more efficient to use more specific change events if you can. Rely on <code>notifyDataSetChanged</code> as a last resort.</span><br /><pre class="errorlines">
-<span class="lineno"> 599 </span>                  dockApps.add(AppInfo(name = label, packageName = pkg, icon = icon, category = <span class="string">""</span>))
-<span class="lineno"> 600 </span>              } catch (_: PackageManager.NameNotFoundException) {}
-<span class="lineno"> 601 </span>          }
-<span class="caretline"><span class="lineno"> 602 </span>          <span class="warning">dockAdapter.notifyDataSetChanged()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 603 </span>      }
-<span class="lineno"> 604 </span>  }
+<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:628</span>: <span class="message">It will always be more efficient to use more specific change events if you can. Rely on <code>notifyDataSetChanged</code> as a last resort.</span><br /><pre class="errorlines">
+<span class="lineno"> 625 </span>                  dockApps.add(AppInfo(name = label, packageName = pkg, icon = icon, category = <span class="string">""</span>))
+<span class="lineno"> 626 </span>              } catch (_: PackageManager.NameNotFoundException) {}
+<span class="lineno"> 627 </span>          }
+<span class="caretline"><span class="lineno"> 628 </span>          <span class="warning">dockAdapter.notifyDataSetChanged()</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 629 </span>      }
+<span class="lineno"> 630 </span>  }
 </pre>
 
 </div>
@@ -634,16 +598,6 @@ Dismiss</button>            </div>
 <span class="lineno"> 74 </span>          <span class="annotation">@Suppress</span>(<span class="string">"DEPRECATION"</span>)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt">../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt</a>:168</span>: <span class="message">Unnecessary; SDK_INT is always >= 26</span><br /><pre class="errorlines">
-<span class="lineno"> 165 </span>  }
-<span class="lineno"> 166 </span>
-<span class="lineno"> 167 </span>  private <span class="keyword">fun</span> categorizeApp(appInfo: ApplicationInfo, pm: PackageManager): String {
-<span class="caretline"><span class="lineno"> 168 </span>      <span class="keyword">val</span> category = <span class="keyword">if</span> (<span class="warning">android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O</span>) {&nbsp;&nbsp;</span>
-<span class="lineno"> 169 </span>          appInfo.category
-<span class="lineno"> 170 </span>      } <span class="keyword">else</span> {
-<span class="lineno"> 171 </span>          ApplicationInfo.CATEGORY_UNDEFINED
-</pre>
-
 <span class="location"><a href="../../src/main/java/com/ratio/launcher/utils/UsageGoalsManager.kt">../../src/main/java/com/ratio/launcher/utils/UsageGoalsManager.kt</a>:50</span>: <span class="message">Unnecessary; SDK_INT is always >= 26</span><br /><pre class="errorlines">
 <span class="lineno"> 47 </span>    private <span class="keyword">fun</span> showWarningNotification(context: Context, remainingMinutes: Int) {
 <span class="lineno"> 48 </span>        <span class="keyword">val</span> nm = context.getSystemService(Context.NOTIFICATION_SERVICE) <span class="keyword">as</span> NotificationManager
@@ -652,46 +606,6 @@ Dismiss</button>            </div>
 <span class="lineno"> 51 </span>            <span class="keyword">val</span> channel = NotificationChannel(
 <span class="lineno"> 52 </span>                CHANNEL_ID, <span class="string">"Usage Goals"</span>,
 <span class="lineno"> 53 </span>                NotificationManager.IMPORTANCE_DEFAULT
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/services/UsageTimerService.kt">../../src/main/java/com/ratio/launcher/services/UsageTimerService.kt</a>:100</span>: <span class="message">Unnecessary; SDK_INT is always >= 26</span><br /><pre class="errorlines">
-<span class="lineno">  97 </span>
-<span class="lineno">  98 </span>  private <span class="keyword">fun</span> showOverlay() {
-<span class="lineno">  99 </span>      <span class="keyword">if</span> (isOverlayShown) <span class="keyword">return</span>
-<span class="caretline"><span class="lineno"> 100 </span>      <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.O</span> &amp;&amp; !android.provider.Settings.canDrawOverlays(<span class="keyword">this</span>)) <span class="keyword">return</span></span>
-<span class="lineno"> 101 </span>
-<span class="lineno"> 102 </span>      <span class="keyword">val</span> wm = getSystemService(WINDOW_SERVICE) <span class="keyword">as</span> WindowManager
-<span class="lineno"> 103 </span>      timerView = TextView(<span class="keyword">this</span>).apply {
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/services/UsageTimerService.kt">../../src/main/java/com/ratio/launcher/services/UsageTimerService.kt</a>:114</span>: <span class="message">Unnecessary; SDK_INT is always >= 26</span><br /><pre class="errorlines">
-<span class="lineno"> 111 </span>        <span class="keyword">val</span> params = WindowManager.LayoutParams(
-<span class="lineno"> 112 </span>            WindowManager.LayoutParams.WRAP_CONTENT,
-<span class="lineno"> 113 </span>            WindowManager.LayoutParams.WRAP_CONTENT,
-<span class="caretline"><span class="lineno"> 114 </span>            <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.O</span>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 115 </span>                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
-<span class="lineno"> 116 </span>            <span class="keyword">else</span>
-<span class="lineno"> 117 </span>                <span class="annotation">@Suppress</span>(<span class="string">"DEPRECATION"</span>) WindowManager.LayoutParams.TYPE_PHONE,
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/services/UsageTimerService.kt">../../src/main/java/com/ratio/launcher/services/UsageTimerService.kt</a>:149</span>: <span class="message">Unnecessary; SDK_INT is always >= 26</span><br /><pre class="errorlines">
-<span class="lineno"> 146 </span>    }
-<span class="lineno"> 147 </span>
-<span class="lineno"> 148 </span>    private <span class="keyword">fun</span> createNotificationChannel() {
-<span class="caretline"><span class="lineno"> 149 </span>        <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.O</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 150 </span>            <span class="keyword">val</span> channel = NotificationChannel(
-<span class="lineno"> 151 </span>                <span class="string">"usage_timer"</span>, <span class="string">"Usage Timer"</span>,
-<span class="lineno"> 152 </span>                NotificationManager.IMPORTANCE_LOW
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/services/UsageTimerService.kt">../../src/main/java/com/ratio/launcher/services/UsageTimerService.kt</a>:171</span>: <span class="message">Unnecessary; SDK_INT is always >= 26</span><br /><pre class="errorlines">
-<span class="lineno"> 168 </span>    companion <span class="keyword">object</span> {
-<span class="lineno"> 169 </span>        <span class="keyword">fun</span> start(context: Context) {
-<span class="lineno"> 170 </span>            <span class="keyword">val</span> intent = Intent(context, UsageTimerService::<span class="keyword">class</span>.java)
-<span class="caretline"><span class="lineno"> 171 </span>            <span class="keyword">if</span> (<span class="warning">Build.VERSION.SDK_INT >= Build.VERSION_CODES.O</span>) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 172 </span>                context.startForegroundService(intent)
-<span class="lineno"> 173 </span>            } <span class="keyword">else</span> {
-<span class="lineno"> 174 </span>                context.startService(intent)
 </pre>
 
 </div>
@@ -930,6 +844,57 @@ Of course it's possible that your custom drawable is translucent and you want it
               <div class="mdl-card__actions mdl-card--border">
 <button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationOverdrawLink" onclick="reveal('explanationOverdraw');">
 Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="OverdrawCardLink" onclick="hideid('OverdrawCard');">
+Dismiss</button>            </div>
+            </div>
+          </section><a name="UnusedResources"></a>
+<section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp" id="UnusedResourcesCard" style="display: block;">
+            <div class="mdl-card mdl-cell mdl-cell--12-col">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Unused resources</h2>
+  </div>
+              <div class="mdl-card__supporting-text">
+<div class="issue">
+<div class="warningslist">
+<span class="location"><a href="../../src/main/res/values/strings.xml">../../src/main/res/values/strings.xml</a>:12</span>: <span class="message">The resource <code>R.string.detox_active</code> appears to be unused</span><br /><pre class="errorlines">
+<span class="lineno">  9 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"tree_no_messages_subtitle"</span>>New messages will appear here automatically<span class="tag">&lt;/string></span>
+<span class="lineno"> 10 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"usage_goal_format"</span>>%1$dh %2$dm<span class="tag">&lt;/string></span>
+<span class="lineno"> 11 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"detox_off"</span>>Off<span class="tag">&lt;/string></span>
+<span class="caretline"><span class="lineno"> 12 </span>    <span class="tag">&lt;string</span><span class="attribute"> </span><span class="warning"><span class="attribute">name</span>=<span class="value">"detox_active"</span></span>>Active<span class="tag">&lt;/string></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 13 </span>    <span class="tag">&lt;string</span><span class="attribute"> name</span>=<span class="value">"version_format"</span> <span class="attribute">translatable</span>=<span class="value">"false"</span>>v%1$s<span class="tag">&lt;/string></span>
+<span class="lineno"> 14 </span><span class="tag">&lt;/resources></span>
+</pre>
+
+</div>
+<div class="metadata"><div class="explanation" id="explanationUnusedResources" style="display: none;">
+Unused resources make applications larger and slow down builds.<br/>
+<br/>
+<br/>
+The unused resource check can ignore tests. If you want to include resources that are only referenced from tests, consider packaging them in a test source set instead.<br/>
+<br/>
+You can include test sources in the unused resource check by setting the system property lint.unused-resources.include-tests =true, and to exclude them (usually for performance reasons), use lint.unused-resources.exclude-tests =true.<br/>
+,<br/>Note: This issue has an associated quickfix operation in Android Studio and IntelliJ IDEA.<br>
+To suppress this error, use the issue id "UnusedResources" as explained in the <a href="#SuppressInfo">Suppressing Warnings and Errors</a> section.<br/>
+<br/></div>
+</div>
+</div>
+<div class="chips">
+<span class="mdl-chip">
+    <span class="mdl-chip__text">UnusedResources</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Performance</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Warning</span>
+</span>
+<span class="mdl-chip">
+    <span class="mdl-chip__text">Priority 3/10</span>
+</span>
+</div>
+              </div>
+              <div class="mdl-card__actions mdl-card--border">
+<button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="explanationUnusedResourcesLink" onclick="reveal('explanationUnusedResources');">
+Explain</button><button class="mdl-button mdl-js-button mdl-js-ripple-effect" id="UnusedResourcesCardLink" onclick="hideid('UnusedResourcesCard');">
 Dismiss</button>            </div>
             </div>
           </section><a name="UselessParent"></a>
@@ -1359,34 +1324,14 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:564</span>: <span class="message"><code>onTouch</code> lambda should call <code>View#performClick</code> when a click is detected</span><br /><pre class="errorlines">
-<span class="lineno"> 561 </span>            }
-<span class="lineno"> 562 </span>        })
-<span class="lineno"> 563 </span>
-<span class="caretline"><span class="lineno"> 564 </span>        view.setOnTouchListener <span class="warning">{ _, event -></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 565 </span>            gestureDetector.onTouchEvent(event)
-<span class="lineno"> 566 </span>            <span class="keyword">false</span>
-<span class="lineno"> 567 </span>        }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt">../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt</a>:127</span>: <span class="message">Custom view `<code>RecyclerView</code>` has <code>setOnTouchListener</code> called on it but does not override <code>performClick</code></span><br /><pre class="errorlines">
-<span class="lineno"> 124 </span>            }
-<span class="lineno"> 125 </span>        })
-<span class="lineno"> 126 </span>
-<span class="caretline"><span class="lineno"> 127 </span>        <span class="warning">appList.setOnTouchListener { _, event -></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 128 </span>            gestureDetector.onTouchEvent(event)
-<span class="lineno"> 129 </span>            <span class="keyword">false</span>
-<span class="lineno"> 130 </span>        }
-</pre>
-
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt">../../src/main/java/com/ratio/launcher/fragments/TilesFragment.kt</a>:127</span>: <span class="message"><code>onTouch</code> lambda should call <code>View#performClick</code> when a click is detected</span><br /><pre class="errorlines">
-<span class="lineno"> 124 </span>            }
-<span class="lineno"> 125 </span>        })
-<span class="lineno"> 126 </span>
-<span class="caretline"><span class="lineno"> 127 </span>        appList.setOnTouchListener <span class="warning">{ _, event -></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 128 </span>            gestureDetector.onTouchEvent(event)
-<span class="lineno"> 129 </span>            <span class="keyword">false</span>
-<span class="lineno"> 130 </span>        }
+<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:589</span>: <span class="message"><code>onTouch</code> lambda should call <code>View#performClick</code> when a click is detected</span><br /><pre class="errorlines">
+<span class="lineno"> 586 </span>            }
+<span class="lineno"> 587 </span>        })
+<span class="lineno"> 588 </span>
+<span class="caretline"><span class="lineno"> 589 </span>        view.setOnTouchListener <span class="warning">{ _, event -></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 590 </span>            gestureDetector.onTouchEvent(event)
+<span class="lineno"> 591 </span>            <span class="keyword">false</span>
+<span class="lineno"> 592 </span>        }
 </pre>
 
 </div>
@@ -1426,16 +1371,6 @@ Dismiss</button>            </div>
               <div class="mdl-card__supporting-text">
 <div class="issue">
 <div class="warningslist">
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/MainActivity.kt">../../src/main/java/com/ratio/launcher/MainActivity.kt</a>:180</span>: <span class="message">Do not concatenate text displayed with <code>setText</code>. Use resource string with placeholders.</span><br /><pre class="errorlines">
-<span class="lineno"> 177 </span>        <span class="comment">// Battery</span>
-<span class="lineno"> 178 </span>        <span class="keyword">val</span> bm = getSystemService(BATTERY_SERVICE) <span class="keyword">as</span> BatteryManager
-<span class="lineno"> 179 </span>        <span class="keyword">val</span> level = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
-<span class="caretline"><span class="lineno"> 180 </span>        statusBattery.text = <span class="warning"><span class="string">"$level%"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 181 </span>
-<span class="lineno"> 182 </span>        <span class="comment">// WiFi/connectivity</span>
-<span class="lineno"> 183 </span>        <span class="keyword">val</span> cm = getSystemService(CONNECTIVITY_SERVICE) <span class="keyword">as</span> ConnectivityManager
-</pre>
-
 <span class="location"><a href="../../src/main/java/com/ratio/launcher/OnboardingActivity.kt">../../src/main/java/com/ratio/launcher/OnboardingActivity.kt</a>:104</span>: <span class="message">String literal in <code>setText</code> can not be translated. Use Android resources instead.</span><br /><pre class="errorlines">
 <span class="lineno"> 101 </span>
 <span class="lineno"> 102 </span>  <span class="keyword">when</span> (page) {
@@ -1476,8 +1411,6 @@ Dismiss</button>            </div>
 <span class="lineno"> 108 </span>      }
 </pre>
 
-<button class="mdl-button mdl-js-button mdl-button--primary" id="SetTextI18nDivLink" onclick="reveal('SetTextI18nDiv');" />+ 61 More Occurrences...</button>
-<div id="SetTextI18nDiv" style="display: none">
 <span class="location"><a href="../../src/main/java/com/ratio/launcher/OnboardingActivity.kt">../../src/main/java/com/ratio/launcher/OnboardingActivity.kt</a>:105</span>: <span class="message">String literal in <code>setText</code> can not be translated. Use Android resources instead.</span><br /><pre class="errorlines">
 <span class="lineno"> 102 </span>  <span class="keyword">when</span> (page) {
 <span class="lineno"> 103 </span>      <span class="number">0</span> -> {
@@ -1488,6 +1421,8 @@ Dismiss</button>            </div>
 <span class="lineno"> 108 </span>      }
 </pre>
 
+<button class="mdl-button mdl-js-button mdl-button--primary" id="SetTextI18nDivLink" onclick="reveal('SetTextI18nDiv');" />+ 51 More Occurrences...</button>
+<div id="SetTextI18nDiv" style="display: none">
 <span class="location"><a href="../../src/main/java/com/ratio/launcher/OnboardingActivity.kt">../../src/main/java/com/ratio/launcher/OnboardingActivity.kt</a>:105</span>: <span class="message">String literal in <code>setText</code> can not be translated. Use Android resources instead.</span><br /><pre class="errorlines">
 <span class="lineno"> 102 </span>  <span class="keyword">when</span> (page) {
 <span class="lineno"> 103 </span>      <span class="number">0</span> -> {
@@ -1872,55 +1807,65 @@ Dismiss</button>            </div>
 <span class="lineno">  58 </span>            currentOrder.toMutableList()
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:299</span>: <span class="message">String literal in <code>setText</code> can not be translated. Use Android resources instead.</span><br /><pre class="errorlines">
-<span class="lineno"> 296 </span>        <span class="keyword">val</span> context = context ?: <span class="keyword">return</span>
-<span class="lineno"> 297 </span>        <span class="keyword">val</span> minutes = UsageStatsHelper.getTodayUsageMinutes(context)
-<span class="lineno"> 298 </span>        <span class="keyword">if</span> (minutes &lt; <span class="number">0</span>) {
-<span class="caretline"><span class="lineno"> 299 </span>            usageTime.text = <span class="string">"</span><span class="warning"><span class="string">Tap to enable</span></span><span class="string">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 300 </span>        } <span class="keyword">else</span> {
-<span class="lineno"> 301 </span>            <span class="keyword">val</span> hours = minutes / <span class="number">60</span>
-<span class="lineno"> 302 </span>            <span class="keyword">val</span> mins = minutes % <span class="number">60</span></pre>
+<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:324</span>: <span class="message">String literal in <code>setText</code> can not be translated. Use Android resources instead.</span><br /><pre class="errorlines">
+<span class="lineno"> 321 </span>        <span class="keyword">val</span> context = context ?: <span class="keyword">return</span>
+<span class="lineno"> 322 </span>        <span class="keyword">val</span> minutes = UsageStatsHelper.getTodayUsageMinutes(context)
+<span class="lineno"> 323 </span>        <span class="keyword">if</span> (minutes &lt; <span class="number">0</span>) {
+<span class="caretline"><span class="lineno"> 324 </span>            usageTime.text = <span class="string">"</span><span class="warning"><span class="string">Tap to enable</span></span><span class="string">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 325 </span>        } <span class="keyword">else</span> {
+<span class="lineno"> 326 </span>            <span class="keyword">val</span> hours = minutes / <span class="number">60</span>
+<span class="lineno"> 327 </span>            <span class="keyword">val</span> mins = minutes % <span class="number">60</span></pre>
 
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:303</span>: <span class="message">Do not concatenate text displayed with <code>setText</code>. Use resource string with placeholders.</span><br /><pre class="errorlines">
-<span class="lineno"> 300 </span>        } <span class="keyword">else</span> {
-<span class="lineno"> 301 </span>            <span class="keyword">val</span> hours = minutes / <span class="number">60</span>
-<span class="lineno"> 302 </span>            <span class="keyword">val</span> mins = minutes % <span class="number">60</span>
-<span class="caretline"><span class="lineno"> 303 </span>            usageTime.text = <span class="warning"><span class="string">"${</span>hours<span class="string">}h ${</span>mins<span class="string">}m"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 304 </span>
-<span class="lineno"> 305 </span>            <span class="keyword">val</span> goalMinutes = <span class="number">240</span>
-<span class="lineno"> 306 </span>            <span class="keyword">val</span> ratio = (minutes.toFloat() / goalMinutes).coerceIn(<span class="number">0f</span>, <span class="number">1f</span>)
+<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:328</span>: <span class="message">Do not concatenate text displayed with <code>setText</code>. Use resource string with placeholders.</span><br /><pre class="errorlines">
+<span class="lineno"> 325 </span>        } <span class="keyword">else</span> {
+<span class="lineno"> 326 </span>            <span class="keyword">val</span> hours = minutes / <span class="number">60</span>
+<span class="lineno"> 327 </span>            <span class="keyword">val</span> mins = minutes % <span class="number">60</span>
+<span class="caretline"><span class="lineno"> 328 </span>            usageTime.text = <span class="warning"><span class="string">"${</span>hours<span class="string">}h ${</span>mins<span class="string">}m"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 329 </span>
+<span class="lineno"> 330 </span>            <span class="keyword">val</span> goalMinutes = <span class="number">240</span>
+<span class="lineno"> 331 </span>            <span class="keyword">val</span> ratio = (minutes.toFloat() / goalMinutes).coerceIn(<span class="number">0f</span>, <span class="number">1f</span>)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:472</span>: <span class="message">Do not concatenate text displayed with <code>setText</code>. Use resource string with placeholders.</span><br /><pre class="errorlines">
-<span class="lineno"> 469 </span>        weatherCondition.text = data.condition
-<span class="lineno"> 470 </span>        weatherCity.text = data.city
-<span class="lineno"> 471 </span>
-<span class="caretline"><span class="lineno"> 472 </span>        weatherHumidity.text = <span class="warning"><span class="string">"${</span>data.humidity<span class="string">}%"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 473 </span>        weatherWind.text = WeatherHelper.formatWind(data, metric)
-<span class="lineno"> 474 </span>        weatherRain.text = <span class="string">"${</span>data.rainChance<span class="string">}%"</span>
-<span class="lineno"> 475 </span>        weatherDetailsRow.visibility = View.VISIBLE
+<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:497</span>: <span class="message">Do not concatenate text displayed with <code>setText</code>. Use resource string with placeholders.</span><br /><pre class="errorlines">
+<span class="lineno"> 494 </span>        weatherCondition.text = data.condition
+<span class="lineno"> 495 </span>        weatherCity.text = data.city
+<span class="lineno"> 496 </span>
+<span class="caretline"><span class="lineno"> 497 </span>        weatherHumidity.text = <span class="warning"><span class="string">"${</span>data.humidity<span class="string">}%"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 498 </span>        weatherWind.text = WeatherHelper.formatWind(data, metric)
+<span class="lineno"> 499 </span>        weatherRain.text = <span class="string">"${</span>data.rainChance<span class="string">}%"</span>
+<span class="lineno"> 500 </span>        weatherDetailsRow.visibility = View.VISIBLE
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:474</span>: <span class="message">Do not concatenate text displayed with <code>setText</code>. Use resource string with placeholders.</span><br /><pre class="errorlines">
-<span class="lineno"> 471 </span>
-<span class="lineno"> 472 </span>        weatherHumidity.text = <span class="string">"${</span>data.humidity<span class="string">}%"</span>
-<span class="lineno"> 473 </span>        weatherWind.text = WeatherHelper.formatWind(data, metric)
-<span class="caretline"><span class="lineno"> 474 </span>        weatherRain.text = <span class="warning"><span class="string">"${</span>data.rainChance<span class="string">}%"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 475 </span>        weatherDetailsRow.visibility = View.VISIBLE
-<span class="lineno"> 476 </span>
-<span class="lineno"> 477 </span>        weatherTomorrowTemp.text = WeatherHelper.formatTomorrowTemp(data, metric)
+<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:499</span>: <span class="message">Do not concatenate text displayed with <code>setText</code>. Use resource string with placeholders.</span><br /><pre class="errorlines">
+<span class="lineno"> 496 </span>
+<span class="lineno"> 497 </span>        weatherHumidity.text = <span class="string">"${</span>data.humidity<span class="string">}%"</span>
+<span class="lineno"> 498 </span>        weatherWind.text = WeatherHelper.formatWind(data, metric)
+<span class="caretline"><span class="lineno"> 499 </span>        weatherRain.text = <span class="warning"><span class="string">"${</span>data.rainChance<span class="string">}%"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 500 </span>        weatherDetailsRow.visibility = View.VISIBLE
+<span class="lineno"> 501 </span>
+<span class="lineno"> 502 </span>        weatherTomorrowTemp.text = WeatherHelper.formatTomorrowTemp(data, metric)
 </pre>
 
-<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:499</span>: <span class="message">String literal in <code>setText</code> can not be translated. Use Android resources instead.</span><br /><pre class="errorlines">
-<span class="lineno"> 496 </span>                <span class="keyword">val</span> city = input.text.toString().trim()
-<span class="lineno"> 497 </span>                <span class="keyword">if</span> (city.isNotEmpty()) {
-<span class="lineno"> 498 </span>                    WeatherHelper.setCity(context, city)
-<span class="caretline"><span class="lineno"> 499 </span>                    weatherCondition.text = <span class="string">"</span><span class="warning"><span class="string">Loading...</span></span><span class="string">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-<span class="lineno"> 500 </span>                    WeatherHelper.fetchWeather(context, city) { data ->
-<span class="lineno"> 501 </span>                        <span class="keyword">if</span> (data != <span class="keyword">null</span>) displayWeather(data)
-<span class="lineno"> 502 </span>                        <span class="keyword">else</span> weatherCondition.text = <span class="string">"Error loading weather"</span></pre>
+<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:524</span>: <span class="message">String literal in <code>setText</code> can not be translated. Use Android resources instead.</span><br /><pre class="errorlines">
+<span class="lineno"> 521 </span>                <span class="keyword">val</span> city = input.text.toString().trim()
+<span class="lineno"> 522 </span>                <span class="keyword">if</span> (city.isNotEmpty()) {
+<span class="lineno"> 523 </span>                    WeatherHelper.setCity(context, city)
+<span class="caretline"><span class="lineno"> 524 </span>                    weatherCondition.text = <span class="string">"</span><span class="warning"><span class="string">Loading...</span></span><span class="string">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 525 </span>                    WeatherHelper.fetchWeather(context, city) { data ->
+<span class="lineno"> 526 </span>                        <span class="keyword">if</span> (data != <span class="keyword">null</span>) displayWeather(data)
+<span class="lineno"> 527 </span>                        <span class="keyword">else</span> weatherCondition.text = <span class="string">"Error loading weather"</span></pre>
 
-<br/><b>NOTE: 16 results omitted.</b><br/><br/></div>
+<span class="location"><a href="../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt">../../src/main/java/com/ratio/launcher/fragments/RootFragment.kt</a>:527</span>: <span class="message">String literal in <code>setText</code> can not be translated. Use Android resources instead.</span><br /><pre class="errorlines">
+<span class="lineno"> 524 </span>                    weatherCondition.text = <span class="string">"Loading..."</span>
+<span class="lineno"> 525 </span>                    WeatherHelper.fetchWeather(context, city) { data ->
+<span class="lineno"> 526 </span>                        <span class="keyword">if</span> (data != <span class="keyword">null</span>) displayWeather(data)
+<span class="caretline"><span class="lineno"> 527 </span>                        <span class="keyword">else</span> weatherCondition.text = <span class="string">"</span><span class="warning"><span class="string">Error loading weather</span></span><span class="string">"</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+<span class="lineno"> 528 </span>                    }
+<span class="lineno"> 529 </span>                }
+<span class="lineno"> 530 </span>            }
+</pre>
+
+<br/><b>NOTE: 6 results omitted.</b><br/><br/></div>
 </div>
 <div class="metadata"><div class="explanation" id="explanationSetTextI18n" style="display: none;">
 When calling <code>TextView#setText</code><br/>
