@@ -12,12 +12,13 @@ android {
         applicationId = "com.bloedboemmel.ratio"
         minSdk = 26
         targetSdk = 35
-        versionCode = 4
-        versionName = "1.0.3"
+        versionCode = 6
+        versionName = "1.0.5"
     }
 
     buildTypes {
         debug {
+            applicationIdSuffix = ".debug"
             manifestPlaceholders["sentryEnvironment"] = "debug"
         }
         release {
@@ -61,6 +62,9 @@ dependencies {
 sentry {
     org.set("memyselfandi-9i")
     projectName.set("android")
+
+    // Only upload sources when auth token is available (CI)
+    autoUploadSourceContext.set(System.getenv("SENTRY_AUTH_TOKEN") != null)
 
     // this will upload your source code to Sentry to show it as part of the stack traces
     // disable if you don't want to expose your sources

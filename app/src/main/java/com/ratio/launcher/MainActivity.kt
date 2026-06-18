@@ -4,18 +4,23 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.graphics.BitmapFactory
+import android.graphics.ImageDecoder
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.BatteryManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.view.WindowInsets
-import android.view.WindowInsetsController
 import android.widget.TextView
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toDrawable
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.ratio.launcher.adapters.ViewPagerAdapter
 import io.sentry.Sentry
@@ -65,24 +70,15 @@ class MainActivity : AppCompatActivity() {
 
         setupImmersive()
         setupViewPager()
+        setupBackNavigation()
     }
 
     private fun setupImmersive() {
-        window.statusBarColor = android.graphics.Color.TRANSPARENT
-        window.navigationBarColor = ContextCompat.getColor(this, R.color.ratio_black)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-            window.setDecorFitsSystemWindows(false)
-            window.insetsController?.setSystemBarsAppearance(
-                0,
-                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
-            )
-        } else {
-            @Suppress("DEPRECATION")
-            window.decorView.systemUiVisibility =
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
-                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        }
+        val insetsController = WindowCompat.getInsetsController(window, window.decorView)
+        insetsController.isAppearanceLightStatusBars = false
+        insetsController.isAppearanceLightNavigationBars = false
     }
 
     private fun setupViewPager() {
@@ -95,21 +91,41 @@ class MainActivity : AppCompatActivity() {
         viewPager.offscreenPageLimit = 2
 
         viewPager.setPageTransformer { page, position ->
-            page.alpha = 1f - kotlin.math.abs(position) * 0.3f
+            page.alpha = 1f - (kotlin.math.abs(position) * 0.3f)
         }
 
-        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                val pageName = when (position) { 0 -> "tree"; 1 -> "root"; else -> "tiles" }
-                Sentry.metrics().count("page_swipe_$pageName")
+        viewPager.registerOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    val pageName = when (position) { 0 -> "tree"; 1 -> "root"; else -> "tiles" }
+                    Sentry.metrics().count("page_swipe_$pageName")
 
-                if (position == 2) {
-                    supportFragmentManager.fragments
-                        .filterIsInstance<com.ratio.launcher.fragments.TilesFragment>()
-                        .firstOrNull()?.openKeyboard()
-                } else {
-                    hideKeyboard()
+                    // Block swiping to apps page when detox mode is active
+                    if ((position == 2) && com.ratio.launcher.utils.DetoxMode.isActive(this@MainActivity)) {
+                        viewPager.setCurrentItem(1, true)
+                        return
+                    }
+
+                    if (position == 2) {
+                        supportFragmentManager.fragments
+                            .asSequence()
+                            .filterIsInstance<com.ratio.launcher.fragments.TilesFragment>()
+                            .firstOrNull()?.openKeyboard()
+                    } else {
+                        hideKeyboard()
+                    }
                 }
+            },
+        )
+    }
+
+    private fun setupBackNavigation() {
+        onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                if (viewPager.currentItem != 1) {
+                    viewPager.setCurrentItem(1, true)
+                }
+                // Intentionally not finishing — launcher should not exit on back
             }
         })
     }
@@ -140,30 +156,62 @@ class MainActivity : AppCompatActivity() {
 
     private fun applyTheme() {
         val theme = com.ratio.launcher.utils.RatioTheme.getCurrent(this)
-        findViewById<View>(android.R.id.content).setBackgroundColor(theme.backgroundColor)
-        window.navigationBarColor = theme.backgroundColor
+        val rootLayout = findViewById<View>(R.id.viewPager)?.parent as? android.widget.FrameLayout
+
+        // Apply wallpaper
+        val wpManager = com.ratio.launcher.utils.WallpaperManager
+        var hasWallpaper = false
+        when (wpManager.getMode(this)) {
+            com.ratio.launcher.utils.WallpaperManager.WallpaperMode.IMAGE -> {
+                val uri = wpManager.getImageUri(this)
+                if (uri != null) {
+                    try {
+                        val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                            val source = ImageDecoder.createSource(contentResolver, uri)
+                            ImageDecoder.decodeBitmap(source)
+                        } else {
+                            contentResolver.openInputStream(uri)?.use { stream ->
+                                BitmapFactory.decodeStream(stream)
+                            }
+                        }
+                        if (bitmap != null) {
+                            rootLayout?.background = bitmap.toDrawable(resources)
+                            hasWallpaper = true
+                        } else {
+                            rootLayout?.setBackgroundColor(theme.backgroundColor)
+                        }
+                    } catch (_: Exception) {
+                        rootLayout?.setBackgroundColor(theme.backgroundColor)
+                    }
+                } else {
+                    rootLayout?.setBackgroundColor(theme.backgroundColor)
+                }
+            }
+            else -> rootLayout?.setBackgroundColor(theme.backgroundColor)
+        }
+
+        // Make ViewPager2 and its internal RecyclerView background transparent so wallpaper shows through
+        viewPager.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+        (viewPager.getChildAt(0) as? androidx.recyclerview.widget.RecyclerView)
+            ?.setBackgroundColor(android.graphics.Color.TRANSPARENT)
+        // Make fragment backgrounds transparent when wallpaper is active
+        val fragmentBgColor = if (hasWallpaper) android.graphics.Color.TRANSPARENT else theme.backgroundColor
+        supportFragmentManager.fragments.forEach { fragment ->
+            fragment.view?.setBackgroundColor(fragmentBgColor)
+        }
+
+
 
         val prefs = getSharedPreferences("ratio_prefs", MODE_PRIVATE)
         statusBarHidden = prefs.getBoolean("hide_status_bar", false)
 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
-            if (statusBarHidden) {
-                window.insetsController?.hide(WindowInsets.Type.statusBars())
-                window.insetsController?.systemBarsBehavior =
-                    WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            } else {
-                window.insetsController?.show(WindowInsets.Type.statusBars())
-            }
-            window.statusBarColor = android.graphics.Color.TRANSPARENT
+        val insetsController = WindowCompat.getInsetsController(window, window.decorView)
+        if (statusBarHidden) {
+            insetsController.hide(WindowInsetsCompat.Type.statusBars())
+            insetsController.systemBarsBehavior =
+                WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         } else {
-            @Suppress("DEPRECATION")
-            if (statusBarHidden) {
-                window.decorView.systemUiVisibility = window.decorView.systemUiVisibility or
-                    View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-            } else {
-                window.decorView.systemUiVisibility = window.decorView.systemUiVisibility and
-                    View.SYSTEM_UI_FLAG_FULLSCREEN.inv() and View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY.inv()
-            }
+            insetsController.show(WindowInsetsCompat.Type.statusBars())
         }
 
         // Show/hide custom status overlay
@@ -177,7 +225,7 @@ class MainActivity : AppCompatActivity() {
         // Battery
         val bm = getSystemService(BATTERY_SERVICE) as BatteryManager
         val level = bm.getIntProperty(BatteryManager.BATTERY_PROPERTY_CAPACITY)
-        statusBattery.text = "$level%"
+        statusBattery.text = getString(R.string.battery_percentage, level)
 
         // WiFi/connectivity
         val cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -189,14 +237,5 @@ class MainActivity : AppCompatActivity() {
             caps.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> "LTE"
             else -> ""
         }
-    }
-
-    @Suppress("MissingSuperCall")
-    @Deprecated("Deprecated in Java")
-    override fun onBackPressed() {
-        if (viewPager.currentItem != 1) {
-            viewPager.setCurrentItem(1, true)
-        }
-        // Intentionally not calling super — launcher should not exit on back
     }
 }

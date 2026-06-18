@@ -35,6 +35,8 @@ jobs:
         run: chmod +x gradlew
 
       - name: Build Release AAB + APK
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
         run: ./gradlew assembleRelease bundleRelease
 
       - name: Get version name
@@ -77,5 +79,6 @@ jobs:
           serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_JSON }}
           packageName: com.bloedboemmel.ratio
           releaseFiles: app/build/outputs/bundle/release/*.aab
+          whatsNewDirectory: distribution/whatsnew
           track: internal
           status: completed

@@ -1,10 +1,10 @@
 package com.ratio.launcher.adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.ColorMatrix
 import android.graphics.ColorMatrixColorFilter
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,6 +13,8 @@ import android.widget.PopupMenu
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.edit
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.ratio.launcher.R
 import com.ratio.launcher.models.AppInfo
@@ -31,7 +33,8 @@ class AppListAdapter(
     private val onAppLongPress: ((AppInfo) -> Unit)? = null,
     private val sortMode: DrawerSortMode = DrawerSortMode.ALPHABETICAL,
     private val categoryComparator: Comparator<String>? = null,
-    private val onAppClick: (AppInfo) -> Unit
+    private val hasWallpaper: Boolean = false,
+    private val onAppClick: (AppInfo) -> Unit,
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items: MutableList<TileItem> = mutableListOf()
@@ -46,6 +49,7 @@ class AppListAdapter(
         buildList(allApps)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun filter(query: String) {
         val filtered = if (query.isBlank()) {
             allApps
@@ -66,7 +70,7 @@ class AppListAdapter(
         }
         for (category in sortedCategories) {
             val categoryApps = grouped[category] ?: continue
-            val expanded = categories.getOrDefault(category, true)
+            val expanded = categories.getOrDefault(category, defaultValue = true)
             items.add(TileItem.Header(category, categoryApps.size, expanded))
             if (expanded) {
                 val sorted = when (sortMode) {
@@ -78,12 +82,14 @@ class AppListAdapter(
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun collapseAll() {
         categories.keys.forEach { categories[it] = false }
         buildList(allApps)
         notifyDataSetChanged()
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun expandAll() {
         categories.keys.forEach { categories[it] = true }
         buildList(allApps)
@@ -91,13 +97,13 @@ class AppListAdapter(
     }
 
     private fun showCategoryPicker(context: Context, app: AppInfo) {
-        val existingCategories = allApps.map { it.category }.distinct().sorted().toMutableList()
+        val existingCategories = allApps.asSequence().map { it.category }.distinct().sorted().toMutableList()
         existingCategories.add("+ New category")
 
         AlertDialog.Builder(context)
             .setTitle("Move ${app.name} to:")
             .setItems(existingCategories.toTypedArray()) { _, which ->
-                if (which == existingCategories.size - 1) {
+                if (which == (existingCategories.size - 1)) {
                     showNewCategoryDialog(context, app)
                 } else {
                     val newCategory = existingCategories[which]
@@ -129,7 +135,7 @@ class AppListAdapter(
 
     private fun saveAppCategory(context: Context, packageName: String, category: String) {
         val prefs = context.getSharedPreferences("ratio_app_categories", Context.MODE_PRIVATE)
-        prefs.edit().putString(packageName, category).apply()
+        prefs.edit { putString(packageName, category) }
     }
 
     override fun getItemViewType(position: Int): Int {
@@ -163,6 +169,7 @@ class AppListAdapter(
         private val count: TextView = view.findViewById(R.id.drawerCount)
         private val arrow: ImageView = view.findViewById(R.id.drawerArrow)
 
+        @SuppressLint("NotifyDataSetChanged")
         fun bind(header: TileItem.Header) {
             name.text = header.category
             count.text = header.count.toString()
@@ -180,9 +187,15 @@ class AppListAdapter(
     inner class AppViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val icon: ImageView = view.findViewById(R.id.appIcon)
         private val appName: TextView = view.findViewById(R.id.appName)
+        private val tileContainer: View = (view as ViewGroup).getChildAt(0)
 
         fun bind(app: AppInfo) {
             appName.text = app.name
+
+            // Apply wallpaper-friendly tile background if needed
+            tileContainer.setBackgroundResource(
+                if (hasWallpaper) R.drawable.ripple_tile_wallpaper else R.drawable.ripple_tile,
+            )
 
             icon.setImageDrawable(app.icon.mutate())
             if (monochrome) {
@@ -211,7 +224,7 @@ class AppListAdapter(
                         "Hide" -> {
                             HiddenAppsManager.hideApp(view.context, app.packageName)
                             Toast.makeText(view.context, "${app.name} hidden", Toast.LENGTH_SHORT).show()
-                            val idx = items.indexOfFirst { it is TileItem.App && it.appInfo.packageName == app.packageName }
+                            val idx = items.indexOfFirst { (it is TileItem.App) && (it.appInfo.packageName == app.packageName) }
                             if (idx >= 0) {
                                 items.removeAt(idx)
                                 notifyItemRemoved(idx)
@@ -220,7 +233,7 @@ class AppListAdapter(
                         "Uninstall" -> {
                             @Suppress("DEPRECATION")
                             val intent = Intent(Intent.ACTION_UNINSTALL_PACKAGE).apply {
-                                data = Uri.parse("package:${app.packageName}")
+                                data = "package:${app.packageName}".toUri()
                                 putExtra(Intent.EXTRA_RETURN_RESULT, true)
                                 addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                             }

@@ -1,11 +1,12 @@
 package com.ratio.launcher
 
-import android.content.Context
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
+import androidx.core.graphics.toColorInt
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.ratio.launcher.utils.*
@@ -58,7 +59,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun loadSettings() {
-        val prefs = getSharedPreferences("ratio_prefs", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("ratio_prefs", MODE_PRIVATE)
 
         settingsCity.setText(WeatherHelper.getCity(this))
         clock24hSwitch.isChecked = prefs.getBoolean("clock_24h", true)
@@ -70,7 +71,7 @@ class SettingsActivity : AppCompatActivity() {
 
 
         val goal = UsageGoalsManager.getDailyGoal(this)
-        usageGoalValue.text = "${goal / 60}h ${goal % 60}m"
+        usageGoalValue.text = getString(R.string.usage_goal_format, goal / 60, goal % 60)
 
         val hidden = HiddenAppsManager.getHiddenPackages(this)
         hiddenAppsCount.text = hidden.size.toString()
@@ -93,18 +94,18 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     private fun setupListeners() {
-        val prefs = getSharedPreferences("ratio_prefs", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("ratio_prefs", MODE_PRIVATE)
 
         clock24hSwitch.setOnCheckedChangeListener { _, checked ->
-            prefs.edit().putBoolean("clock_24h", checked).apply()
+            prefs.edit { putBoolean("clock_24h", checked) }
         }
 
         monochromeSwitch.setOnCheckedChangeListener { _, checked ->
-            prefs.edit().putBoolean("monochrome_icons", checked).apply()
+            prefs.edit { putBoolean("monochrome_icons", checked) }
         }
 
         doubleTapSwitch.setOnCheckedChangeListener { _, checked ->
-            prefs.edit().putBoolean("double_tap_lock", checked).apply()
+            prefs.edit { putBoolean("double_tap_lock", checked) }
             if (checked && !GestureHelper.isDeviceAdminEnabled(this)) {
                 GestureHelper.requestDeviceAdmin(this)
             }
@@ -123,7 +124,7 @@ class SettingsActivity : AppCompatActivity() {
         val showSecondsSwitch = findViewById<SwitchMaterial>(R.id.settingsShowSeconds)
         showSecondsSwitch.isChecked = prefs.getBoolean("show_seconds", false)
         showSecondsSwitch.setOnCheckedChangeListener { _, checked ->
-            prefs.edit().putBoolean("show_seconds", checked).apply()
+            prefs.edit { putBoolean("show_seconds", checked) }
         }
 
         findViewById<LinearLayout>(R.id.settingUsageGoal).setOnClickListener {
@@ -145,23 +146,23 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         showMusicSwitch.setOnCheckedChangeListener { _, checked ->
-            prefs.edit().putBoolean("show_music", checked).apply()
+            prefs.edit { putBoolean("show_music", checked) }
         }
         showCalendarSwitch.setOnCheckedChangeListener { _, checked ->
-            prefs.edit().putBoolean("show_calendar", checked).apply()
+            prefs.edit { putBoolean("show_calendar", checked) }
         }
         showWeatherSwitch.setOnCheckedChangeListener { _, checked ->
-            prefs.edit().putBoolean("show_weather", checked).apply()
+            prefs.edit { putBoolean("show_weather", checked) }
         }
         showNotesSwitch.setOnCheckedChangeListener { _, checked ->
-            prefs.edit().putBoolean("show_notes", checked).apply()
+            prefs.edit { putBoolean("show_notes", checked) }
         }
         showScreenTimeSwitch.setOnCheckedChangeListener { _, checked ->
-            prefs.edit().putBoolean("show_screen_time", checked).apply()
+            prefs.edit { putBoolean("show_screen_time", checked) }
         }
 
         hideStatusBarSwitch.setOnCheckedChangeListener { _, checked ->
-            prefs.edit().putBoolean("hide_status_bar", checked).apply()
+            prefs.edit { putBoolean("hide_status_bar", checked) }
         }
 
         findViewById<LinearLayout>(R.id.settingIconPack).setOnClickListener {
@@ -183,7 +184,7 @@ class SettingsActivity : AppCompatActivity() {
         val usageTimerSwitch = findViewById<SwitchMaterial>(R.id.settingsUsageTimer)
         usageTimerSwitch.isChecked = prefs.getBoolean("usage_timer_enabled", false)
         usageTimerSwitch.setOnCheckedChangeListener { _, checked ->
-            prefs.edit().putBoolean("usage_timer_enabled", checked).apply()
+            prefs.edit { putBoolean("usage_timer_enabled", checked) }
             if (checked) {
                 com.ratio.launcher.services.UsageTimerService.start(this)
             } else {
@@ -203,7 +204,7 @@ class SettingsActivity : AppCompatActivity() {
 
         // Accent color
         val accentPreview = findViewById<android.view.View>(R.id.settingAccentPreview)
-        accentPreview.setBackgroundColor(com.ratio.launcher.utils.WallpaperManager.getAccentColor(this))
+        accentPreview.setBackgroundColor(WallpaperManager.getAccentColor(this))
         findViewById<LinearLayout>(R.id.settingAccentColor).setOnClickListener {
             showAccentColorDialog(accentPreview)
         }
@@ -219,15 +220,19 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         findViewById<LinearLayout>(R.id.settingReorderCategories).setOnClickListener {
-            startActivity(android.content.Intent(this, ReorderActivity::class.java).apply {
-                putExtra(ReorderActivity.EXTRA_MODE, ReorderActivity.MODE_CATEGORIES)
-            })
+            startActivity(
+                android.content.Intent(this, ReorderActivity::class.java).apply {
+                    putExtra(ReorderActivity.EXTRA_MODE, ReorderActivity.MODE_CATEGORIES)
+                },
+            )
         }
 
         findViewById<LinearLayout>(R.id.settingReorderCards).setOnClickListener {
-            startActivity(android.content.Intent(this, ReorderActivity::class.java).apply {
-                putExtra(ReorderActivity.EXTRA_MODE, ReorderActivity.MODE_CARDS)
-            })
+            startActivity(
+                android.content.Intent(this, ReorderActivity::class.java).apply {
+                    putExtra(ReorderActivity.EXTRA_MODE, ReorderActivity.MODE_CARDS)
+                },
+            )
         }
     }
 
@@ -291,33 +296,7 @@ class SettingsActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun showClockStyleDialog(valueView: TextView) {
-        val styles = ClockStyle.entries
-        val prefs = getSharedPreferences("ratio_prefs", MODE_PRIVATE)
-        val use24h = prefs.getBoolean("clock_24h", true)
-        val showSeconds = prefs.getBoolean("show_seconds", false)
-        val current = ClockStyle.getCurrent(this).ordinal
 
-        // Build preview items: "Style Name\npreview"
-        val previews = styles.map { style ->
-            val preview = when (style) {
-                ClockStyle.ANALOG -> "⏲ Drawn clock face"
-                ClockStyle.FLIP -> "Animated flip digits"
-                else -> style.formatTime(use24h, showSeconds)
-            }
-            "${style.displayName}\n$preview"
-        }.toTypedArray()
-
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Clock style")
-            .setSingleChoiceItems(previews, current) { dialog, which ->
-                val selected = styles[which]
-                ClockStyle.setCurrent(this, selected)
-                valueView.text = selected.displayName
-                dialog.dismiss()
-            }
-            .show()
-    }
 
     private fun showDetoxDialog(statusView: TextView) {
         if (DetoxMode.isActive(this)) {
@@ -326,20 +305,20 @@ class SettingsActivity : AppCompatActivity() {
                 .setMessage("Detox mode is active. Only essential apps are accessible.")
                 .setPositiveButton("Deactivate") { _, _ ->
                     DetoxMode.deactivate(this)
-                    statusView.text = "Off"
+                    statusView.text = getString(R.string.detox_off)
                 }
                 .setNegativeButton("Keep active", null)
                 .show()
         } else {
-            val options = arrayOf("30 minutes", "1 hour", "2 hours", "4 hours", "Until disabled")
+            val options = arrayOf("30 minutes", "1 hour", "2 hours", "4 hours", "Until I disable it")
             val minutes = intArrayOf(30, 60, 120, 240, 0)
             MaterialAlertDialogBuilder(this)
                 .setTitle("Start Digital Detox")
-                .setMessage("Only phone, messages, and settings will be accessible.")
-                .setItems(options) { _, which ->
+                .setSingleChoiceItems(options, -1) { dialog, which ->
                     DetoxMode.activate(this, minutes[which])
                     statusView.text = "Active"
-                    android.widget.Toast.makeText(this, "Detox mode activated", android.widget.Toast.LENGTH_SHORT).show()
+                    android.widget.Toast.makeText(this, "Detox mode activated — only essentials accessible", android.widget.Toast.LENGTH_SHORT).show()
+                    dialog.dismiss()
                 }
                 .setNegativeButton("Cancel", null)
                 .show()
@@ -371,8 +350,10 @@ class SettingsActivity : AppCompatActivity() {
             addCategory(android.content.Intent.CATEGORY_LAUNCHER)
         }
         val apps = packageManager.queryIntentActivities(intent, 0)
+            .asSequence()
             .filter { it.activityInfo.packageName != packageName }
             .sortedBy { it.loadLabel(packageManager).toString().lowercase() }
+            .toList()
 
         val names = apps.map { it.loadLabel(packageManager).toString() }.toTypedArray()
 
@@ -419,14 +400,14 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun showAccentColorDialog(preview: android.view.View) {
         val colors = intArrayOf(
-            android.graphics.Color.parseColor("#FFFC33"),
-            android.graphics.Color.parseColor("#4ECDC4"),
-            android.graphics.Color.parseColor("#FF6B9D"),
-            android.graphics.Color.parseColor("#7C4DFF"),
-            android.graphics.Color.parseColor("#00E676"),
-            android.graphics.Color.parseColor("#FF5722"),
-            android.graphics.Color.parseColor("#03A9F4"),
-            android.graphics.Color.parseColor("#F2F2F2")
+            "#FFFC33".toColorInt(),
+            "#4ECDC4".toColorInt(),
+            "#FF6B9D".toColorInt(),
+            "#7C4DFF".toColorInt(),
+            "#00E676".toColorInt(),
+            "#FF5722".toColorInt(),
+            "#03A9F4".toColorInt(),
+            "#F2F2F2".toColorInt(),
         )
         val names = arrayOf("Yellow", "Teal", "Pink", "Purple", "Green", "Orange", "Blue", "White")
 
@@ -477,13 +458,11 @@ class SettingsActivity : AppCompatActivity() {
             .setTitle("Send Feedback")
             .setView(layout)
             .setPositiveButton("Send") { _, _ ->
-                val sentryId = io.sentry.Sentry.captureMessage("User Feedback")
-                val feedback = io.sentry.UserFeedback(sentryId).apply {
-                    comments = commentInput.text.toString()
-                    email = emailInput.text.toString()
+                val feedback = io.sentry.protocol.Feedback(commentInput.text.toString()).apply {
+                    contactEmail = emailInput.text.toString()
                     name = nameInput.text.toString()
                 }
-                io.sentry.Sentry.captureUserFeedback(feedback)
+                io.sentry.Sentry.feedback().capture(feedback)
                 android.widget.Toast.makeText(this, "Feedback sent!", android.widget.Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton("Cancel", null)
@@ -563,7 +542,7 @@ class SettingsActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.settingClockStyleValue)?.text = ClockStyle.getCurrent(this).displayName
         try {
             val version = packageManager.getPackageInfo(packageName, 0).versionName
-            findViewById<TextView>(R.id.settingsVersion)?.text = "v$version"
+            findViewById<TextView>(R.id.settingsVersion)?.text = getString(R.string.version_format, version)
         } catch (_: Exception) {}
     }
 

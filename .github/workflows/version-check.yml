@@ -1,0 +1,57 @@
+name: Version Check
+
+on:
+  pull_request:
+    branches: [ beta, main ]
+    paths:
+      - 'app/build.gradle.kts'
+      - 'app/**'
+
+jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get PR version
+        id: pr
+        run: |
+          CODE=$(grep "versionCode" app/build.gradle.kts | head -1 | grep -o '[0-9]*')
+          NAME=$(grep "versionName" app/build.gradle.kts | head -1 | sed 's/.*"\(.*\)"/\1/')
+          echo "code=$CODE" >> $GITHUB_OUTPUT
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+          echo "PR version: $NAME ($CODE)"
+
+      - name: Get target branch version
+        id: target
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          CODE=$(git show origin/${{ github.base_ref }}:app/build.gradle.kts | grep "versionCode" | head -1 | grep -o '[0-9]*')
+          NAME=$(git show origin/${{ github.base_ref }}:app/build.gradle.kts | grep "versionName" | head -1 | sed 's/.*"\(.*\)"/\1/')
+          echo "code=$CODE" >> $GITHUB_OUTPUT
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+          echo "Target (${{ github.base_ref }}) version: $NAME ($CODE)"
+
+      - name: Check version bumped
+        run: |
+          PR_CODE=${{ steps.pr.outputs.code }}
+          TARGET_CODE=${{ steps.target.outputs.code }}
+          PR_NAME="${{ steps.pr.outputs.name }}"
+          TARGET_NAME="${{ steps.target.outputs.name }}"
+
+          echo "PR:     versionCode=$PR_CODE  versionName=$PR_NAME"
+          echo "Target: versionCode=$TARGET_CODE  versionName=$TARGET_NAME"
+
+          if [ "$PR_CODE" -le "$TARGET_CODE" ]; then
+            echo "::error::versionCode ($PR_CODE) must be greater than target branch ($TARGET_CODE). Please bump versionCode in app/build.gradle.kts"
+            exit 1
+          fi
+
+          if [ "$PR_NAME" = "$TARGET_NAME" ]; then
+            echo "::error::versionName ($PR_NAME) is the same as target branch. Please bump versionName in app/build.gradle.kts"
+            exit 1
+          fi
+
+          echo "✓ Version bumped: $TARGET_NAME ($TARGET_CODE) → $PR_NAME ($PR_CODE)"
