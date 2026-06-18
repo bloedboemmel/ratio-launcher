@@ -8,6 +8,7 @@ import android.app.usage.UsageEvents
 import android.app.usage.UsageStatsManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ServiceInfo
 import android.graphics.PixelFormat
 import android.os.Build
 import android.os.Handler
@@ -18,6 +19,7 @@ import android.view.WindowManager
 import android.widget.TextView
 import androidx.core.app.NotificationCompat
 import com.ratio.launcher.R
+import java.util.Locale
 
 class UsageTimerService : Service() {
 
@@ -27,7 +29,7 @@ class UsageTimerService : Service() {
     private var appStartTime: Long = 0
     private var isOverlayShown = false
 
-    private val DISTRACTING_APPS = setOf(
+    private val distractingApps = setOf(
         "com.instagram.android",
         "com.twitter.android",
         "com.facebook.katana",
@@ -35,7 +37,7 @@ class UsageTimerService : Service() {
         "com.zhiliaoapp.musically", // TikTok
         "com.snapchat.android",
         "com.reddit.frontpage",
-        "com.google.android.youtube"
+        "com.google.android.youtube",
     )
 
     private val checker = object : Runnable {
@@ -50,7 +52,11 @@ class UsageTimerService : Service() {
     override fun onCreate() {
         super.onCreate()
         createNotificationChannel()
-        startForeground(2001, buildNotification())
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            startForeground(2001, buildNotification(), ServiceInfo.FOREGROUND_SERVICE_TYPE_SPECIAL_USE)
+        } else {
+            startForeground(2001, buildNotification())
+        }
         handler.post(checker)
     }
 
@@ -61,7 +67,7 @@ class UsageTimerService : Service() {
     }
 
     private fun checkCurrentApp() {
-        val usm = getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
+        val usm = getSystemService(USAGE_STATS_SERVICE) as UsageStatsManager
         val now = System.currentTimeMillis()
         val events = usm.queryEvents(now - 5000, now)
         val event = UsageEvents.Event()
@@ -74,7 +80,7 @@ class UsageTimerService : Service() {
             }
         }
 
-        if (latestApp != null && latestApp != packageName) {
+        if ((latestApp != null) && (latestApp != packageName)) {
             if (latestApp != currentApp) {
                 currentApp = latestApp
                 appStartTime = now
@@ -90,14 +96,14 @@ class UsageTimerService : Service() {
     }
 
     private fun isDistractingApp(packageName: String): Boolean {
-        val prefs = getSharedPreferences("ratio_detox", Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences("ratio_detox", MODE_PRIVATE)
         val custom = prefs.getStringSet("distracting_apps", null)
-        return (custom ?: DISTRACTING_APPS).contains(packageName)
+        return (custom ?: distractingApps).contains(packageName)
     }
 
     private fun showOverlay() {
         if (isOverlayShown) return
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && !android.provider.Settings.canDrawOverlays(this)) return
+        if (!android.provider.Settings.canDrawOverlays(this)) return
 
         val wm = getSystemService(WINDOW_SERVICE) as WindowManager
         timerView = TextView(this).apply {
@@ -105,19 +111,16 @@ class UsageTimerService : Service() {
             textSize = 11f
             setBackgroundColor(0x80000000.toInt())
             setPadding(24, 8, 24, 8)
-            text = "0:00"
+            text = getString(R.string.timer_initial)
         }
 
         val params = WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.WRAP_CONTENT,
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-                WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
-            else
-                @Suppress("DEPRECATION") WindowManager.LayoutParams.TYPE_PHONE,
+            WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
-            PixelFormat.TRANSLUCENT
+            PixelFormat.TRANSLUCENT,
         ).apply {
             gravity = Gravity.TOP or Gravity.END
             x = 16
@@ -132,7 +135,7 @@ class UsageTimerService : Service() {
         val elapsed = (System.currentTimeMillis() - appStartTime) / 1000
         val minutes = elapsed / 60
         val seconds = elapsed % 60
-        timerView?.text = "$minutes:${String.format("%02d", seconds)}"
+        timerView?.text = String.format(Locale.US, "%d:%02d", minutes, seconds)
     }
 
     private fun hideOverlay() {
@@ -146,13 +149,11 @@ class UsageTimerService : Service() {
     }
 
     private fun createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                "usage_timer", "Usage Timer",
-                NotificationManager.IMPORTANCE_LOW
-            )
-            (getSystemService(NOTIFICATION_SERVICE) as NotificationManager).createNotificationChannel(channel)
-        }
+        val channel = NotificationChannel(
+            "usage_timer", "Usage Timer",
+            NotificationManager.IMPORTANCE_LOW,
+        )
+        (getSystemService(NOTIFICATION_SERVICE) as NotificationManager).createNotificationChannel(channel)
     }
 
     private fun buildNotification(): Notification {
@@ -168,11 +169,7 @@ class UsageTimerService : Service() {
     companion object {
         fun start(context: Context) {
             val intent = Intent(context, UsageTimerService::class.java)
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                context.startForegroundService(intent)
-            } else {
-                context.startService(intent)
-            }
+            context.startForegroundService(intent)
         }
 
         fun stop(context: Context) {

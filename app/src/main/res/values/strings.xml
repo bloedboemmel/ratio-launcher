@@ -2,4 +2,13 @@
 <resources>
     <string name="app_name">Ratio</string>
     <string name="tree_placeholder">Conversations will appear here</string>
+    <string name="battery_percentage">%1$d%%</string>
+    <string name="timer_initial" translatable="false">0:00</string>
+    <string name="tree_grant_notification_access">Grant notification access to see messages</string>
+    <string name="tree_no_messages">No messages yet</string>
+    <string name="tree_no_messages_subtitle">New messages will appear here automatically</string>
+    <string name="usage_goal_format">%1$dh %2$dm</string>
+    <string name="detox_off">Off</string>
+    <string name="detox_active">Active</string>
+    <string name="version_format" translatable="false">v%1$s</string>
 </resources>

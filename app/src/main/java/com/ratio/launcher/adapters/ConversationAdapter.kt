@@ -14,7 +14,8 @@ class ConversationAdapter(
     private val conversations: List<NotificationService.ConversationEntry>,
     private val getAppIcon: (String) -> android.graphics.drawable.Drawable?,
     private val onTap: ((NotificationService.ConversationEntry) -> Unit)? = null,
-    private val onDismiss: ((NotificationService.ConversationEntry) -> Unit)? = null
+    private val onDismiss: ((NotificationService.ConversationEntry) -> Unit)? = null,
+    private val hasWallpaper: Boolean = false,
 ) : RecyclerView.Adapter<ConversationAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,6 +37,12 @@ class ConversationAdapter(
         private val time: TextView = view.findViewById(R.id.convTime)
 
         fun bind(entry: NotificationService.ConversationEntry) {
+            if (hasWallpaper) {
+                itemView.setBackgroundResource(R.drawable.conversation_background_wallpaper)
+            } else {
+                itemView.background = null
+            }
+
             sender.text = entry.senderName
             message.text = entry.lastMessage
 

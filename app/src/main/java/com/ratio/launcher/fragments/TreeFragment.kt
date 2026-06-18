@@ -30,7 +30,7 @@ class TreeFragment : Fragment(), NotificationService.OnNotificationChangedListen
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         return inflater.inflate(R.layout.fragment_tree, container, false)
     }
@@ -66,21 +66,21 @@ class TreeFragment : Fragment(), NotificationService.OnNotificationChangedListen
 
     override fun onNotificationsChanged() {
         handler.post {
-            if (isAdded && view != null) {
+            if (isAdded && (view != null)) {
                 updateUI()
             }
         }
     }
 
     private fun updateUI() {
-        if (!isAdded || view == null) return
+        if ((!isAdded) || (view == null)) return
 
         if (!isNotificationServiceEnabled()) {
             emptyState.visibility = View.VISIBLE
             treeContent.visibility = View.GONE
             enableBtn.visibility = View.VISIBLE
-            emptyState.findViewById<TextView>(R.id.treeEmptyTitle)?.text = "Conversations will appear here"
-            emptyState.findViewById<TextView>(R.id.treeEmptySubtitle)?.text = "Grant notification access to see messages"
+            emptyState.findViewById<TextView>(R.id.treeEmptyTitle)?.text = getString(R.string.tree_placeholder)
+            emptyState.findViewById<TextView>(R.id.treeEmptySubtitle)?.text = getString(R.string.tree_grant_notification_access)
             return
         }
 
@@ -93,13 +93,14 @@ class TreeFragment : Fragment(), NotificationService.OnNotificationChangedListen
             emptyState.visibility = View.VISIBLE
             treeContent.visibility = View.GONE
             enableBtn.visibility = View.GONE
-            emptyState.findViewById<TextView>(R.id.treeEmptyTitle)?.text = "No messages yet"
-            emptyState.findViewById<TextView>(R.id.treeEmptySubtitle)?.text = "New messages will appear here automatically"
+            emptyState.findViewById<TextView>(R.id.treeEmptyTitle)?.text = getString(R.string.tree_no_messages)
+            emptyState.findViewById<TextView>(R.id.treeEmptySubtitle)?.text = getString(R.string.tree_no_messages_subtitle)
         } else {
             emptyState.visibility = View.GONE
             treeContent.visibility = View.VISIBLE
 
             val sorted = conversations.sortedByDescending { it.timestamp }
+            val wallpaperActive = com.ratio.launcher.utils.WallpaperManager.hasWallpaperImage(requireContext())
             conversationList.adapter = ConversationAdapter(
                 sorted,
                 getAppIcon = { packageName ->
@@ -107,7 +108,8 @@ class TreeFragment : Fragment(), NotificationService.OnNotificationChangedListen
                     catch (_: Exception) { null }
                 },
                 onTap = { entry -> openApp(entry.packageName) },
-                onDismiss = { entry -> dismissNotification(entry.key) }
+                onDismiss = { entry -> dismissNotification(entry.key) },
+                hasWallpaper = wallpaperActive,
             )
         }
     }

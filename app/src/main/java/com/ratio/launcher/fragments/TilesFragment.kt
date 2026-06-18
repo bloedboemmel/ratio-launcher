@@ -1,5 +1,6 @@
 package com.ratio.launcher.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ApplicationInfo
@@ -16,9 +17,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ratio.launcher.R
 import com.ratio.launcher.adapters.AppListAdapter
@@ -38,7 +39,7 @@ class TilesFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         return inflater.inflate(R.layout.fragment_tiles, container, false)
     }
@@ -57,16 +58,26 @@ class TilesFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         rebuildAppList()
+        applyWallpaperStyle()
+    }
+
+    private fun applyWallpaperStyle() {
+        val hasWallpaper = com.ratio.launcher.utils.WallpaperManager.hasWallpaperImage(requireContext())
+        val searchBg = if (hasWallpaper) R.drawable.search_bg_wallpaper else R.drawable.search_bg
+        searchBar.setBackgroundResource(searchBg)
     }
 
     fun openKeyboard() {
         searchBar.requestFocus()
-        searchBar.postDelayed({
+        searchBar.postDelayed(
+            {
             if (isAdded) {
                 val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as android.view.inputmethod.InputMethodManager
                 imm.showSoftInput(searchBar, android.view.inputmethod.InputMethodManager.SHOW_IMPLICIT)
             }
-        }, 200)
+            },
+            200,
+        )
     }
 
     private fun rebuildAppList() {
@@ -81,9 +92,14 @@ class TilesFragment : Fragment() {
                 if (!isAdded) return@post
                 allApps = apps
                 val catComparator = CategoryOrder.getSortComparator(requireContext())
-                adapter = AppListAdapter(allApps, monochrome, { app ->
-                    addToDock(app)
-                }, categoryComparator = catComparator) { app -> launchApp(app) }
+                val wallpaperActive = com.ratio.launcher.utils.WallpaperManager.hasWallpaperImage(requireContext())
+                adapter = AppListAdapter(
+                    allApps,
+                    monochrome,
+                    { app -> addToDock(app) },
+                    categoryComparator = catComparator,
+                    hasWallpaper = wallpaperActive,
+                ) { app -> launchApp(app) }
 
                 val gridLayoutManager = GridLayoutManager(requireContext(), columns)
                 gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -98,31 +114,37 @@ class TilesFragment : Fragment() {
     }
 
     private fun setupSearch() {
-        searchBar.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (::adapter.isInitialized) {
-                    adapter.filter(s?.toString() ?: "")
+        searchBar.addTextChangedListener(
+            object : TextWatcher {
+                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                    if (::adapter.isInitialized) {
+                        adapter.filter(s?.toString() ?: "")
+                    }
                 }
-            }
-            override fun afterTextChanged(s: Editable?) {}
-        })
+                override fun afterTextChanged(s: Editable?) {}
+            },
+        )
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupCollapseGesture() {
-        val gestureDetector = GestureDetector(requireContext(), object : GestureDetector.SimpleOnGestureListener() {
-            override fun onFling(e1: MotionEvent?, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
-                if (e1 != null && velocityY > 500 && e2.y - e1.y > 100) {
-                    adapter.collapseAll()
-                    return true
+        val gestureDetector = GestureDetector(
+            requireContext(),
+            object : GestureDetector.SimpleOnGestureListener() {
+                override fun onFling(e1: MotionEvent?, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
+                    if ((e1 != null) && (velocityY > 500) && ((e2.y - e1.y) > 100)) {
+                        adapter.collapseAll()
+                        return true
+                    }
+                    if ((e1 != null) && (velocityY < -500) && ((e1.y - e2.y) > 100)) {
+                        adapter.expandAll()
+                        return true
+                    }
+                    return false
                 }
-                if (e1 != null && velocityY < -500 && e1.y - e2.y > 100) {
-                    adapter.expandAll()
-                    return true
-                }
-                return false
-            }
-        })
+            },
+        )
 
         appList.setOnTouchListener { _, event ->
             gestureDetector.onTouchEvent(event)
@@ -130,13 +152,7 @@ class TilesFragment : Fragment() {
         }
     }
 
-    fun showDrawer() {
-        // No-op, drawer is always visible now
-    }
 
-    fun filterApps(query: String) {
-        adapter.filter(query)
-    }
 
     private fun loadInstalledApps(): List<AppInfo> {
         val pm = requireContext().packageManager
@@ -148,6 +164,7 @@ class TilesFragment : Fragment() {
         val customCategories = requireContext().getSharedPreferences("ratio_app_categories", Context.MODE_PRIVATE)
 
         return pm.queryIntentActivities(intent, 0)
+            .asSequence()
             .filter { it.activityInfo.packageName != requireContext().packageName }
             .filter { !hiddenPackages.contains(it.activityInfo.packageName) }
             .map { resolveInfo ->
@@ -158,20 +175,15 @@ class TilesFragment : Fragment() {
                     name = resolveInfo.loadLabel(pm).toString(),
                     packageName = pkg,
                     icon = resolveInfo.loadIcon(pm),
-                    category = customCategory ?: categorizeApp(appInfo, pm)
+                    category = customCategory ?: categorizeApp(appInfo, pm),
                 )
             }
             .sortedBy { it.name.lowercase() }
+            .toList()
     }
 
     private fun categorizeApp(appInfo: ApplicationInfo, pm: PackageManager): String {
-        val category = if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            appInfo.category
-        } else {
-            ApplicationInfo.CATEGORY_UNDEFINED
-        }
-
-        return when (category) {
+        return when (appInfo.category) {
             ApplicationInfo.CATEGORY_GAME -> "Games"
             ApplicationInfo.CATEGORY_AUDIO -> "Media"
             ApplicationInfo.CATEGORY_VIDEO -> "Media"
@@ -203,10 +215,10 @@ class TilesFragment : Fragment() {
         io.sentry.Sentry.metrics().count("action_add_to_dock_${app.packageName}")
         val prefs = requireContext().getSharedPreferences("ratio_dock", Context.MODE_PRIVATE)
         val current = prefs.getString("dock_packages", "") ?: ""
-        val packages = current.split(",").filter { it.isNotBlank() }.toMutableList()
+        val packages = current.split(",").asSequence().filter { it.isNotBlank() }.toMutableList()
         if (!packages.contains(app.packageName)) {
             packages.add(app.packageName)
-            prefs.edit().putString("dock_packages", packages.joinToString(",")).apply()
+            prefs.edit { putString("dock_packages", packages.joinToString(",")) }
             Toast.makeText(requireContext(), "${app.name} added to dock", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(requireContext(), "${app.name} already in dock", Toast.LENGTH_SHORT).show()

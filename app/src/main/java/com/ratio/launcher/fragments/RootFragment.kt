@@ -213,6 +213,31 @@ class RootFragment : Fragment() {
         }
     }
 
+    private fun applyWallpaperCardStyle(view: View) {
+        val hasWallpaper = com.ratio.launcher.utils.WallpaperManager.hasWallpaperImage(requireContext())
+        val cardBg = if (hasWallpaper) R.drawable.card_background_wallpaper else 0
+        val dockBg = if (hasWallpaper) R.drawable.dock_background_wallpaper else R.drawable.dock_background
+        val noteInputBg = if (hasWallpaper) R.drawable.note_input_bg_wallpaper else R.drawable.note_input_bg
+
+        val sections = listOf(
+            view.findViewById<View>(R.id.sectionScreenTime),
+            view.findViewById<View>(R.id.mediaPlayerCard),
+            view.findViewById<View>(R.id.sectionWeather),
+            view.findViewById<View>(R.id.calendarSection),
+            view.findViewById<View>(R.id.sectionNotes)
+        )
+        for (section in sections) {
+            if (hasWallpaper) {
+                section?.setBackgroundResource(cardBg)
+            } else {
+                section?.background = null
+            }
+        }
+
+        view.findViewById<View>(R.id.dockContainer)?.setBackgroundResource(dockBg)
+        noteInput.setBackgroundResource(noteInputBg)
+    }
+
     override fun onPause() {
         super.onPause()
         handler.removeCallbacks(clockUpdater)
@@ -578,6 +603,7 @@ class RootFragment : Fragment() {
         view?.let {
             applyCardVisibility(it)
             applyCardOrder(it)
+            applyWallpaperCardStyle(it)
         }
     }
 

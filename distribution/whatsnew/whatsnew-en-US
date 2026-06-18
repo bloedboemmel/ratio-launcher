@@ -1,1 +1,4 @@
-Fixed an issue that could cause a crash when searching right after opening the app.
+- Wallpaper-aware styling for search bar and app tiles
+- Improved app grid layout with configurable tile size
+- Fling gestures to expand/collapse all categories
+- Bug fixes and stability improvements

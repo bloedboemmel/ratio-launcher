@@ -101,7 +101,7 @@
             android:foregroundServiceType="specialUse">
             <property
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="Monitors app usage time to display a screen time overlay timer, helping users be mindful of time spent in distracting apps." />
+                android:value="Tracking app usage time to help users manage screen time" />
         </service>
 
         <receiver
