@@ -12,8 +12,8 @@ android {
         applicationId = "com.bloedboemmel.ratio"
         minSdk = 26
         targetSdk = 35
-        versionCode = 6
-        versionName = "1.0.5"
+        versionCode = 7
+        versionName = "1.0.6"
     }
 
     buildTypes {
@@ -61,7 +61,7 @@ dependencies {
 
 sentry {
     org.set("memyselfandi-9i")
-    projectName.set("android")
+    projectName.set("ratio")
 
     // Only upload sources when auth token is available (CI)
     autoUploadSourceContext.set(System.getenv("SENTRY_AUTH_TOKEN") != null)

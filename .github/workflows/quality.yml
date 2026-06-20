@@ -1,13 +1,6 @@
 name: Code Quality
 
 on:
-  push:
-    branches: [ main, beta ]
-    paths-ignore:
-      - '**.md'
-      - '.github/workflows/**'
-      - 'docs/**'
-      - 'LICENSE'
   pull_request:
     branches: [ main, beta ]
     paths-ignore:
@@ -19,6 +12,8 @@ on:
 
 jobs:
   build:
+    env:
+      SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
