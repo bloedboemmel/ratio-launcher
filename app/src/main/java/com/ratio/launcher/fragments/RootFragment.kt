@@ -243,6 +243,12 @@ class RootFragment : Fragment() {
         handler.removeCallbacks(clockUpdater)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        MediaPlayerHelper.listener = null
+        handler.removeCallbacksAndMessages(null)
+    }
+
     private fun updateClock() {
         val prefs = requireContext().getSharedPreferences("ratio_prefs", Context.MODE_PRIVATE)
         val use24h = prefs.getBoolean("clock_24h", true)
@@ -740,6 +746,7 @@ class RootFragment : Fragment() {
     }
 
     private fun setupMediaPlayer() {
+        if (!isAdded) return
         mediaPlayPause.setOnClickListener { MediaPlayerHelper.playPause(requireContext()) }
         mediaNext.setOnClickListener { MediaPlayerHelper.skipNext(requireContext()) }
         mediaPrev.setOnClickListener { MediaPlayerHelper.skipPrevious(requireContext()) }
