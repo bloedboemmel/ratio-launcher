@@ -1,4 +1,5 @@
 - Wallpaper-aware styling for search bar and app tiles
 - Improved app grid layout with configurable tile size
 - Fling gestures to expand/collapse all categories
+- Fixed a crash when media controls updated after leaving the home screen
 - Bug fixes and stability improvements
