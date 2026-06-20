@@ -37,6 +37,8 @@ jobs:
       - name: Build Release AAB + APK
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: memyselfandi-9i
+          SENTRY_PROJECT: android
         run: ./gradlew assembleRelease bundleRelease
 
       - name: Get version name
@@ -50,7 +52,7 @@ jobs:
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
           echo "${{ secrets.KEYSTORE_FILE }}" | base64 -d > release.keystore
-          ${ANDROID_HOME}/build-tools/34.0.0/apksigner sign --ks release.keystore --ks-pass pass:"$STORE_PASSWORD" --ks-key-alias "$KEY_ALIAS" --key-pass pass:"$KEY_PASSWORD" --out app-release-signed.apk app/build/outputs/apk/release/*.apk
+          ${ANDROID_HOME}/build-tools/34.0.0/apksigner sign --ks release.keystore --ks-pass pass:"$STORE_PASSWORD" --ks-key-alias "$KEY_ALIAS" --key-pass pass:"$KEY_PASSWORD" --out app-release-signed.apk app/build/outputs/apk/release/app-release-unsigned.apk
 
       - name: Sign AAB
         env:
