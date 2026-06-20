@@ -1,13 +1,6 @@
 name: Code Quality
 
 on:
-  push:
-    branches: [ main, beta ]
-    paths-ignore:
-      - '**.md'
-      - '.github/workflows/**'
-      - 'docs/**'
-      - 'LICENSE'
   pull_request:
     branches: [ main, beta ]
     paths-ignore:
