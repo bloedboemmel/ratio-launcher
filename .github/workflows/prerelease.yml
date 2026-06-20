@@ -38,8 +38,6 @@ jobs:
       - name: Build Release AAB + APK
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-          SENTRY_ORG: memyselfandi-9i
-          SENTRY_PROJECT: android
         run: ./gradlew assembleRelease bundleRelease
 
       - name: Get version name

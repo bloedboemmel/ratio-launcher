@@ -61,7 +61,7 @@ dependencies {
 
 sentry {
     org.set("memyselfandi-9i")
-    projectName.set("android")
+    projectName.set("ratio")
 
     // Only upload sources when auth token is available (CI)
     autoUploadSourceContext.set(System.getenv("SENTRY_AUTH_TOKEN") != null)
