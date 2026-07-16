@@ -3,9 +3,6 @@ name: Version Check
 on:
   pull_request:
     branches: [ beta, main ]
-    paths:
-      - 'app/build.gradle.kts'
-      - 'app/**'
 
 jobs:
   check-version:
@@ -55,3 +52,21 @@ jobs:
           fi
 
           echo "✓ Version bumped: $TARGET_NAME ($TARGET_CODE) → $PR_NAME ($PR_CODE)"
+
+      - name: Check release notes length
+        run: |
+          MAX_LENGTH=500
+          FAILED=0
+          for file in distribution/whatsnew/whatsnew-*; do
+            if [ -f "$file" ]; then
+              LENGTH=$(wc -c < "$file" | tr -d ' ')
+              LANG=$(basename "$file" | sed 's/whatsnew-//')
+              if [ "$LENGTH" -gt "$MAX_LENGTH" ]; then
+                echo "::error::Release notes for $LANG are too long ($LENGTH chars, max $MAX_LENGTH). Edit $file"
+                FAILED=1
+              else
+                echo "✓ $LANG: $LENGTH/$MAX_LENGTH chars"
+              fi
+            fi
+          done
+          if [ "$FAILED" -eq 1 ]; then exit 1; fi
