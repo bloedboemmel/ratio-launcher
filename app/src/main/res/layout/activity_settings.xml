@@ -36,13 +36,13 @@
             android:textSize="10sp"
             android:fontFamily="@font/inter_medium"
             android:letterSpacing="0.2"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="10dp" />
 
         <!-- Theme -->
         <LinearLayout
             android:id="@+id/settingTheme"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -70,7 +70,7 @@
         <LinearLayout
             android:id="@+id/settingClockStyle"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -97,7 +97,7 @@
         <!-- Show seconds -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -120,7 +120,7 @@
         <!-- 24h Format -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -143,7 +143,7 @@
         <!-- Double tap to lock -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -166,7 +166,7 @@
         <!-- Hide status bar -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -206,7 +206,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/gray_70"
-            android:layout_marginVertical="24dp" />
+            android:layout_marginVertical="16dp" />
 
         <!-- TILES SECTION -->
         <TextView
@@ -217,12 +217,12 @@
             android:textSize="10sp"
             android:fontFamily="@font/inter_medium"
             android:letterSpacing="0.2"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="10dp" />
 
         <!-- Grayscale icons -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -245,7 +245,7 @@
         <!-- Tile size -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -269,7 +269,7 @@
         <LinearLayout
             android:id="@+id/settingIconPack"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -297,7 +297,7 @@
         <LinearLayout
             android:id="@+id/settingReorderCategories"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -323,7 +323,7 @@
         <LinearLayout
             android:id="@+id/settingHiddenApps"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -351,7 +351,7 @@
         <LinearLayout
             android:id="@+id/settingBackup"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -378,7 +378,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/gray_70"
-            android:layout_marginVertical="24dp" />
+            android:layout_marginVertical="16dp" />
 
         <!-- DIGITAL WELLBEING SECTION -->
         <TextView
@@ -389,13 +389,13 @@
             android:textSize="10sp"
             android:fontFamily="@font/inter_medium"
             android:letterSpacing="0.2"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="10dp" />
 
         <!-- Usage goal -->
         <LinearLayout
             android:id="@+id/settingUsageGoal"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -424,7 +424,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/gray_70"
-            android:layout_marginVertical="24dp" />
+            android:layout_marginVertical="16dp" />
 
         <!-- WEATHER SECTION -->
         <TextView
@@ -435,12 +435,12 @@
             android:textSize="10sp"
             android:fontFamily="@font/inter_medium"
             android:letterSpacing="0.2"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="10dp" />
 
         <!-- Temperature unit -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="12dp">
@@ -486,7 +486,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/gray_70"
-            android:layout_marginVertical="24dp" />
+            android:layout_marginVertical="16dp" />
 
         <!-- ROOT CARDS SECTION -->
         <TextView
@@ -497,13 +497,13 @@
             android:textSize="10sp"
             android:fontFamily="@font/inter_medium"
             android:letterSpacing="0.2"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="10dp" />
 
         <!-- Reorder Root cards -->
         <LinearLayout
             android:id="@+id/settingReorderCards"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="16dp">
@@ -528,7 +528,7 @@
         <!-- Show music -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -551,7 +551,7 @@
         <!-- Show calendar -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -574,7 +574,7 @@
         <!-- Show weather -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -597,7 +597,7 @@
         <!-- Show notes -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -617,10 +617,32 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
+        <!-- Show suggestions -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Suggested apps"
+                android:textColor="@color/ratio_white"
+                android:textSize="15sp"
+                android:fontFamily="@font/inter_regular" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/settingsShowSuggestions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <!-- Show screen time -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -645,7 +667,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/gray_70"
-            android:layout_marginVertical="24dp" />
+            android:layout_marginVertical="16dp" />
 
         <!-- DIGITAL DETOX -->
         <TextView
@@ -656,12 +678,12 @@
             android:textSize="10sp"
             android:fontFamily="@font/inter_medium"
             android:letterSpacing="0.2"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="10dp" />
 
         <LinearLayout
             android:id="@+id/settingDetox"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -685,10 +707,61 @@
                 android:fontFamily="@font/inter_light" />
         </LinearLayout>
 
+        <!-- Notification badges -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Notification badges"
+                android:textColor="@color/ratio_white"
+                android:textSize="15sp"
+                android:fontFamily="@font/inter_regular" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/settingsNotifBadges"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <!-- Bedtime mode -->
+        <LinearLayout
+            android:id="@+id/settingBedtime"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Bedtime mode"
+                android:textColor="@color/ratio_white"
+                android:textSize="15sp"
+                android:fontFamily="@font/inter_regular" />
+
+            <TextView
+                android:id="@+id/settingBedtimeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Off"
+                android:textColor="@color/ratio_gray_text"
+                android:textSize="13sp"
+                android:fontFamily="@font/inter_light" />
+        </LinearLayout>
+
         <!-- Usage timer overlay -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -712,7 +785,7 @@
         <LinearLayout
             android:id="@+id/settingGestures"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -738,7 +811,7 @@
         <LinearLayout
             android:id="@+id/settingWallpaper"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -764,7 +837,7 @@
         <LinearLayout
             android:id="@+id/settingAccentColor"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -790,13 +863,13 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/gray_70"
-            android:layout_marginVertical="24dp" />
+            android:layout_marginVertical="16dp" />
 
         <!-- Restart onboarding -->
         <LinearLayout
             android:id="@+id/settingOnboarding"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -822,7 +895,7 @@
         <LinearLayout
             android:id="@+id/settingSendFeedback"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:layout_marginBottom="4dp">
@@ -849,7 +922,7 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/gray_70"
-            android:layout_marginVertical="24dp" />
+            android:layout_marginVertical="16dp" />
 
         <!-- ABOUT SECTION -->
         <TextView
@@ -860,7 +933,7 @@
             android:textSize="10sp"
             android:fontFamily="@font/inter_medium"
             android:letterSpacing="0.2"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="10dp" />
 
         <TextView
             android:layout_width="wrap_content"

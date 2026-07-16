@@ -89,6 +89,12 @@ class SettingsActivity : AppCompatActivity() {
         showCalendarSwitch.isChecked = prefs.getBoolean("show_calendar", true)
         showWeatherSwitch.isChecked = prefs.getBoolean("show_weather", true)
         showNotesSwitch.isChecked = prefs.getBoolean("show_notes", true)
+        val showSuggestionsSwitch = findViewById<SwitchMaterial>(R.id.settingsShowSuggestions)
+        showSuggestionsSwitch.isChecked = prefs.getBoolean("show_suggestions", true)
+        showSuggestionsSwitch.setOnCheckedChangeListener { _, checked ->
+            prefs.edit().putBoolean("show_suggestions", checked).apply()
+        }
+
         showScreenTimeSwitch.isChecked = prefs.getBoolean("show_screen_time", true)
         hideStatusBarSwitch.isChecked = prefs.getBoolean("hide_status_bar", false)
     }
@@ -171,6 +177,20 @@ class SettingsActivity : AppCompatActivity() {
 
         findViewById<LinearLayout>(R.id.settingBackup).setOnClickListener {
             showBackupDialog()
+        }
+
+        // Notification badges
+        val notifBadgesSwitch = findViewById<SwitchMaterial>(R.id.settingsNotifBadges)
+        notifBadgesSwitch.isChecked = NotificationBadgeHelper.isEnabled(this)
+        notifBadgesSwitch.setOnCheckedChangeListener { _, checked ->
+            NotificationBadgeHelper.setEnabled(this, checked)
+        }
+
+        // Bedtime mode
+        val bedtimeValue = findViewById<TextView>(R.id.settingBedtimeValue)
+        updateBedtimeLabel(bedtimeValue)
+        findViewById<LinearLayout>(R.id.settingBedtime).setOnClickListener {
+            showBedtimeDialog(bedtimeValue)
         }
 
         // Detox
@@ -297,6 +317,49 @@ class SettingsActivity : AppCompatActivity() {
     }
 
 
+
+    private fun updateBedtimeLabel(view: TextView) {
+        if (BedtimeMode.isEnabled(this)) {
+            val (sh, sm) = BedtimeMode.getStartTime(this)
+            val (eh, em) = BedtimeMode.getEndTime(this)
+            view.text = String.format("%02d:%02d – %02d:%02d", sh, sm, eh, em)
+        } else {
+            view.text = "Off"
+        }
+    }
+
+    private fun showBedtimeDialog(valueView: TextView) {
+        if (BedtimeMode.isEnabled(this)) {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Bedtime Mode")
+                .setMessage("Activates grayscale icons + detox during scheduled hours.")
+                .setPositiveButton("Disable") { _, _ ->
+                    BedtimeMode.setEnabled(this, false)
+                    valueView.text = "Off"
+                }
+                .setNegativeButton("Keep", null)
+                .show()
+        } else {
+            val options = arrayOf("22:00 – 07:00", "23:00 – 07:00", "00:00 – 08:00", "21:00 – 06:00")
+            val schedules = arrayOf(
+                intArrayOf(22, 0, 7, 0),
+                intArrayOf(23, 0, 7, 0),
+                intArrayOf(0, 0, 8, 0),
+                intArrayOf(21, 0, 6, 0)
+            )
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Set bedtime schedule")
+                .setItems(options) { _, which ->
+                    val s = schedules[which]
+                    BedtimeMode.setSchedule(this, s[0], s[1], s[2], s[3])
+                    BedtimeMode.setEnabled(this, true)
+                    updateBedtimeLabel(valueView)
+                    android.widget.Toast.makeText(this, "Bedtime mode enabled", android.widget.Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
+    }
 
     private fun showDetoxDialog(statusView: TextView) {
         if (DetoxMode.isActive(this)) {

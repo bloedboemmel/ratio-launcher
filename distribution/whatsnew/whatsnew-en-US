@@ -1,6 +1,12 @@
-- Wallpaper-aware styling for search bar and app tiles
-- Improved app grid layout with configurable tile size
-- Fling gestures to expand/collapse all categories
-- Fixed a crash when media controls updated after leaving the home screen
-- Bug fixes and stability improvements
-- Had even more coding fun
+v1.0.7:
+• App Suggestions based on usage
+• Digital Detox mode
+• Per-app daily time limits
+• Bedtime mode
+• Quick launch gestures
+• Notification badges
+• Pin app shortcuts
+• Quick toggles (WiFi, BT, Flash)
+• Pomodoro timer
+• Wallpaper + accent color
+• Compact settings
