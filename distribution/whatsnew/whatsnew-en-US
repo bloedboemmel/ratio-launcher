@@ -1,15 +1,12 @@
-What's new in v1.0.7:
-
-• App Suggestions — shows your most-used apps on home screen
-• Digital Detox — block distracting apps for a set duration
-• Per-app timer — set daily usage limits on individual apps
-• Bedtime mode — auto-activate grayscale + detox on schedule
-• Quick launch gestures — assign apps to swipe directions
-• Notification badges on dock apps
-• Pin app shortcuts from long-press menu
-• Quick toggles (WiFi, Bluetooth, Flashlight)
+v1.0.7:
+• App Suggestions based on usage
+• Digital Detox mode
+• Per-app daily time limits
+• Bedtime mode
+• Quick launch gestures
+• Notification badges
+• Pin app shortcuts
+• Quick toggles (WiFi, BT, Flash)
 • Pomodoro timer
-• Custom wallpaper + accent color picker
-• Translucent tile design
-• Compact settings layout
-• Improved onboarding with default launcher setup
+• Wallpaper + accent color
+• Compact settings

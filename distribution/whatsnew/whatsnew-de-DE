@@ -1,15 +1,12 @@
-Neu in v1.0.7:
-
-• App-Vorschläge — zeigt meistgenutzte Apps auf dem Startbildschirm
-• Digital Detox — ablenkende Apps für eine bestimmte Zeit blockieren
-• App-Timer — tägliche Nutzungslimits für einzelne Apps setzen
-• Schlafmodus — Graustufen + Detox automatisch nach Zeitplan
-• Schnellstart-Gesten — Apps per Wischrichtung zuweisen
-• Benachrichtigungs-Badges auf Dock-Apps
-• App-Shortcuts über langes Drücken anheften
-• Schnellzugriff (WLAN, Bluetooth, Taschenlampe)
+v1.0.7:
+• App-Vorschläge basierend auf Nutzung
+• Digital Detox Modus
+• Tägliche App-Limits
+• Schlafmodus
+• Schnellstart-Gesten
+• Benachrichtigungs-Badges
+• App-Shortcuts anheften
+• Schnellzugriff (WLAN, BT, Lampe)
 • Pomodoro-Timer
-• Eigenes Hintergrundbild + Akzentfarbe wählbar
-• Transparentes Kachel-Design
+• Hintergrundbild + Akzentfarbe
 • Kompaktere Einstellungen
-• Verbessertes Onboarding mit Standard-Launcher-Einrichtung
