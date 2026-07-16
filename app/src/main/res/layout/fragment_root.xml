@@ -537,6 +537,115 @@
 
         </LinearLayout>
 
+        <!-- Quick toggles -->
+        <LinearLayout
+            android:id="@+id/sectionToggles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="16dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TOGGLES"
+                android:textColor="@color/ratio_gray_light"
+                android:textSize="10sp"
+                android:fontFamily="@font/inter_medium"
+                android:letterSpacing="0.2"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:id="@+id/togglesRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/toggleWifi"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="WiFi"
+                    android:textColor="@color/ratio_white"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/inter_light"
+                    android:background="@drawable/tile_background"
+                    android:layout_marginEnd="6dp" />
+
+                <TextView
+                    android:id="@+id/toggleBluetooth"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="BT"
+                    android:textColor="@color/ratio_white"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/inter_light"
+                    android:background="@drawable/tile_background"
+                    android:layout_marginEnd="6dp" />
+
+                <TextView
+                    android:id="@+id/toggleFlash"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Flash"
+                    android:textColor="@color/ratio_white"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/inter_light"
+                    android:background="@drawable/tile_background"
+                    android:layout_marginEnd="6dp" />
+
+                <TextView
+                    android:id="@+id/toggleDnd"
+                    android:layout_width="0dp"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="DND"
+                    android:textColor="@color/ratio_white"
+                    android:textSize="11sp"
+                    android:fontFamily="@font/inter_light"
+                    android:background="@drawable/tile_background" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Suggested apps section -->
+        <LinearLayout
+            android:id="@+id/sectionSuggestions"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="32dp"
+            android:paddingVertical="16dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SUGGESTED"
+                android:textColor="@color/ratio_gray_light"
+                android:textSize="10sp"
+                android:fontFamily="@font/inter_medium"
+                android:letterSpacing="0.2"
+                android:layout_marginBottom="12dp" />
+
+            <LinearLayout
+                android:id="@+id/suggestionsRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" />
+
+        </LinearLayout>
+
         <!-- Bottom spacer so last widget isn't hidden by dock -->
         <View
             android:layout_width="match_parent"

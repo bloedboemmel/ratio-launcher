@@ -46,7 +46,9 @@ class ReorderActivity : AppCompatActivity() {
                     "media" to "Now Playing",
                     "weather" to "Weather",
                     "calendar" to "Calendar",
-                    "notes" to "Notes"
+                    "notes" to "Notes",
+                    "toggles" to "Quick Toggles",
+                    "suggestions" to "Suggested Apps"
                 )
                 items = order.toMutableList()
                 adapter = ReorderAdapter(items.map { displayNames[it] ?: it }.toMutableList())
