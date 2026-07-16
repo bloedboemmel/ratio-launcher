@@ -141,6 +141,7 @@ class RootFragment : Fragment() {
         }
 
         setupDock(view)
+        setupToggles(view)
         setupWeather()
         setupCalendar(view)
         setupMediaPlayer()
@@ -148,6 +149,7 @@ class RootFragment : Fragment() {
 
         updateClock()
         updateUsage()
+        setupSuggestions(view)
         applyCardVisibility(view)
         applyCardOrder(view)
     }
@@ -160,7 +162,9 @@ class RootFragment : Fragment() {
             "media" to view.findViewById<View>(R.id.mediaPlayerCard),
             "weather" to view.findViewById<View>(R.id.sectionWeather),
             "calendar" to view.findViewById<View>(R.id.calendarSection),
-            "notes" to view.findViewById<View>(R.id.sectionNotes)
+            "notes" to view.findViewById<View>(R.id.sectionNotes),
+            "toggles" to view.findViewById<View>(R.id.sectionToggles),
+            "suggestions" to view.findViewById<View>(R.id.sectionSuggestions)
         )
 
         // Find the parent LinearLayout (inside the ScrollView)
@@ -707,6 +711,95 @@ class RootFragment : Fragment() {
         }
     }
 
+
+    private fun setupToggles(view: View) {
+        try {
+            val toggleWifi = view.findViewById<TextView>(R.id.toggleWifi) ?: return
+            val toggleBt = view.findViewById<TextView>(R.id.toggleBluetooth) ?: return
+            val toggleFlash = view.findViewById<TextView>(R.id.toggleFlash) ?: return
+            val toggleDnd = view.findViewById<TextView>(R.id.toggleDnd) ?: return
+
+            fun updateToggleColors() {
+                try {
+                    val onColor = resources.getColor(R.color.ratio_accent, null)
+                    val offColor = resources.getColor(R.color.ratio_white, null)
+
+                    toggleWifi.setTextColor(if (com.ratio.launcher.utils.QuickToggles.isWifiEnabled(requireContext())) onColor else offColor)
+                    toggleFlash.setTextColor(if (com.ratio.launcher.utils.QuickToggles.isFlashlightOn()) onColor else offColor)
+                    // Bluetooth check needs permission on Android 12+
+                    try {
+                        toggleBt.setTextColor(if (com.ratio.launcher.utils.QuickToggles.isBluetoothEnabled(requireContext())) onColor else offColor)
+                    } catch (_: SecurityException) {
+                        toggleBt.setTextColor(offColor)
+                    }
+                } catch (_: Exception) {}
+            }
+
+            updateToggleColors()
+
+            toggleWifi.setOnClickListener {
+                com.ratio.launcher.utils.QuickToggles.toggleWifi(requireContext())
+                it.postDelayed({ updateToggleColors() }, 500)
+            }
+            toggleBt.setOnClickListener {
+                com.ratio.launcher.utils.QuickToggles.toggleBluetooth(requireContext())
+                it.postDelayed({ updateToggleColors() }, 500)
+            }
+            toggleFlash.setOnClickListener {
+                com.ratio.launcher.utils.QuickToggles.toggleFlashlight(requireContext())
+                updateToggleColors()
+            }
+            toggleDnd.setOnClickListener {
+                com.ratio.launcher.utils.QuickToggles.toggleDnd(requireContext())
+            }
+        } catch (_: Exception) {}
+    }
+
+    private fun setupSuggestions(view: View) {
+        val prefs = requireContext().getSharedPreferences("ratio_prefs", Context.MODE_PRIVATE)
+        if (!prefs.getBoolean("show_suggestions", true)) return
+        if (!UsageStatsHelper.hasPermission(requireContext())) return
+
+        Thread {
+            val suggestions = com.ratio.launcher.utils.AppSuggestions.getSuggestions(requireContext(), 4)
+            if (suggestions.isEmpty()) return@Thread
+
+            android.os.Handler(android.os.Looper.getMainLooper()).post {
+                if (!isAdded) return@post
+                val suggestionsContainer = view.findViewById<LinearLayout>(R.id.suggestionsRow) ?: return@post
+                suggestionsContainer.removeAllViews()
+                suggestionsContainer.visibility = View.VISIBLE
+                view.findViewById<View>(R.id.sectionSuggestions)?.visibility = View.VISIBLE
+
+                val pm = requireContext().packageManager
+                for (pkg in suggestions) {
+                    try {
+                        val icon = pm.getApplicationIcon(pkg)
+                        val imageView = ImageView(requireContext()).apply {
+                            setImageDrawable(icon)
+                            val size = (40 * resources.displayMetrics.density).toInt()
+                            layoutParams = LinearLayout.LayoutParams(size, size).apply {
+                                marginEnd = (16 * resources.displayMetrics.density).toInt()
+                            }
+                            setOnClickListener {
+                                val intent = pm.getLaunchIntentForPackage(pkg)
+                                intent?.let { startActivity(it) }
+                            }
+                        }
+
+                        val monoEnabled = requireContext().getSharedPreferences("ratio_prefs", Context.MODE_PRIVATE)
+                            .getBoolean("monochrome_icons", true)
+                        if (monoEnabled) {
+                            val colorMatrix = android.graphics.ColorMatrix().apply { setSaturation(0f) }
+                            imageView.colorFilter = android.graphics.ColorMatrixColorFilter(colorMatrix)
+                        }
+
+                        suggestionsContainer.addView(imageView)
+                    } catch (_: Exception) {}
+                }
+            }
+        }.start()
+    }
 
     private fun openAlarmApp() {
         io.sentry.Sentry.metrics().count("action_tap_clock")

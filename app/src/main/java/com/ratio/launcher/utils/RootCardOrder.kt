@@ -8,7 +8,7 @@ object RootCardOrder {
     private const val PREFS = "ratio_prefs"
     private const val KEY = "root_card_order"
 
-    val DEFAULT_ORDER = listOf("screen_time", "media", "weather", "calendar", "notes")
+    val DEFAULT_ORDER = listOf("screen_time", "media", "weather", "calendar", "notes", "toggles", "suggestions")
 
     fun getOrder(context: Context): List<String> {
         val prefs = context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)

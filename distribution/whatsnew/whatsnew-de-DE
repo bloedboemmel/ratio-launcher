@@ -1,4 +1,15 @@
-- Hintergrundbild-Unterstützung für Suchleiste und App-Kacheln
-- Verbessertes App-Rasterlayout mit einstellbarer Kachelgröße
-- Wischgesten zum Auf- und Zuklappen aller Kategorien
-- Fehlerbehebungen und Stabilitätsverbesserungen
+Neu in v1.0.7:
+
+• App-Vorschläge — zeigt meistgenutzte Apps auf dem Startbildschirm
+• Digital Detox — ablenkende Apps für eine bestimmte Zeit blockieren
+• App-Timer — tägliche Nutzungslimits für einzelne Apps setzen
+• Schlafmodus — Graustufen + Detox automatisch nach Zeitplan
+• Schnellstart-Gesten — Apps per Wischrichtung zuweisen
+• Benachrichtigungs-Badges auf Dock-Apps
+• App-Shortcuts über langes Drücken anheften
+• Schnellzugriff (WLAN, Bluetooth, Taschenlampe)
+• Pomodoro-Timer
+• Eigenes Hintergrundbild + Akzentfarbe wählbar
+• Transparentes Kachel-Design
+• Kompaktere Einstellungen
+• Verbessertes Onboarding mit Standard-Launcher-Einrichtung
