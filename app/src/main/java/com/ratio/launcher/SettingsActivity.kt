@@ -89,6 +89,12 @@ class SettingsActivity : AppCompatActivity() {
         showCalendarSwitch.isChecked = prefs.getBoolean("show_calendar", true)
         showWeatherSwitch.isChecked = prefs.getBoolean("show_weather", true)
         showNotesSwitch.isChecked = prefs.getBoolean("show_notes", true)
+        val showTogglesSwitch = findViewById<SwitchMaterial>(R.id.settingsShowToggles)
+        showTogglesSwitch.isChecked = prefs.getBoolean("show_toggles", true)
+        showTogglesSwitch.setOnCheckedChangeListener { _, checked ->
+            prefs.edit().putBoolean("show_toggles", checked).apply()
+        }
+
         val showSuggestionsSwitch = findViewById<SwitchMaterial>(R.id.settingsShowSuggestions)
         showSuggestionsSwitch.isChecked = prefs.getBoolean("show_suggestions", true)
         showSuggestionsSwitch.setOnCheckedChangeListener { _, checked ->
