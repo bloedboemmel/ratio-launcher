@@ -714,6 +714,15 @@ class RootFragment : Fragment() {
 
     private fun setupToggles(view: View) {
         try {
+            val prefs = requireContext().getSharedPreferences("ratio_prefs", Context.MODE_PRIVATE)
+            val showToggles = prefs.getBoolean("show_toggles", true)
+            val togglesSection = view.findViewById<View>(R.id.sectionToggles)
+            if (!showToggles) {
+                togglesSection?.visibility = View.GONE
+                return
+            }
+            togglesSection?.visibility = View.VISIBLE
+
             val toggleWifi = view.findViewById<TextView>(R.id.toggleWifi) ?: return
             val toggleBt = view.findViewById<TextView>(R.id.toggleBluetooth) ?: return
             val toggleFlash = view.findViewById<TextView>(R.id.toggleFlash) ?: return

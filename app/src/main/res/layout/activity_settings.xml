@@ -617,6 +617,28 @@
                 android:layout_height="wrap_content" />
         </LinearLayout>
 
+        <!-- Show quick toggles -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Quick toggles"
+                android:textColor="@color/ratio_white"
+                android:textSize="15sp"
+                android:fontFamily="@font/inter_regular" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/settingsShowToggles"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <!-- Show suggestions -->
         <LinearLayout
             android:layout_width="match_parent"
