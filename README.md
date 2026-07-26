@@ -58,7 +58,7 @@ cd ratio-launcher
 adb install app/build/outputs/apk/debug/app-debug.apk
 ```
 
-Requires JDK 17 and Android SDK 35.
+Requires JDK 17 and Android SDK 36.
 
 ## Download
 
@@ -67,7 +67,7 @@ Get the latest APK from [Releases](https://github.com/bloedboemmel/ratio-launche
 ## Tech Stack
 
 - Kotlin
-- Android SDK 35 (min SDK 26)
+- Android SDK 36 (min SDK 26)
 - ViewPager2 for swipe navigation
 - NotificationListenerService for Tree
 - UsageStatsManager for screen time

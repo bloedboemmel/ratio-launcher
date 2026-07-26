@@ -138,6 +138,41 @@ class AppListAdapter(
         prefs.edit { putString(packageName, category) }
     }
 
+    private fun showAppTimerDialog(context: Context, app: AppInfo) {
+        val options = arrayOf("15 min", "30 min", "1 hour", "2 hours", "Remove limit")
+        val minutes = intArrayOf(15, 30, 60, 120, 0)
+
+        AlertDialog.Builder(context)
+            .setTitle("App timer: ${app.name}")
+            .setItems(options) { _, which ->
+                if (minutes[which] == 0) {
+                    com.ratio.launcher.utils.AppTimerManager.removeLimit(context, app.packageName)
+                    Toast.makeText(context, "Timer removed", Toast.LENGTH_SHORT).show()
+                } else {
+                    com.ratio.launcher.utils.AppTimerManager.setLimit(context, app.packageName, minutes[which])
+                    Toast.makeText(context, "${app.name}: ${options[which]} daily limit", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .show()
+    }
+
+    private fun showShortcutPicker(context: Context, app: AppInfo) {
+        val shortcuts = com.ratio.launcher.utils.ShortcutTiles.getAppShortcuts(context, app.packageName)
+        if (shortcuts.isEmpty()) {
+            Toast.makeText(context, "No shortcuts available for ${app.name}", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val names = shortcuts.map { it.label }.toTypedArray()
+        AlertDialog.Builder(context)
+            .setTitle("Pin shortcut")
+            .setItems(names) { _, which ->
+                com.ratio.launcher.utils.ShortcutTiles.addShortcut(context, shortcuts[which])
+                Toast.makeText(context, "Shortcut pinned: ${shortcuts[which].label}", Toast.LENGTH_SHORT).show()
+            }
+            .show()
+    }
+
     override fun getItemViewType(position: Int): Int {
         return when (items[position]) {
             is TileItem.Header -> TYPE_HEADER
@@ -210,6 +245,8 @@ class AppListAdapter(
             itemView.setOnLongClickListener { view ->
                 val popup = PopupMenu(view.context, view)
                 popup.menu.add("Add to dock")
+                popup.menu.add("Set app timer")
+                popup.menu.add("Pin shortcut")
                 popup.menu.add("Move to category")
                 popup.menu.add("Hide")
                 popup.menu.add("Uninstall")
@@ -217,6 +254,12 @@ class AppListAdapter(
                     when (menuItem.title) {
                         "Add to dock" -> {
                             onAppLongPress?.invoke(app)
+                        }
+                        "Set app timer" -> {
+                            showAppTimerDialog(view.context, app)
+                        }
+                        "Pin shortcut" -> {
+                            showShortcutPicker(view.context, app)
                         }
                         "Move to category" -> {
                             showCategoryPicker(view.context, app)

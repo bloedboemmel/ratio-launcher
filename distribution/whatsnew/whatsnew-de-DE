@@ -1,4 +1,12 @@
-- Hintergrundbild-Unterstützung für Suchleiste und App-Kacheln
-- Verbessertes App-Rasterlayout mit einstellbarer Kachelgröße
-- Wischgesten zum Auf- und Zuklappen aller Kategorien
-- Fehlerbehebungen und Stabilitätsverbesserungen
+v1.0.7:
+• App-Vorschläge basierend auf Nutzung
+• Digital Detox Modus
+• Tägliche App-Limits
+• Schlafmodus
+• Schnellstart-Gesten
+• Benachrichtigungs-Badges
+• App-Shortcuts anheften
+• Schnellzugriff (WLAN, BT, Lampe)
+• Pomodoro-Timer
+• Hintergrundbild + Akzentfarbe
+• Kompaktere Einstellungen

@@ -6,14 +6,14 @@ plugins {
 
 android {
     namespace = "com.ratio.launcher"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.bloedboemmel.ratio"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 7
-        versionName = "1.0.6"
+        targetSdk = 36
+        versionCode = 10
+        versionName = "1.0.9"
     }
 
     buildTypes {

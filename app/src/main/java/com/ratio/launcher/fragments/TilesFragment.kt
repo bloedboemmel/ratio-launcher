@@ -230,6 +230,10 @@ class TilesFragment : Fragment() {
             Toast.makeText(requireContext(), "Blocked — Detox mode active", Toast.LENGTH_SHORT).show()
             return
         }
+        if (com.ratio.launcher.utils.AppTimerManager.isLimitReached(requireContext(), app.packageName)) {
+            Toast.makeText(requireContext(), "Daily limit reached for ${app.name}", Toast.LENGTH_SHORT).show()
+            return
+        }
         io.sentry.Sentry.metrics().count("app_launched_${app.packageName}")
         val intent = requireContext().packageManager.getLaunchIntentForPackage(app.packageName)
         intent?.let { startActivity(it) }
