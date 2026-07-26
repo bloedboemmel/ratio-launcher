@@ -3,44 +3,95 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Datenschutzerklärung – Ratio Launcher</title>
+  <title>Datenschutzerklärung / Privacy Policy – Ratio Launcher</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { background: #0B0B0B; color: #F2F2F2; font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif; line-height: 1.6; }
     main { max-width: 900px; margin: 0 auto; padding: 48px 24px 64px; }
+    .lang-toggle { display: flex; gap: 8px; margin-bottom: 24px; }
+    .lang-toggle button { background: transparent; color: #D6D6D6; border: 1px solid #323232; border-radius: 16px; padding: 6px 12px; cursor: pointer; font: inherit; }
+    .lang-toggle button[aria-pressed="true"] { color: #0B0B0B; background: #FFFC33; border-color: #FFFC33; }
     h1 { font-weight: 300; font-size: 2.2rem; margin-bottom: 24px; }
     h2 { font-weight: 400; font-size: 1.1rem; margin: 28px 0 8px; color: #FFFC33; }
     p { color: #D6D6D6; margin-bottom: 12px; }
     a { color: #FFFC33; text-decoration: none; }
     .back { display: inline-block; margin-bottom: 24px; }
+    [data-lang] { display: none; }
+    [data-lang].active { display: block; }
   </style>
 </head>
 <body>
   <main>
-    <a class="back" href="index.html">← Zurück zur Startseite</a>
-    <h1>Datenschutzerklärung</h1>
-    <p>Diese Datenschutzerklärung informiert darüber, wie bei der Nutzung von Ratio Launcher mit personenbezogenen Daten umgegangen wird.</p>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-set-lang="de" aria-pressed="false">Deutsch</button>
+      <button type="button" data-set-lang="en" aria-pressed="false">English</button>
+    </div>
 
-    <h2>Verantwortlicher</h2>
-    <p>Projekt: Ratio Launcher<br>GitHub: <a href="https://github.com/bloedboemmel/ratio-launcher">github.com/bloedboemmel/ratio-launcher</a></p>
+    <section data-lang="de">
+      <a class="back" href="index.html">← Zurück zur Startseite</a>
+      <h1>Datenschutzerklärung</h1>
+      <p>Diese Datenschutzerklärung informiert darüber, wie bei der Nutzung von Ratio Launcher mit personenbezogenen Daten umgegangen wird.</p>
 
-    <h2>Verarbeitung in der App</h2>
-    <p>Ratio Launcher verarbeitet Einstellungen und Nutzungsinformationen lokal auf dem Gerät, soweit dies für die Funktionen der App erforderlich ist.</p>
+      <h2>Verantwortlicher</h2>
+      <p>Projekt: Ratio Launcher<br>GitHub: <a href="https://github.com/bloedboemmel/ratio-launcher">github.com/bloedboemmel/ratio-launcher</a></p>
 
-    <h2>Keine Weitergabe an Dritte</h2>
-    <p>Es erfolgt keine automatische Übermittlung personenbezogener Daten an den Betreiber dieses GitHub-Repositories.</p>
+      <h2>Verarbeitung in der App</h2>
+      <p>Ratio Launcher verarbeitet Einstellungen und Nutzungsinformationen lokal auf dem Gerät, soweit dies für die Funktionen der App erforderlich ist.</p>
 
-    <h2>Berechtigungen</h2>
-    <p>Je nach aktivierten Funktionen kann die App Berechtigungen (z. B. Benachrichtigungszugriff) verwenden. Diese Verarbeitung erfolgt ausschließlich zur Bereitstellung der jeweiligen Funktion.</p>
+      <h2>Keine Weitergabe an Dritte</h2>
+      <p>Es erfolgt keine automatische Übermittlung personenbezogener Daten an den Betreiber dieses GitHub-Repositories.</p>
 
-    <h2>GitHub Pages</h2>
-    <p>Beim Aufruf dieser Website kann GitHub als Hosting-Anbieter technische Zugriffsdaten (z. B. IP-Adresse, Zeitstempel) verarbeiten. Details finden sich in der Datenschutzerklärung von GitHub.</p>
+      <h2>Berechtigungen</h2>
+      <p>Je nach aktivierten Funktionen kann die App Berechtigungen (z. B. Benachrichtigungszugriff) verwenden. Diese Verarbeitung erfolgt ausschließlich zur Bereitstellung der jeweiligen Funktion.</p>
 
-    <h2>Kontakt</h2>
-    <p>Bei Fragen zum Datenschutz bitte ein Issue im Repository eröffnen: <a href="https://github.com/bloedboemmel/ratio-launcher/issues">github.com/bloedboemmel/ratio-launcher/issues</a></p>
+      <h2>GitHub Pages</h2>
+      <p>Beim Aufruf dieser Website kann GitHub als Hosting-Anbieter technische Zugriffsdaten (z. B. IP-Adresse, Zeitstempel) verarbeiten. Details finden sich in der Datenschutzerklärung von GitHub.</p>
 
-    <h2>Stand</h2>
-    <p>Stand: Juli 2026</p>
+      <h2>Kontakt</h2>
+      <p>Bei Fragen zum Datenschutz bitte ein Issue im Repository eröffnen: <a href="https://github.com/bloedboemmel/ratio-launcher/issues">github.com/bloedboemmel/ratio-launcher/issues</a></p>
+
+      <h2>Stand</h2>
+      <p>Stand: Juli 2026</p>
+    </section>
+
+    <section data-lang="en">
+      <a class="back" href="index.html">← Back to homepage</a>
+      <h1>Privacy Policy</h1>
+      <p>This privacy policy explains how personal data is handled when using Ratio Launcher.</p>
+
+      <h2>Controller</h2>
+      <p>Project: Ratio Launcher<br>GitHub: <a href="https://github.com/bloedboemmel/ratio-launcher">github.com/bloedboemmel/ratio-launcher</a></p>
+
+      <h2>Processing in the app</h2>
+      <p>Ratio Launcher processes settings and usage information locally on the device where required for app functionality.</p>
+
+      <h2>No sharing with third parties</h2>
+      <p>No personal data is automatically transmitted to the maintainer of this GitHub repository.</p>
+
+      <h2>Permissions</h2>
+      <p>Depending on enabled features, the app may use permissions (for example notification access). This processing is only used to provide the corresponding feature.</p>
+
+      <h2>GitHub Pages</h2>
+      <p>When visiting this website, GitHub as the hosting provider may process technical access data (for example IP address and timestamps). Details are available in GitHub&rsquo;s privacy policy.</p>
+
+      <h2>Contact</h2>
+      <p>For privacy-related questions, please open an issue in the repository: <a href="https://github.com/bloedboemmel/ratio-launcher/issues">github.com/bloedboemmel/ratio-launcher/issues</a></p>
+
+      <h2>Version</h2>
+      <p>Version: July 2026</p>
+    </section>
   </main>
+  <script>
+    const sections = document.querySelectorAll('[data-lang]');
+    const buttons = document.querySelectorAll('button[data-set-lang]');
+    const setLanguage = (lang) => {
+      sections.forEach((section) => section.classList.toggle('active', section.dataset.lang === lang));
+      buttons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.setLang === lang)));
+      document.documentElement.lang = lang;
+    };
+
+    buttons.forEach((button) => button.addEventListener('click', () => setLanguage(button.dataset.setLang)));
+    setLanguage((navigator.language || '').toLowerCase().startsWith('de') ? 'de' : 'en');
+  </script>
 </body>
 </html>
