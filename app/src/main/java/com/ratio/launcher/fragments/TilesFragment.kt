@@ -86,13 +86,16 @@ class TilesFragment : Fragment() {
         val monochrome = prefs.getBoolean("monochrome_icons", true)
         val columns = AnimationHelper.getTileSizeColumns(context)
 
+        // Capture the application context so the background thread never calls
+        // requireContext() on a fragment that may have detached in the meantime (#20).
+        val appContext = context.applicationContext
         Thread {
-            val apps = loadInstalledApps()
+            val apps = loadInstalledApps(appContext)
             Handler(Looper.getMainLooper()).post {
                 if (!isAdded) return@post
                 allApps = apps
-                val catComparator = CategoryOrder.getSortComparator(requireContext())
-                val wallpaperActive = com.ratio.launcher.utils.WallpaperManager.hasWallpaperImage(requireContext())
+                val catComparator = CategoryOrder.getSortComparator(appContext)
+                val wallpaperActive = com.ratio.launcher.utils.WallpaperManager.hasWallpaperImage(appContext)
                 adapter = AppListAdapter(
                     allApps,
                     monochrome,
@@ -101,7 +104,7 @@ class TilesFragment : Fragment() {
                     hasWallpaper = wallpaperActive,
                 ) { app -> launchApp(app) }
 
-                val gridLayoutManager = GridLayoutManager(requireContext(), columns)
+                val gridLayoutManager = GridLayoutManager(appContext, columns)
                 gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                     override fun getSpanSize(position: Int): Int {
                         return if (adapter.isHeader(position)) columns else 1
@@ -113,6 +116,7 @@ class TilesFragment : Fragment() {
         }.start()
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun setupSearch() {
         searchBar.addTextChangedListener(
             object : TextWatcher {
@@ -121,10 +125,45 @@ class TilesFragment : Fragment() {
                     if (::adapter.isInitialized) {
                         adapter.filter(s?.toString() ?: "")
                     }
+                    updateClearButton(s?.isNotEmpty() == true)
                 }
                 override fun afterTextChanged(s: Editable?) {}
             },
         )
+
+        // Tapping the trailing clear icon empties the search bar (#21).
+        searchBar.setOnTouchListener { _, event ->
+            if (event.action == MotionEvent.ACTION_UP) {
+                val clearDrawable = searchBar.compoundDrawablesRelative[2]
+                if (clearDrawable != null) {
+                    val touchAreaStart = searchBar.width - searchBar.paddingEnd - clearDrawable.bounds.width()
+                    if (event.x >= touchAreaStart) {
+                        clearSearch()
+                        return@setOnTouchListener true
+                    }
+                }
+            }
+            false
+        }
+
+        updateClearButton(searchBar.text?.isNotEmpty() == true)
+    }
+
+    private fun updateClearButton(show: Boolean) {
+        val start = searchBar.compoundDrawablesRelative[0]
+        val end = if (show) {
+            androidx.core.content.ContextCompat.getDrawable(searchBar.context, R.drawable.ic_close)
+        } else {
+            null
+        }
+        searchBar.setCompoundDrawablesRelativeWithIntrinsicBounds(start, null, end, null)
+    }
+
+    private fun clearSearch() {
+        searchBar.setText("")
+        if (::adapter.isInitialized) {
+            adapter.filter("")
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -154,18 +193,19 @@ class TilesFragment : Fragment() {
 
 
 
-    private fun loadInstalledApps(): List<AppInfo> {
-        val pm = requireContext().packageManager
+    private fun loadInstalledApps(context: Context): List<AppInfo> {
+        val pm = context.packageManager
         val intent = Intent(Intent.ACTION_MAIN).apply {
             addCategory(Intent.CATEGORY_LAUNCHER)
         }
 
-        val hiddenPackages = HiddenAppsManager.getHiddenPackages(requireContext())
-        val customCategories = requireContext().getSharedPreferences("ratio_app_categories", Context.MODE_PRIVATE)
+        val hiddenPackages = HiddenAppsManager.getHiddenPackages(context)
+        val customCategories = context.getSharedPreferences("ratio_app_categories", Context.MODE_PRIVATE)
+        val ownPackageName = context.packageName
 
         return pm.queryIntentActivities(intent, 0)
             .asSequence()
-            .filter { it.activityInfo.packageName != requireContext().packageName }
+            .filter { it.activityInfo.packageName != ownPackageName }
             .filter { !hiddenPackages.contains(it.activityInfo.packageName) }
             .map { resolveInfo ->
                 val appInfo = resolveInfo.activityInfo.applicationInfo
@@ -236,6 +276,10 @@ class TilesFragment : Fragment() {
         }
         io.sentry.Sentry.metrics().count("app_launched_${app.packageName}")
         val intent = requireContext().packageManager.getLaunchIntentForPackage(app.packageName)
-        intent?.let { startActivity(it) }
+        intent?.let {
+            startActivity(it)
+            // Auto-clear the search bar so the next visit starts fresh (#21).
+            clearSearch()
+        }
     }
 }
