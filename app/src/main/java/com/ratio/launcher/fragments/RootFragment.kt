@@ -73,6 +73,9 @@ class RootFragment : Fragment() {
     private val notes = mutableListOf<Note>()
     private lateinit var notesAdapter: NotesAdapter
 
+    // Day-of-year the calendar was last loaded for, so it refreshes when the day rolls over (#19).
+    private var lastCalendarDayOfYear = -1
+
     private val clockUpdater = object : Runnable {
         override fun run() {
             updateClock()
@@ -80,6 +83,7 @@ class RootFragment : Fragment() {
             val showSeconds = prefs.getBoolean("show_seconds", false)
             val delay = if (showSeconds) 1000L else 30000L
             updateUsage()
+            refreshCalendarIfDayChanged()
             handler.postDelayed(this, delay)
         }
     }
@@ -614,6 +618,9 @@ class RootFragment : Fragment() {
             applyCardVisibility(it)
             applyCardOrder(it)
             applyWallpaperCardStyle(it)
+            // Refresh calendar so events reflect the current day whenever the
+            // launcher becomes visible again (#19). Don't re-prompt for permission here.
+            setupCalendar(it, requestPermission = false)
         }
     }
 
@@ -659,7 +666,7 @@ class RootFragment : Fragment() {
         updateMediaUI(MediaPlayerHelper.getCurrentMedia())
     }
 
-    private fun setupCalendar(view: View) {
+    private fun setupCalendar(view: View, requestPermission: Boolean = true) {
         val prefs = requireContext().getSharedPreferences("ratio_prefs", Context.MODE_PRIVATE)
         if (!prefs.getBoolean("show_calendar", true)) return
 
@@ -669,13 +676,28 @@ class RootFragment : Fragment() {
         val calendarEmpty = view.findViewById<TextView>(R.id.calendarEmpty)
 
         if (!CalendarHelper.hasPermission(requireContext())) {
-            calendarPermissionLauncher.launch(android.Manifest.permission.READ_CALENDAR)
+            // Only prompt during the initial setup — resuming shouldn't nag the user.
+            if (requestPermission) {
+                calendarPermissionLauncher.launch(android.Manifest.permission.READ_CALENDAR)
+            }
             calendarSection.visibility = View.GONE
             calendarDivider.visibility = View.GONE
             return
         }
 
         loadCalendarEvents(calendarSection, calendarDivider, calendarEventsList, calendarEmpty)
+        lastCalendarDayOfYear = java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_YEAR)
+    }
+
+    // Reload calendar events if the calendar day has changed since the last load.
+    // The launcher process is long-lived, so without this the events would remain
+    // frozen on the day the app was opened (#19).
+    private fun refreshCalendarIfDayChanged() {
+        if (!isAdded) return
+        val today = java.util.Calendar.getInstance().get(java.util.Calendar.DAY_OF_YEAR)
+        if (today != lastCalendarDayOfYear) {
+            view?.let { setupCalendar(it, requestPermission = false) }
+        }
     }
 
     private val calendarPermissionLauncher = registerForActivityResult(
