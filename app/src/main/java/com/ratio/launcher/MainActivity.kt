@@ -27,6 +27,10 @@ import io.sentry.Sentry
 
 class MainActivity : AppCompatActivity() {
 
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(com.ratio.launcher.utils.FontSizeManager.wrap(newBase))
+    }
+
     private lateinit var viewPager: ViewPager2
     private lateinit var statusOverlay: View
     private lateinit var statusWifi: TextView
@@ -143,6 +147,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        if (resources.configuration.fontScale != com.ratio.launcher.utils.FontSizeManager.getScale(this)) {
+            recreate()
+            return
+        }
         applyTheme()
         registerReceiver(batteryReceiver, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
         handler.post(statusUpdater)

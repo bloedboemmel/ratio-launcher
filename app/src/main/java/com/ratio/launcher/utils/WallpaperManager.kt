@@ -3,7 +3,6 @@ package com.ratio.launcher.utils
 import android.content.Context
 import android.net.Uri
 import androidx.core.content.edit
-import androidx.core.graphics.toColorInt
 import androidx.core.net.toUri
 
 object WallpaperManager {
@@ -34,16 +33,6 @@ object WallpaperManager {
     fun setImageUri(context: Context, uri: Uri?) {
         context.getSharedPreferences(PREFS, Context.MODE_PRIVATE)
             .edit { putString(KEY_IMAGE_URI, uri?.toString()) }
-    }
-
-    fun getAccentColor(context: Context): Int {
-        val prefs = context.getSharedPreferences("ratio_prefs", Context.MODE_PRIVATE)
-        return prefs.getInt("custom_accent_color", "#FFFC33".toColorInt())
-    }
-
-    fun setAccentColor(context: Context, color: Int) {
-        context.getSharedPreferences("ratio_prefs", Context.MODE_PRIVATE)
-            .edit { putInt("custom_accent_color", color) }
     }
 
     fun hasWallpaperImage(context: Context): Boolean {

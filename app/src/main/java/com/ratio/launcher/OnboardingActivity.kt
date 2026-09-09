@@ -18,6 +18,10 @@ import com.ratio.launcher.utils.UsageStatsHelper
 
 class OnboardingActivity : AppCompatActivity() {
 
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(com.ratio.launcher.utils.FontSizeManager.wrap(newBase))
+    }
+
     private lateinit var pager: ViewPager2
 
     companion object {

@@ -77,12 +77,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Promote Internal to Alpha on Google Play
+      - name: Release to Google Play Production
         uses: r0adkll/upload-google-play@v1
         with:
           serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_JSON }}
           packageName: com.bloedboemmel.ratio
-          track: internal
-          promoteTrack: alpha
+          releaseFiles: app/build/outputs/bundle/release/*.aab
+          whatsNewDirectory: distribution/whatsnew
+          track: production
           status: completed
           changesNotSentForReview: true

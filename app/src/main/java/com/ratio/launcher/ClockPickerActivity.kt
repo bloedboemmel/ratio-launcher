@@ -17,6 +17,10 @@ import com.ratio.launcher.views.FlipClockView
 
 class ClockPickerActivity : AppCompatActivity() {
 
+    override fun attachBaseContext(newBase: android.content.Context) {
+        super.attachBaseContext(com.ratio.launcher.utils.FontSizeManager.wrap(newBase))
+    }
+
     private lateinit var list: RecyclerView
     private lateinit var nameLabel: TextView
     private lateinit var selectBtn: TextView
