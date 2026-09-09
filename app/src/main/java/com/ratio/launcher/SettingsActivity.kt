@@ -1,28 +1,35 @@
 package com.ratio.launcher
 
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.CheckedTextView
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
-import androidx.core.graphics.toColorInt
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.ratio.launcher.utils.*
 
 class SettingsActivity : AppCompatActivity() {
 
+    override fun attachBaseContext(newBase: android.content.Context) {
+        super.attachBaseContext(FontSizeManager.wrap(newBase))
+    }
+
     private lateinit var settingsCity: EditText
     private lateinit var clock24hSwitch: SwitchMaterial
     private lateinit var monochromeSwitch: SwitchMaterial
     private lateinit var doubleTapSwitch: SwitchMaterial
     private lateinit var themeValue: TextView
+    private lateinit var fontSizeValue: TextView
     private lateinit var usageGoalValue: TextView
     private lateinit var hiddenAppsCount: TextView
     private lateinit var tempUnitValue: TextView
     private lateinit var largeTilesSwitch: SwitchMaterial
-    private lateinit var iconPackValue: TextView
     private lateinit var showMusicSwitch: SwitchMaterial
     private lateinit var showCalendarSwitch: SwitchMaterial
     private lateinit var showWeatherSwitch: SwitchMaterial
@@ -45,11 +52,11 @@ class SettingsActivity : AppCompatActivity() {
         monochromeSwitch = findViewById(R.id.settingsMonochrome)
         doubleTapSwitch = findViewById(R.id.settingsDoubleTapLock)
         themeValue = findViewById(R.id.settingThemeValue)
+        fontSizeValue = findViewById(R.id.settingFontSizeValue)
         usageGoalValue = findViewById(R.id.settingUsageGoalValue)
         hiddenAppsCount = findViewById(R.id.settingHiddenAppsCount)
         tempUnitValue = findViewById(R.id.settingTempUnit)
         largeTilesSwitch = findViewById(R.id.settingsLargeTiles)
-        iconPackValue = findViewById(R.id.settingIconPackValue)
         showMusicSwitch = findViewById(R.id.settingsShowMusic)
         showCalendarSwitch = findViewById(R.id.settingsShowCalendar)
         showWeatherSwitch = findViewById(R.id.settingsShowWeather)
@@ -69,6 +76,8 @@ class SettingsActivity : AppCompatActivity() {
         val theme = RatioTheme.getCurrent(this)
         themeValue.text = theme.key.replaceFirstChar { it.uppercase() }
 
+        fontSizeValue.text = FontSizeManager.labelFor(FontSizeManager.getScale(this))
+
 
         val goal = UsageGoalsManager.getDailyGoal(this)
         usageGoalValue.text = getString(R.string.usage_goal_format, goal / 60, goal % 60)
@@ -78,12 +87,6 @@ class SettingsActivity : AppCompatActivity() {
 
         tempUnitValue.text = if (WeatherHelper.isMetric(this)) "°C" else "°F"
         largeTilesSwitch.isChecked = prefs.getBoolean("large_tiles", false)
-
-        val currentPack = IconPackManager.getCurrentIconPack(this)
-        iconPackValue.text = if (currentPack != null) {
-            try { packageManager.getApplicationLabel(packageManager.getApplicationInfo(currentPack, 0)).toString() }
-            catch (_: Exception) { "Default" }
-        } else "Default"
 
         showMusicSwitch.isChecked = prefs.getBoolean("show_music", true)
         showCalendarSwitch.isChecked = prefs.getBoolean("show_calendar", true)
@@ -125,6 +128,10 @@ class SettingsActivity : AppCompatActivity() {
 
         findViewById<LinearLayout>(R.id.settingTheme).setOnClickListener {
             showThemeDialog()
+        }
+
+        findViewById<LinearLayout>(R.id.settingFontSize).setOnClickListener {
+            showFontSizeDialog()
         }
 
         val clockStyleValue = findViewById<TextView>(R.id.settingClockStyleValue)
@@ -177,26 +184,8 @@ class SettingsActivity : AppCompatActivity() {
             prefs.edit { putBoolean("hide_status_bar", checked) }
         }
 
-        findViewById<LinearLayout>(R.id.settingIconPack).setOnClickListener {
-            showIconPackDialog()
-        }
-
         findViewById<LinearLayout>(R.id.settingBackup).setOnClickListener {
             showBackupDialog()
-        }
-
-        // Notification badges
-        val notifBadgesSwitch = findViewById<SwitchMaterial>(R.id.settingsNotifBadges)
-        notifBadgesSwitch.isChecked = NotificationBadgeHelper.isEnabled(this)
-        notifBadgesSwitch.setOnCheckedChangeListener { _, checked ->
-            NotificationBadgeHelper.setEnabled(this, checked)
-        }
-
-        // Bedtime mode
-        val bedtimeValue = findViewById<TextView>(R.id.settingBedtimeValue)
-        updateBedtimeLabel(bedtimeValue)
-        findViewById<LinearLayout>(R.id.settingBedtime).setOnClickListener {
-            showBedtimeDialog(bedtimeValue)
         }
 
         // Detox
@@ -218,21 +207,9 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-        // Quick gestures
-        findViewById<LinearLayout>(R.id.settingGestures).setOnClickListener {
-            showGesturesDialog()
-        }
-
         // Wallpaper
         findViewById<LinearLayout>(R.id.settingWallpaper).setOnClickListener {
             showWallpaperDialog()
-        }
-
-        // Accent color
-        val accentPreview = findViewById<android.view.View>(R.id.settingAccentPreview)
-        accentPreview.setBackgroundColor(WallpaperManager.getAccentColor(this))
-        findViewById<LinearLayout>(R.id.settingAccentColor).setOnClickListener {
-            showAccentColorDialog(accentPreview)
         }
 
         findViewById<LinearLayout>(R.id.settingOnboarding).setOnClickListener {
@@ -273,6 +250,35 @@ class SettingsActivity : AppCompatActivity() {
                 RatioTheme.setCurrent(this, selected)
                 themeValue.text = selected.key.replaceFirstChar { it.uppercase() }
                 dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun showFontSizeDialog() {
+        val current = FontSizeManager.presets.indexOfFirst { it.second == FontSizeManager.getScale(this) }
+            .coerceAtLeast(0)
+
+        val adapter = object : ArrayAdapter<String>(
+            this,
+            android.R.layout.simple_list_item_single_choice,
+            FontSizeManager.presets.map { it.first },
+        ) {
+            override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+                val view = super.getView(position, convertView, parent) as CheckedTextView
+                view.textSize = 16f * FontSizeManager.presets[position].second
+                view.setTextColor(android.graphics.Color.WHITE)
+                return view
+            }
+        }
+
+        MaterialAlertDialogBuilder(this)
+            .setTitle("Font size")
+            .setSingleChoiceItems(adapter, current) { dialog, which ->
+                val (label, scale) = FontSizeManager.presets[which]
+                FontSizeManager.setScale(this, scale)
+                fontSizeValue.text = label
+                dialog.dismiss()
+                recreate()
             }
             .show()
     }
@@ -324,49 +330,6 @@ class SettingsActivity : AppCompatActivity() {
 
 
 
-    private fun updateBedtimeLabel(view: TextView) {
-        if (BedtimeMode.isEnabled(this)) {
-            val (sh, sm) = BedtimeMode.getStartTime(this)
-            val (eh, em) = BedtimeMode.getEndTime(this)
-            view.text = String.format("%02d:%02d – %02d:%02d", sh, sm, eh, em)
-        } else {
-            view.text = "Off"
-        }
-    }
-
-    private fun showBedtimeDialog(valueView: TextView) {
-        if (BedtimeMode.isEnabled(this)) {
-            MaterialAlertDialogBuilder(this)
-                .setTitle("Bedtime Mode")
-                .setMessage("Activates grayscale icons + detox during scheduled hours.")
-                .setPositiveButton("Disable") { _, _ ->
-                    BedtimeMode.setEnabled(this, false)
-                    valueView.text = "Off"
-                }
-                .setNegativeButton("Keep", null)
-                .show()
-        } else {
-            val options = arrayOf("22:00 – 07:00", "23:00 – 07:00", "00:00 – 08:00", "21:00 – 06:00")
-            val schedules = arrayOf(
-                intArrayOf(22, 0, 7, 0),
-                intArrayOf(23, 0, 7, 0),
-                intArrayOf(0, 0, 8, 0),
-                intArrayOf(21, 0, 6, 0)
-            )
-            MaterialAlertDialogBuilder(this)
-                .setTitle("Set bedtime schedule")
-                .setItems(options) { _, which ->
-                    val s = schedules[which]
-                    BedtimeMode.setSchedule(this, s[0], s[1], s[2], s[3])
-                    BedtimeMode.setEnabled(this, true)
-                    updateBedtimeLabel(valueView)
-                    android.widget.Toast.makeText(this, "Bedtime mode enabled", android.widget.Toast.LENGTH_SHORT).show()
-                }
-                .setNegativeButton("Cancel", null)
-                .show()
-        }
-    }
-
     private fun showDetoxDialog(statusView: TextView) {
         if (DetoxMode.isActive(this)) {
             MaterialAlertDialogBuilder(this)
@@ -392,50 +355,6 @@ class SettingsActivity : AppCompatActivity() {
                 .setNegativeButton("Cancel", null)
                 .show()
         }
-    }
-
-    private fun showGesturesDialog() {
-        val directions = QuickLaunchGestures.Direction.entries
-        val items = directions.map { dir ->
-            val pkg = QuickLaunchGestures.getApp(this, dir)
-            val label = if (pkg != null) {
-                try { packageManager.getApplicationLabel(packageManager.getApplicationInfo(pkg, 0)).toString() }
-                catch (_: Exception) { "Not set" }
-            } else "Not set"
-            "${QuickLaunchGestures.getDirectionLabel(dir)}: $label"
-        }.toTypedArray()
-
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Quick Launch Gestures")
-            .setItems(items) { _, which ->
-                showAppPickerForGesture(directions[which])
-            }
-            .setPositiveButton("Done", null)
-            .show()
-    }
-
-    private fun showAppPickerForGesture(direction: QuickLaunchGestures.Direction) {
-        val intent = android.content.Intent(android.content.Intent.ACTION_MAIN).apply {
-            addCategory(android.content.Intent.CATEGORY_LAUNCHER)
-        }
-        val apps = packageManager.queryIntentActivities(intent, 0)
-            .asSequence()
-            .filter { it.activityInfo.packageName != packageName }
-            .sortedBy { it.loadLabel(packageManager).toString().lowercase() }
-            .toList()
-
-        val names = apps.map { it.loadLabel(packageManager).toString() }.toTypedArray()
-
-        MaterialAlertDialogBuilder(this)
-            .setTitle("${QuickLaunchGestures.getDirectionLabel(direction)} → App")
-            .setItems(names) { _, which ->
-                QuickLaunchGestures.setApp(this, direction, apps[which].activityInfo.packageName)
-                android.widget.Toast.makeText(this, "Set!", android.widget.Toast.LENGTH_SHORT).show()
-            }
-            .setNeutralButton("Clear") { _, _ ->
-                QuickLaunchGestures.setApp(this, direction, null)
-            }
-            .show()
     }
 
     private fun showWallpaperDialog() {
@@ -465,29 +384,6 @@ class SettingsActivity : AppCompatActivity() {
             com.ratio.launcher.utils.WallpaperManager.setImageUri(this, uri)
             android.widget.Toast.makeText(this, "Wallpaper set", android.widget.Toast.LENGTH_SHORT).show()
         }
-    }
-
-    private fun showAccentColorDialog(preview: android.view.View) {
-        val colors = intArrayOf(
-            "#FFFC33".toColorInt(),
-            "#4ECDC4".toColorInt(),
-            "#FF6B9D".toColorInt(),
-            "#7C4DFF".toColorInt(),
-            "#00E676".toColorInt(),
-            "#FF5722".toColorInt(),
-            "#03A9F4".toColorInt(),
-            "#F2F2F2".toColorInt(),
-        )
-        val names = arrayOf("Yellow", "Teal", "Pink", "Purple", "Green", "Orange", "Blue", "White")
-
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Accent color")
-            .setItems(names) { _, which ->
-                com.ratio.launcher.utils.WallpaperManager.setAccentColor(this, colors[which])
-                preview.setBackgroundColor(colors[which])
-                android.widget.Toast.makeText(this, "Accent color updated", android.widget.Toast.LENGTH_SHORT).show()
-            }
-            .show()
     }
 
     private fun showFeedbackDialog() {
@@ -535,31 +431,6 @@ class SettingsActivity : AppCompatActivity() {
                 android.widget.Toast.makeText(this, "Feedback sent!", android.widget.Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton("Cancel", null)
-            .show()
-    }
-
-    private fun showIconPackDialog() {
-        val packs = IconPackManager.getInstalledIconPacks(this)
-        val names = mutableListOf("Default (System)")
-        names.addAll(packs.map { it.label })
-
-        val currentPack = IconPackManager.getCurrentIconPack(this)
-        val currentIndex = if (currentPack == null) 0
-            else packs.indexOfFirst { it.packageName == currentPack } + 1
-
-        MaterialAlertDialogBuilder(this)
-            .setTitle("Icon pack")
-            .setSingleChoiceItems(names.toTypedArray(), currentIndex.coerceAtLeast(0)) { dialog, which ->
-                if (which == 0) {
-                    IconPackManager.setIconPack(this, null)
-                    iconPackValue.text = "Default"
-                } else {
-                    val pack = packs[which - 1]
-                    IconPackManager.setIconPack(this, pack.packageName)
-                    iconPackValue.text = pack.label
-                }
-                dialog.dismiss()
-            }
             .show()
     }
 

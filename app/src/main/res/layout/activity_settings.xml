@@ -66,6 +66,34 @@
                 android:fontFamily="@font/inter_light" />
         </LinearLayout>
 
+        <!-- Font size -->
+        <LinearLayout
+            android:id="@+id/settingFontSize"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Font size"
+                android:textColor="@color/ratio_white"
+                android:textSize="15sp"
+                android:fontFamily="@font/inter_regular" />
+
+            <TextView
+                android:id="@+id/settingFontSizeValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Medium"
+                android:textColor="@color/ratio_gray_text"
+                android:textSize="13sp"
+                android:fontFamily="@font/inter_light" />
+        </LinearLayout>
+
         <!-- Clock style -->
         <LinearLayout
             android:id="@+id/settingClockStyle"
@@ -263,34 +291,6 @@
                 android:id="@+id/settingsLargeTiles"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <!-- Icon pack -->
-        <LinearLayout
-            android:id="@+id/settingIconPack"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginBottom="4dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Icon pack"
-                android:textColor="@color/ratio_white"
-                android:textSize="15sp"
-                android:fontFamily="@font/inter_regular" />
-
-            <TextView
-                android:id="@+id/settingIconPackValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Default"
-                android:textColor="@color/ratio_gray_text"
-                android:textSize="13sp"
-                android:fontFamily="@font/inter_light" />
         </LinearLayout>
 
         <!-- Reorder categories -->
@@ -729,57 +729,6 @@
                 android:fontFamily="@font/inter_light" />
         </LinearLayout>
 
-        <!-- Notification badges -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginBottom="4dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Notification badges"
-                android:textColor="@color/ratio_white"
-                android:textSize="15sp"
-                android:fontFamily="@font/inter_regular" />
-
-            <com.google.android.material.switchmaterial.SwitchMaterial
-                android:id="@+id/settingsNotifBadges"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <!-- Bedtime mode -->
-        <LinearLayout
-            android:id="@+id/settingBedtime"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginBottom="4dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Bedtime mode"
-                android:textColor="@color/ratio_white"
-                android:textSize="15sp"
-                android:fontFamily="@font/inter_regular" />
-
-            <TextView
-                android:id="@+id/settingBedtimeValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Off"
-                android:textColor="@color/ratio_gray_text"
-                android:textSize="13sp"
-                android:fontFamily="@font/inter_light" />
-        </LinearLayout>
-
         <!-- Usage timer overlay -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -801,32 +750,6 @@
                 android:id="@+id/settingsUsageTimer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </LinearLayout>
-
-        <!-- Quick launch gestures -->
-        <LinearLayout
-            android:id="@+id/settingGestures"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginBottom="4dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Quick launch gestures"
-                android:textColor="@color/ratio_white"
-                android:textSize="15sp"
-                android:fontFamily="@font/inter_regular" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="→"
-                android:textColor="@color/ratio_gray_text"
-                android:textSize="16sp" />
         </LinearLayout>
 
         <!-- Wallpaper -->
@@ -853,31 +776,6 @@
                 android:text="→"
                 android:textColor="@color/ratio_gray_text"
                 android:textSize="16sp" />
-        </LinearLayout>
-
-        <!-- Accent color -->
-        <LinearLayout
-            android:id="@+id/settingAccentColor"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:layout_marginBottom="4dp">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Accent color"
-                android:textColor="@color/ratio_white"
-                android:textSize="15sp"
-                android:fontFamily="@font/inter_regular" />
-
-            <View
-                android:id="@+id/settingAccentPreview"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@color/ratio_accent" />
         </LinearLayout>
 
         <!-- Divider -->

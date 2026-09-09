@@ -16,6 +16,10 @@ import com.ratio.launcher.utils.RootCardOrder
 
 class ReorderActivity : AppCompatActivity() {
 
+    override fun attachBaseContext(newBase: android.content.Context) {
+        super.attachBaseContext(com.ratio.launcher.utils.FontSizeManager.wrap(newBase))
+    }
+
     companion object {
         const val EXTRA_MODE = "mode"
         const val MODE_CATEGORIES = "categories"

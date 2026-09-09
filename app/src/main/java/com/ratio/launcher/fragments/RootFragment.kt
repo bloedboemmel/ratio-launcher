@@ -503,6 +503,7 @@ class RootFragment : Fragment() {
     }
 
     private fun displayWeather(data: WeatherData) {
+        if (!isAdded) return
         val metric = WeatherHelper.isMetric(requireContext())
         weatherTemp.text = WeatherHelper.formatTemp(data, metric)
         weatherCondition.text = data.condition

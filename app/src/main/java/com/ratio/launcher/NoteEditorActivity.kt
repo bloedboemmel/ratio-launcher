@@ -9,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 
 class NoteEditorActivity : AppCompatActivity() {
 
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(com.ratio.launcher.utils.FontSizeManager.wrap(newBase))
+    }
+
     private lateinit var editor: EditText
     private var noteId: Long = -1
 

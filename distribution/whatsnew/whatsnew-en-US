@@ -1,12 +1,5 @@
-v1.0.7:
-• App Suggestions based on usage
-• Digital Detox mode
-• Per-app daily time limits
-• Bedtime mode
-• Quick launch gestures
-• Notification badges
-• Pin app shortcuts
-• Quick toggles (WiFi, BT, Flash)
-• Pomodoro timer
-• Wallpaper + accent color
-• Compact settings
+v1.1:
+• New: Font size setting (Small/Medium/Large/Extra large)
+• Fixed: Uninstall from the app drawer works again
+• Fixed: 16 KB memory page size support for newer devices
+• Removed: icon pack, bedtime mode, quick launch gestures, notification badges and accent color settings — they never actually did anything
