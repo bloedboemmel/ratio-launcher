@@ -1,12 +1,5 @@
-v1.0.7:
-• App-Vorschläge basierend auf Nutzung
-• Digital Detox Modus
-• Tägliche App-Limits
-• Schlafmodus
-• Schnellstart-Gesten
-• Benachrichtigungs-Badges
-• App-Shortcuts anheften
-• Schnellzugriff (WLAN, BT, Lampe)
-• Pomodoro-Timer
-• Hintergrundbild + Akzentfarbe
-• Kompaktere Einstellungen
+v1.0.11:
+• Neu: Schriftgröße einstellbar (Klein/Mittel/Groß/Sehr groß)
+• Behoben: Deinstallieren im App-Drawer funktioniert wieder
+• Behoben: Unterstützung für 16-KB-Speicherseiten auf neueren Geräten
+• Entfernt: Icon-Pack, Schlafmodus, Schnellstart-Gesten, Benachrichtigungs-Badges und Akzentfarbe — diese Einstellungen hatten nie eine Wirkung
