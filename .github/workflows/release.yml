@@ -12,8 +12,8 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    # Only run when a merge from beta lands on main
-    if: contains(github.event.head_commit.message, 'beta') || contains(github.event.head_commit.message, 'Merge')
+    # Only run when a merge from beta lands on main, or when manually dispatched
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, 'beta') || contains(github.event.head_commit.message, 'Merge')
     steps:
       - uses: actions/checkout@v4
 
