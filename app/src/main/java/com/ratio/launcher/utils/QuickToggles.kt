@@ -10,6 +10,7 @@ import android.provider.Settings
 
 object QuickToggles {
 
+    @Suppress("DEPRECATION")
     fun isWifiEnabled(context: Context): Boolean {
         return try {
             val wm = context.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager

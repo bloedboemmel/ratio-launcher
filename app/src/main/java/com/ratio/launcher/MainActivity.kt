@@ -18,6 +18,7 @@ import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toDrawable
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -83,6 +84,16 @@ class MainActivity : AppCompatActivity() {
         val insetsController = WindowCompat.getInsetsController(window, window.decorView)
         insetsController.isAppearanceLightStatusBars = false
         insetsController.isAppearanceLightNavigationBars = false
+
+        // Align the custom status overlay with the real system status bar height
+        // instead of a fixed guess, now that the theme no longer sets statusBarColor.
+        val overlayHorizontalPadding = statusOverlay.paddingStart
+        val overlayBottomPadding = statusOverlay.paddingBottom
+        ViewCompat.setOnApplyWindowInsetsListener(statusOverlay) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPaddingRelative(overlayHorizontalPadding, systemBars.top, overlayHorizontalPadding, overlayBottomPadding)
+            insets
+        }
     }
 
     private fun setupViewPager() {
@@ -174,12 +185,27 @@ class MainActivity : AppCompatActivity() {
                 val uri = wpManager.getImageUri(this)
                 if (uri != null) {
                     try {
+                        val reqWidth = resources.displayMetrics.widthPixels
+                        val reqHeight = resources.displayMetrics.heightPixels
                         val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                             val source = ImageDecoder.createSource(contentResolver, uri)
-                            ImageDecoder.decodeBitmap(source)
+                            ImageDecoder.decodeBitmap(source) { decoder, info, _ ->
+                                val sampleSize = calculateInSampleSize(
+                                    info.size.width, info.size.height, reqWidth, reqHeight,
+                                )
+                                decoder.setTargetSampleSize(sampleSize)
+                            }
                         } else {
+                            val boundsOptions = BitmapFactory.Options().apply { inJustDecodeBounds = true }
                             contentResolver.openInputStream(uri)?.use { stream ->
-                                BitmapFactory.decodeStream(stream)
+                                BitmapFactory.decodeStream(stream, null, boundsOptions)
+                            }
+                            boundsOptions.inSampleSize = calculateInSampleSize(
+                                boundsOptions.outWidth, boundsOptions.outHeight, reqWidth, reqHeight,
+                            )
+                            boundsOptions.inJustDecodeBounds = false
+                            contentResolver.openInputStream(uri)?.use { stream ->
+                                BitmapFactory.decodeStream(stream, null, boundsOptions)
                             }
                         }
                         if (bitmap != null) {
@@ -225,6 +251,19 @@ class MainActivity : AppCompatActivity() {
         // Show/hide custom status overlay
         statusOverlay.visibility = if (statusBarHidden) View.VISIBLE else View.GONE
         if (statusBarHidden) updateStatusInfo()
+    }
+
+    /** Standard power-of-two downsample factor so wallpaper bitmaps aren't decoded larger than the screen. */
+    private fun calculateInSampleSize(width: Int, height: Int, reqWidth: Int, reqHeight: Int): Int {
+        var inSampleSize = 1
+        if (height > reqHeight || width > reqWidth) {
+            val halfHeight = height / 2
+            val halfWidth = width / 2
+            while ((halfHeight / inSampleSize) >= reqHeight && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2
+            }
+        }
+        return inSampleSize
     }
 
     private fun updateStatusInfo() {

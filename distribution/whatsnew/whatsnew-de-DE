@@ -1,5 +1,6 @@
-v1.1:
-• Neu: Schriftgröße einstellbar (Klein/Mittel/Groß/Sehr groß)
-• Behoben: Deinstallieren im App-Drawer funktioniert wieder
-• Behoben: Unterstützung für 16-KB-Speicherseiten auf neueren Geräten
-• Entfernt: Icon-Pack, Schlafmodus, Schnellstart-Gesten, Benachrichtigungs-Badges und Akzentfarbe — diese Einstellungen hatten nie eine Wirkung
+v1.2:
+• Neu: Schriftgröße einstellbar, weil Augen sich unterschiedlich verhalten, wer hätte es gedacht
+• Behoben: Deinstallieren funktioniert wieder, statt höflich zu nicken und nichts zu tun
+• Behoben: 16-KB-Speicherseiten, damit Geräte uns nicht mehr aus Prinzip abweisen
+• Entfernt: Icon-Pack, Schlafmodus, Gesten, Badges, Akzentfarbe — fünf wirkungslose Einstellungen
+• Unter der Haube: weniger Speicherverbrauch, saubereres Layout, stille Kompetenz

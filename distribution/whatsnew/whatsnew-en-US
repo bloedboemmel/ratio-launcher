@@ -1,5 +1,6 @@
-v1.1:
-• New: Font size setting (Small/Medium/Large/Extra large)
-• Fixed: Uninstall from the app drawer works again
-• Fixed: 16 KB memory page size support for newer devices
-• Removed: icon pack, bedtime mode, quick launch gestures, notification badges and accent color settings — they never actually did anything
+v1.2:
+• New: adjustable font size, because it turns out people's eyes differ, who knew
+• Fixed: Uninstall now actually uninstalls, rather than nodding politely and doing nothing
+• Fixed: 16 KB memory pages, so newer phones stop refusing us on a technicality
+• Removed: icon pack, bedtime mode, gestures, badges, accent color — five settings that did precisely nothing, and did it convincingly
+• Under the hood: less memory used, tidier edges, general quiet competence nobody will notice
