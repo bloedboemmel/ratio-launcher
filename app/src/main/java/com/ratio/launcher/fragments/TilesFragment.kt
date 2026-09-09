@@ -278,8 +278,12 @@ class TilesFragment : Fragment() {
         val intent = requireContext().packageManager.getLaunchIntentForPackage(app.packageName)
         intent?.let {
             startActivity(it)
-            // Auto-clear the search bar so the next visit starts fresh (#21).
-            clearSearch()
+            // Auto-clear the search bar so the next visit starts fresh (#21), but only
+            // after the launched app's transition has covered the screen so users don't
+            // see it reset out from under them.
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (isAdded) clearSearch()
+            }, 400)
         }
     }
 }
