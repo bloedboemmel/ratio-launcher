@@ -96,4 +96,10 @@ jobs:
             track:"internal" \
             track_promote_to:"production" \
             json_key:"play-store-key.json" \
-            rollout:"1.0"
+            rollout:"1.0" \
+            skip_upload_apk:true \
+            skip_upload_aab:true \
+            skip_upload_metadata:true \
+            skip_upload_images:true \
+            skip_upload_screenshots:true \
+            skip_upload_changelogs:true
