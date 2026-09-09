@@ -14,8 +14,8 @@ android {
         applicationId = "com.bloedboemmel.ratio"
         minSdk = 26
         targetSdk = 36
-        versionCode = 13
-        versionName = "1.1"
+        versionCode = 14
+        versionName = "1.2"
     }
 
     buildTypes {
@@ -24,7 +24,8 @@ android {
             manifestPlaceholders["sentryEnvironment"] = "debug"
         }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

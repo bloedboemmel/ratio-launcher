@@ -2,10 +2,6 @@
 <resources>
     <style name="Theme.RatioLauncher" parent="Theme.Material3.Dark.NoActionBar">
         <item name="android:windowBackground">@color/ratio_black</item>
-        <item name="android:statusBarColor">@color/transparent</item>
-        <item name="android:navigationBarColor">@color/ratio_black</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="colorPrimary">@color/ratio_accent</item>
         <item name="colorOnPrimary">@color/ratio_black</item>
         <item name="colorSurface">@color/ratio_black</item>
