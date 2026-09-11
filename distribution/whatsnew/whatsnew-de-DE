@@ -1,6 +1,7 @@
-v1.2:
-• Neu: Schriftgröße einstellbar, weil Augen sich unterschiedlich verhalten, wer hätte es gedacht
-• Behoben: Deinstallieren funktioniert wieder, statt höflich zu nicken und nichts zu tun
-• Behoben: 16-KB-Speicherseiten, damit Geräte uns nicht mehr aus Prinzip abweisen
-• Entfernt: Icon-Pack, Schlafmodus, Gesten, Badges, Akzentfarbe — fünf wirkungslose Einstellungen
+v1.2.1:
+• Neu: Schriftgröße einstellbar, weil Augen sich unterschiedlich verhalten
+• Behoben: Deinstallieren funktioniert wieder, statt nichts zu tun
+• Behoben: 16-KB-Speicherseiten, damit Geräte uns nicht mehr abweisen
+• Behoben: Suche zeigte gelegentlich alle Apps, als wäre nichts eingegeben
+• Entfernt: Icon-Pack, Schlafmodus, Gesten, Badges, Akzentfarbe — wirkungslose Einstellungen
 • Unter der Haube: weniger Speicherverbrauch, saubereres Layout, stille Kompetenz

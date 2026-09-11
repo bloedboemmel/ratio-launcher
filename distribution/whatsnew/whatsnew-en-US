@@ -1,6 +1,7 @@
-v1.2:
-• New: adjustable font size, because it turns out people's eyes differ, who knew
-• Fixed: Uninstall now actually uninstalls, rather than nodding politely and doing nothing
-• Fixed: 16 KB memory pages, so newer phones stop refusing us on a technicality
-• Removed: icon pack, bedtime mode, gestures, badges, accent color — five settings that did precisely nothing, and did it convincingly
-• Under the hood: less memory used, tidier edges, general quiet competence nobody will notice
+v1.2.1:
+• New: adjustable font size, because eyes differ, who knew
+• Fixed: Uninstall now actually uninstalls, instead of doing nothing
+• Fixed: 16 KB memory pages, so newer phones stop refusing us
+• Fixed: search occasionally reverting to every app, as if nothing had been typed
+• Removed: icon pack, bedtime, gestures, badges, accent color — settings doing precisely nothing
+• Under the hood: less memory used, tidier edges, quiet competence nobody will notice
