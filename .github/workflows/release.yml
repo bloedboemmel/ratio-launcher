@@ -68,7 +68,7 @@ jobs:
         with:
           tag_name: v${{ steps.version.outputs.name }}
           name: "Ratio Launcher v${{ steps.version.outputs.name }}"
-          body: "Production release v${{ steps.version.outputs.name }}"
+          body_path: distribution/whatsnew/whatsnew-en-US
           prerelease: false
           make_latest: true
           files: |
