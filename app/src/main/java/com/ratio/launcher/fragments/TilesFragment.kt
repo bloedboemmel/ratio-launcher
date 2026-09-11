@@ -112,6 +112,11 @@ class TilesFragment : Fragment() {
                 }
                 appList.layoutManager = gridLayoutManager
                 appList.adapter = adapter
+
+                // Re-apply whatever search text is still in the bar — a fresh adapter
+                // otherwise starts unfiltered even though the query is still visible.
+                val query = searchBar.text?.toString() ?: ""
+                if (query.isNotEmpty()) adapter.filter(query)
             }
         }.start()
     }

@@ -14,8 +14,8 @@ android {
         applicationId = "com.bloedboemmel.ratio"
         minSdk = 26
         targetSdk = 36
-        versionCode = 14
-        versionName = "1.2"
+        versionCode = 15
+        versionName = "1.2.1"
     }
 
     buildTypes {
