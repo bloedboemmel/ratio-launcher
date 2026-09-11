@@ -68,7 +68,7 @@ jobs:
         with:
           tag_name: v${{ steps.version.outputs.name }}b
           name: "Beta v${{ steps.version.outputs.name }}"
-          body: "Beta release v${{ steps.version.outputs.name }} — internal testing"
+          body_path: distribution/whatsnew/whatsnew-en-US
           prerelease: true
           files: |
             app-release-signed.apk
